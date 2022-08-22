@@ -116,4 +116,5 @@ drivers \
 middlewares/FreeRTOS/Source \
 middlewares/FreeRTOS/Source/portable/CCS/ARM_CM4F \
 middlewares/FreeRTOS/Source/portable/MemMang \
+utils \
 

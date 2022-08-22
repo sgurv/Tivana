@@ -11,6 +11,8 @@
 "./middlewares/FreeRTOS/Source/portable/CCS/ARM_CM4F/port.obj"
 "./middlewares/FreeRTOS/Source/portable/CCS/ARM_CM4F/portasm.obj"
 "./middlewares/FreeRTOS/Source/portable/MemMang/heap_4.obj"
+"./utils/uartstdio.obj"
+"./utils/ustdlib.obj"
 "../tm4c1294ncpdt.cmd"
 -llibc.a
 -l"C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/ccs/Debug/driverlib.lib"
