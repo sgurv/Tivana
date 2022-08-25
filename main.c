@@ -4,6 +4,7 @@
  * main.c
  */
 #define TARGET_IS_TM4C129_RA2 /*TM4C129 devices, silicon revision A2. Part revision 3(marking)*/
+#define RTOS_FREERTOS   1
 
 /* Standard includes. */
 #include <stdio.h>
@@ -48,7 +49,7 @@
 #include "driverlib/pwm.h"
 #include "driverlib/qei.h" // Quadrature Encoder
 #include "driverlib/shamd5.h" // SHA MD5
-#include "driverlib/ssi.h" // SPI Microwire etc
+#include "driverlib/ssi.h" // QSPI Microwire etc
 //#include "driverlib/sw_crc.h" //Soft CRC
 
 #include "drivers/rtos_hw_drivers.h"
@@ -223,21 +224,31 @@ static void prvSetupHardware( void )
 
     /* CAN 0 */
     // Enable the CAN0 module.
-    //
     MAP_SysCtlPeripheralEnable(SYSCTL_PERIPH_CAN0);
-    //
+
     // Wait for the CAN0 module to be ready.
-    //
+
     while(!MAP_SysCtlPeripheralReady(SYSCTL_PERIPH_CAN0))
     {
     }
 
     // Reset the state of all the message objects and the state of the CAN
     // module to a known state.
-    //
     MAP_CANInit(CAN0_BASE);
 
     /* CAN 1 */
+    // Enable the CAN1 module.
+    MAP_SysCtlPeripheralEnable(SYSCTL_PERIPH_CAN1);
+
+    // Wait for the CAN0 module to be ready.
+
+    while(!MAP_SysCtlPeripheralReady(SYSCTL_PERIPH_CAN1))
+    {
+    }
+
+    // Reset the state of all the message objects and the state of the CAN
+    // module to a known state.
+    MAP_CANInit(CAN1_BASE);
 
     /* ADC 0 */
     // Enable the ADC0 module.
@@ -318,9 +329,57 @@ static void prvSetupHardware( void )
     /* Enable the peripheral */
     MAP_SysCtlPeripheralEnable(SYSCTL_PERIPH_SSI2);
 
+    // Wait for the SSI2 module to be ready.
+    while(!MAP_SysCtlPeripheralReady(SYSCTL_PERIPH_SSI2))
+    {
+    }
+
+    // Configure the SSI.
+    MAP_SSIConfigSetExpClk(SSI2_BASE, MAP_SysCtlClockGet(), SSI_FRF_MOTO_MODE_0,
+    SSI_MODE_MASTER, 2000000, 8);
+
+    MAP_SSIAdvModeSet(SSI2_BASE,SSI_ADV_MODE_LEGACY); //SSI_ADV_MODE_LEGACY default
+
+    // Enable the SSI module.
+    MAP_SSIEnable(SSI2_BASE);
+
     /* SSI3 SPI*/
     /* Enable the peripheral */
     MAP_SysCtlPeripheralEnable(SYSCTL_PERIPH_SSI3);
+
+    // Wait for the SSI3 module to be ready.
+    while(!MAP_SysCtlPeripheralReady(SYSCTL_PERIPH_SSI3))
+    {
+    }
+
+    // Configure the SSI.
+    MAP_SSIConfigSetExpClk(SSI3_BASE, MAP_SysCtlClockGet(), SSI_FRF_MOTO_MODE_0,
+    SSI_MODE_MASTER, 2000000, 8);
+
+    MAP_SSIAdvModeSet(SSI3_BASE,SSI_ADV_MODE_LEGACY); //SSI_ADV_MODE_LEGACY default
+
+    // Enable the SSI module.
+    MAP_SSIEnable(SSI3_BASE);
+
+    /* QEI 0 */
+    // Enable the QEI0 peripheral
+    MAP_SysCtlPeripheralEnable(SYSCTL_PERIPH_QEI0);
+
+    // Wait for the QEI0 module to be ready.
+    while(!MAP_SysCtlPeripheralReady(SYSCTL_PERIPH_QEI0))
+    {
+    }
+
+    // Configure the quadrature encoder to capture edges on both signals and
+    // maintain an absolute position by resetting on index pulses. Using a
+    // 1000 line encoder at four edges per line, there are 4000 pulses per
+    // revolution; therefore set the maximum position to 3999 as the count
+    // is zero based.
+    MAP_QEIConfigure(QEI0_BASE, (QEI_CONFIG_CAPTURE_A_B | QEI_CONFIG_RESET_IDX |
+    QEI_CONFIG_QUADRATURE | QEI_CONFIG_NO_SWAP), 3999);
+
+    // Enable the quadrature encoder.
+    MAP_QEIEnable(QEI0_BASE);
 
     /* EEPROM */
     // Enable the EEPROM module.
