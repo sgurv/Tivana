@@ -14,6 +14,8 @@ main.obj: C:/ti/ccs1200/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/_stdint
 main.obj: C:/ti/ccs1200/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/sys/stdint.h
 main.obj: C:/ti/ccs1200/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/machine/_stdint.h
 main.obj: C:/ti/ccs1200/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/sys/_stdint.h
+main.obj: C:/ti/ccs1200/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/string.h
+main.obj: C:/ti/ccs1200/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/xlocale/_string.h
 main.obj: D:/ccsProjects/workspace_v12/Tivana/middlewares/FreeRTOS/Source/include/FreeRTOS.h
 main.obj: C:/ti/ccs1200/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/stddef.h
 main.obj: D:/ccsProjects/workspace_v12/Tivana/FreeRTOSConfig.h
@@ -24,6 +26,7 @@ main.obj: D:/ccsProjects/workspace_v12/Tivana/middlewares/FreeRTOS/Source/portab
 main.obj: D:/ccsProjects/workspace_v12/Tivana/middlewares/FreeRTOS/Source/include/mpu_wrappers.h
 main.obj: D:/ccsProjects/workspace_v12/Tivana/middlewares/FreeRTOS/Source/include/task.h
 main.obj: D:/ccsProjects/workspace_v12/Tivana/middlewares/FreeRTOS/Source/include/list.h
+main.obj: D:/ccsProjects/workspace_v12/Tivana/middlewares/FreeRTOS-Plus-CLI/FreeRTOS_CLI.h
 main.obj: C:/ti/TivaWare_C_Series-2.2.0.295/inc/hw_memmap.h
 main.obj: C:/ti/TivaWare_C_Series-2.2.0.295/inc/hw_sysctl.h
 main.obj: C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/sysexc.h
@@ -88,6 +91,10 @@ C:/ti/ccs1200/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/machine/_stdint.h
 
 C:/ti/ccs1200/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/sys/_stdint.h:
 
+C:/ti/ccs1200/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/string.h:
+
+C:/ti/ccs1200/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/xlocale/_string.h:
+
 D:/ccsProjects/workspace_v12/Tivana/middlewares/FreeRTOS/Source/include/FreeRTOS.h:
 
 C:/ti/ccs1200/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/stddef.h:
@@ -107,6 +114,8 @@ D:/ccsProjects/workspace_v12/Tivana/middlewares/FreeRTOS/Source/include/mpu_wrap
 D:/ccsProjects/workspace_v12/Tivana/middlewares/FreeRTOS/Source/include/task.h:
 
 D:/ccsProjects/workspace_v12/Tivana/middlewares/FreeRTOS/Source/include/list.h:
+
+D:/ccsProjects/workspace_v12/Tivana/middlewares/FreeRTOS-Plus-CLI/FreeRTOS_CLI.h:
 
 C:/ti/TivaWare_C_Series-2.2.0.295/inc/hw_memmap.h:
 
