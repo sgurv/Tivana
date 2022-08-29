@@ -12,6 +12,8 @@
 "./middlewares/FreeRTOS/Source/portable/CCS/ARM_CM4F/portasm.obj"
 "./middlewares/FreeRTOS/Source/portable/MemMang/heap_4.obj"
 "./middlewares/FreeRTOS-Plus-CLI/FreeRTOS_CLI.obj"
+"./thread/thread_cli.obj"
+"./utils/cli_commands.obj"
 "./utils/uartstdio.obj"
 "./utils/ustdlib.obj"
 "../tm4c1294ncpdt.cmd"

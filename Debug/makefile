@@ -24,6 +24,8 @@ ORDERED_OBJS += \
 "./middlewares/FreeRTOS/Source/portable/CCS/ARM_CM4F/portasm.obj" \
 "./middlewares/FreeRTOS/Source/portable/MemMang/heap_4.obj" \
 "./middlewares/FreeRTOS-Plus-CLI/FreeRTOS_CLI.obj" \
+"./thread/thread_cli.obj" \
+"./utils/cli_commands.obj" \
 "./utils/uartstdio.obj" \
 "./utils/ustdlib.obj" \
 "../tm4c1294ncpdt.cmd" \
@@ -44,6 +46,7 @@ RMDIR := RMDIR /S/Q
 -include middlewares/FreeRTOS/Source/portable/CCS/ARM_CM4F/subdir_vars.mk
 -include middlewares/FreeRTOS/Source/portable/MemMang/subdir_vars.mk
 -include middlewares/FreeRTOS-Plus-CLI/subdir_vars.mk
+-include thread/subdir_vars.mk
 -include utils/subdir_vars.mk
 -include subdir_rules.mk
 -include drivers/subdir_rules.mk
@@ -51,6 +54,7 @@ RMDIR := RMDIR /S/Q
 -include middlewares/FreeRTOS/Source/portable/CCS/ARM_CM4F/subdir_rules.mk
 -include middlewares/FreeRTOS/Source/portable/MemMang/subdir_rules.mk
 -include middlewares/FreeRTOS-Plus-CLI/subdir_rules.mk
+-include thread/subdir_rules.mk
 -include utils/subdir_rules.mk
 -include objects.mk
 
@@ -182,8 +186,8 @@ Tivana.hex: $(EXE_OUTPUTS)
 # Other Targets
 clean:
 	-$(RM) $(BIN_OUTPUTS__QUOTED)$(EXE_OUTPUTS__QUOTED)
-	-$(RM) "main.obj" "tm4c1294ncpdt_startup_ccs.obj" "drivers\rtos_hw_drivers.obj" "middlewares\FreeRTOS\Source\croutine.obj" "middlewares\FreeRTOS\Source\event_groups.obj" "middlewares\FreeRTOS\Source\list.obj" "middlewares\FreeRTOS\Source\queue.obj" "middlewares\FreeRTOS\Source\stream_buffer.obj" "middlewares\FreeRTOS\Source\tasks.obj" "middlewares\FreeRTOS\Source\timers.obj" "middlewares\FreeRTOS\Source\portable\CCS\ARM_CM4F\port.obj" "middlewares\FreeRTOS\Source\portable\CCS\ARM_CM4F\portasm.obj" "middlewares\FreeRTOS\Source\portable\MemMang\heap_4.obj" "middlewares\FreeRTOS-Plus-CLI\FreeRTOS_CLI.obj" "utils\uartstdio.obj" "utils\ustdlib.obj" 
-	-$(RM) "main.d" "tm4c1294ncpdt_startup_ccs.d" "drivers\rtos_hw_drivers.d" "middlewares\FreeRTOS\Source\croutine.d" "middlewares\FreeRTOS\Source\event_groups.d" "middlewares\FreeRTOS\Source\list.d" "middlewares\FreeRTOS\Source\queue.d" "middlewares\FreeRTOS\Source\stream_buffer.d" "middlewares\FreeRTOS\Source\tasks.d" "middlewares\FreeRTOS\Source\timers.d" "middlewares\FreeRTOS\Source\portable\CCS\ARM_CM4F\port.d" "middlewares\FreeRTOS\Source\portable\MemMang\heap_4.d" "middlewares\FreeRTOS-Plus-CLI\FreeRTOS_CLI.d" "utils\uartstdio.d" "utils\ustdlib.d" 
+	-$(RM) "main.obj" "tm4c1294ncpdt_startup_ccs.obj" "drivers\rtos_hw_drivers.obj" "middlewares\FreeRTOS\Source\croutine.obj" "middlewares\FreeRTOS\Source\event_groups.obj" "middlewares\FreeRTOS\Source\list.obj" "middlewares\FreeRTOS\Source\queue.obj" "middlewares\FreeRTOS\Source\stream_buffer.obj" "middlewares\FreeRTOS\Source\tasks.obj" "middlewares\FreeRTOS\Source\timers.obj" "middlewares\FreeRTOS\Source\portable\CCS\ARM_CM4F\port.obj" "middlewares\FreeRTOS\Source\portable\CCS\ARM_CM4F\portasm.obj" "middlewares\FreeRTOS\Source\portable\MemMang\heap_4.obj" "middlewares\FreeRTOS-Plus-CLI\FreeRTOS_CLI.obj" "thread\thread_cli.obj" "utils\cli_commands.obj" "utils\uartstdio.obj" "utils\ustdlib.obj" 
+	-$(RM) "main.d" "tm4c1294ncpdt_startup_ccs.d" "drivers\rtos_hw_drivers.d" "middlewares\FreeRTOS\Source\croutine.d" "middlewares\FreeRTOS\Source\event_groups.d" "middlewares\FreeRTOS\Source\list.d" "middlewares\FreeRTOS\Source\queue.d" "middlewares\FreeRTOS\Source\stream_buffer.d" "middlewares\FreeRTOS\Source\tasks.d" "middlewares\FreeRTOS\Source\timers.d" "middlewares\FreeRTOS\Source\portable\CCS\ARM_CM4F\port.d" "middlewares\FreeRTOS\Source\portable\MemMang\heap_4.d" "middlewares\FreeRTOS-Plus-CLI\FreeRTOS_CLI.d" "thread\thread_cli.d" "utils\cli_commands.d" "utils\uartstdio.d" "utils\ustdlib.d" 
 	-$(RM) "middlewares\FreeRTOS\Source\portable\CCS\ARM_CM4F\portasm.d" 
 	-@echo 'Finished clean'
 	-@echo ' '

@@ -62,6 +62,8 @@ main.obj: C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/shamd5.h
 main.obj: C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/ssi.h
 main.obj: ../drivers/rtos_hw_drivers.h
 main.obj: C:/ti/TivaWare_C_Series-2.2.0.295/utils/uartstdio.h
+main.obj: ../utils/cli_commands.h
+main.obj: ../thread/thread_cli.h
 
 ../main.c:
 
@@ -186,4 +188,8 @@ C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/ssi.h:
 ../drivers/rtos_hw_drivers.h:
 
 C:/ti/TivaWare_C_Series-2.2.0.295/utils/uartstdio.h:
+
+../utils/cli_commands.h:
+
+../thread/thread_cli.h:
 
