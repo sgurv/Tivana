@@ -51,7 +51,7 @@
 
 #define configUSE_PREEMPTION                1
 #define configUSE_IDLE_HOOK                 1
-#define configUSE_TICK_HOOK                 0
+#define configUSE_TICK_HOOK                 1
 #define configCPU_CLOCK_HZ                  ( ( unsigned long ) 120000000 )
 #define configTICK_RATE_HZ                  ( ( portTickType ) 1000 )
 #define configMINIMAL_STACK_SIZE            ( ( unsigned short ) 200 )
@@ -64,7 +64,9 @@
 #define configUSE_MUTEXES                   1
 #define configUSE_RECURSIVE_MUTEXES         1
 #define configCHECK_FOR_STACK_OVERFLOW      2
+#define configUSE_COUNTING_SEMAPHORES       1
 
+#define configSUPPORT_STATIC_ALLOCATION     0
 //#define configMAX_PRIORITIES                ( ( unsigned portBASE_TYPE ) 16 )
 #define configMAX_PRIORITIES ( 16 )
 #define configMAX_CO_ROUTINE_PRIORITIES     ( 2 )

@@ -4,13 +4,16 @@
  * main.c
  */
 #define TARGET_IS_TM4C129_RA2 /*TM4C129 devices, silicon revision A2. Part revision 3(marking)*/
+#define NO_SYS 0
 #define RTOS_FREERTOS   1
+#define USE_ST7735     (1)
 
 /* Standard includes. */
 #include <stdio.h>
 #include <stdbool.h>
 #include <stdint.h>
 #include <string.h>
+#include <stdlib.h>
 
 /* Kernel includes. */
 #include "FreeRTOS.h"
@@ -18,6 +21,11 @@
 
 /* FreeRTOS+CLI includes. */
 #include "FreeRTOS_CLI.h"
+
+#include "FreeRTOS_IP.h"
+
+/* */
+#include "middlewares/lvgl/lvgl.h"
 
 /* Hardware includes. */
 #include "inc/hw_memmap.h"
@@ -64,15 +72,31 @@
 
 //Threads
 #include "thread/thread_cli.h"
+#include "thread/thread_modbus.h"
+#include "thread/thread_display.h"
 
 /* The system clock frequency. */
 uint32_t g_ui32SysClock;
 
-/* Set up the hardware ready to run this demo. */
+/* The MAC address array is not declared const as the MAC address will
+normally be read from an EEPROM and not hard coded (in real deployed
+applications).*/
+static uint8_t ucMACAddress[ 6 ] = { 0x00, 0x11, 0x22, 0x33, 0x44, 0x55 };
+
+/* Define the network addressing.  These parameters will be used if either
+ipconfigUDE_DHCP is 0 or if ipconfigUSE_DHCP is 1 but DHCP auto configuration
+failed. */
+static const uint8_t ucIPAddress[ 4 ] = { 10, 10, 10, 200 };
+static const uint8_t ucNetMask[ 4 ] = { 255, 0, 0, 0 };
+static const uint8_t ucGatewayAddress[ 4 ] = { 10, 10, 10, 1 };
+
+/* The following is the address of an OpenDNS server. */
+static const uint8_t ucDNSServerAddress[ 4 ] = { 208, 67, 222, 222 };
+
+/* Set up the hardware. */
 static void prvSetupHardware( void );
 
-/* This function sets up UART0 to be used for a console to display information
- * as the example is running. */
+/* This function sets up UART0 to be used for a console to display information */
 static void prvConfigureUART(void);
 
 //Task
@@ -80,9 +104,22 @@ static void prvHelloTask( void *pvParameters );
 
 int main(void)
 {
+    BaseType_t res = pdFALSE;
     /* Prepare the hardware to run this demo. */
     prvSetupHardware();
 
+    /* Initialise the RTOS's TCP/IP stack.  The tasks that use the network
+        are created in the vApplicationIPNetworkEventHook() hook function
+        below.  The hook function is called when the network connects. */
+//    res = FreeRTOS_IPInit( ucIPAddress,
+//                     ucNetMask,
+//                     ucGatewayAddress,
+//                     ucDNSServerAddress,
+//                     ucMACAddress );
+//
+//    if(res == pdFALSE){ // Test
+//        LEDWrite(LED_D1,1);
+//    }
 
     /* Create tasks
      *
@@ -95,21 +132,36 @@ int main(void)
      *  - The priority assigned to the task.
      *  - The task handle is NULL */
     xTaskCreate( prvHelloTask,
-                 "thread_main",
+                 "thread_test",
                  configMINIMAL_STACK_SIZE,
                  NULL,
                  tskIDLE_PRIORITY + 1,
                  NULL );
 
     xTaskCreate( prvCommandInterpreterTask,
-                     "thread_cli",
-                     configMINIMAL_STACK_SIZE,
-                     NULL,
-                     tskIDLE_PRIORITY + 1,
-                     NULL );
+                 "thread_cli",
+                 configMINIMAL_STACK_SIZE,
+                 NULL,
+                 tskIDLE_PRIORITY + 1,
+                 NULL );
+
+    xTaskCreate( prvModbusTask,
+                 "thread_mb",
+                 configMINIMAL_STACK_SIZE,
+                 NULL,
+                 tskIDLE_PRIORITY + 1,
+                 NULL );
+
+    xTaskCreate( prvDisplayTask,
+                 "thread_dis",
+                 configMINIMAL_STACK_SIZE,
+                 NULL,
+                 tskIDLE_PRIORITY + 1,
+                 NULL );
 
     /* Register commands with the FreeRTOS+CLI command interpreter. */
     vRegisterCLICommands();
+
 
     /* Start the tasks and timer running. */
     vTaskStartScheduler();
@@ -126,10 +178,13 @@ int main(void)
 static void prvHelloTask( void *pvParameters )
 {
 
-    LEDWrite(LED_D1,1);
+    BaseType_t result;
+
+    //LEDWrite(LED_D1,1);
     LEDWrite(LED_D2,1);
     LEDWrite(LED_D3,1);
     LEDWrite(LED_D4,1);
+
 
     for (;;)
     {
@@ -152,7 +207,11 @@ static void prvHelloTask( void *pvParameters )
 
         //// -- UART Test
         /* Print the Hello world! message. */
-        UARTprintf("Hello world!\n");
+        if(result == pdPASS){
+            UARTprintf("Yesss!\n");
+        } else {
+            UARTprintf("Noooh!\n");
+        }
         vTaskDelay( pdMS_TO_TICKS( 1000 ));
         /////--- END UART Test
 
@@ -196,7 +255,7 @@ static void prvSetupHardware( void )
             SYSCTL_CFG_VCO_240), configCPU_CLOCK_HZ);
 
     /* Configure device pins. */
-    PinoutSet(false, false); // use EMAC
+    PinoutSet(true, false); // use EMAC
 
     /*Buttons*/
     ButtonsInit();
@@ -206,210 +265,212 @@ static void prvSetupHardware( void )
 
     /* UART 2*/
     /* Enable and configure the peripherals used by the uart. */
-//    MAP_SysCtlPeripheralEnable(SYSCTL_PERIPH_UART2);
-//    MAP_GPIOPinConfigure(GPIO_PD4_U2RX);
-//    MAP_GPIOPinConfigure(GPIO_PD5_U2TX);
-//    MAP_GPIOPinTypeUART(GPIO_PORTD_BASE, GPIO_PIN_4 | GPIO_PIN_5);
+    MAP_SysCtlPeripheralEnable(SYSCTL_PERIPH_UART2);
+    MAP_GPIOPinConfigure(GPIO_PD4_U2RX);
+    MAP_GPIOPinConfigure(GPIO_PD5_U2TX);
+    MAP_GPIOPinTypeUART(GPIO_PORTD_BASE, GPIO_PIN_4 | GPIO_PIN_5);
 
     // Wait for the UART6 module to be ready.
-//    while(!MAP_SysCtlPeripheralReady(SYSCTL_PERIPH_UART2))
-//    {
-//    }
+    while(!MAP_SysCtlPeripheralReady(SYSCTL_PERIPH_UART2))
+    {
+    }
 
-//    MAP_UARTConfigSetExpClk(UART2_BASE, MAP_SysCtlClockGet(), 9600,
-//    (UART_CONFIG_WLEN_8 | UART_CONFIG_STOP_ONE |
-//    UART_CONFIG_PAR_NONE));
+    MAP_UARTConfigSetExpClk(UART2_BASE, MAP_SysCtlClockGet(), 9600,
+    (UART_CONFIG_WLEN_8 | UART_CONFIG_STOP_ONE |
+    UART_CONFIG_PAR_NONE));
 
     /* UART 6*/
     /* Enable and configure the peripherals used by the uart. */
-//    MAP_SysCtlPeripheralEnable(SYSCTL_PERIPH_UART6);
-//    MAP_GPIOPinConfigure(GPIO_PP0_U6RX);
-//    MAP_GPIOPinConfigure(GPIO_PP1_U6TX);
-//    MAP_GPIOPinTypeUART(GPIO_PORTP_BASE, GPIO_PIN_0 | GPIO_PIN_1);
+    MAP_SysCtlPeripheralEnable(SYSCTL_PERIPH_UART6);
+    MAP_GPIOPinConfigure(GPIO_PP0_U6RX);
+    MAP_GPIOPinConfigure(GPIO_PP1_U6TX);
+    MAP_GPIOPinTypeUART(GPIO_PORTP_BASE, GPIO_PIN_0 | GPIO_PIN_1);
 
     // Wait for the UART6 module to be ready.
-//    while(!MAP_SysCtlPeripheralReady(SYSCTL_PERIPH_UART6))
-//    {
-//    }
+    while(!MAP_SysCtlPeripheralReady(SYSCTL_PERIPH_UART6))
+    {
+    }
 
-//    MAP_UARTConfigSetExpClk(UART6_BASE, MAP_SysCtlClockGet(), 9600,
-//    (UART_CONFIG_WLEN_8 | UART_CONFIG_STOP_ONE |
-//    UART_CONFIG_PAR_NONE));
+    MAP_UARTConfigSetExpClk(UART6_BASE, MAP_SysCtlClockGet(), 9600,
+    (UART_CONFIG_WLEN_8 | UART_CONFIG_STOP_ONE |
+    UART_CONFIG_PAR_NONE));
 
     /* UART 7*/
     /* Enable and configure the peripherals used by the uart. */
-//    MAP_SysCtlPeripheralEnable(SYSCTL_PERIPH_UART7);
-//    MAP_GPIOPinConfigure(GPIO_PC4_U7RX);
-//    MAP_GPIOPinConfigure(GPIO_PC5_U7TX);
-//    MAP_GPIOPinTypeUART(GPIO_PORTC_BASE, GPIO_PIN_4 | GPIO_PIN_5);
+    MAP_SysCtlPeripheralEnable(SYSCTL_PERIPH_UART7);
+    MAP_GPIOPinConfigure(GPIO_PC4_U7RX);
+    MAP_GPIOPinConfigure(GPIO_PC5_U7TX);
+    MAP_GPIOPinTypeUART(GPIO_PORTC_BASE, GPIO_PIN_4 | GPIO_PIN_5);
 
     // Wait for the UART7 module to be ready.
-//    while(!MAP_SysCtlPeripheralReady(SYSCTL_PERIPH_UART7))
-//    {
-//    }
+    while(!MAP_SysCtlPeripheralReady(SYSCTL_PERIPH_UART7))
+    {
+    }
 
-//    MAP_UARTConfigSetExpClk(UART7_BASE, MAP_SysCtlClockGet(), 9600,
-//    (UART_CONFIG_WLEN_8 | UART_CONFIG_STOP_ONE |
-//    UART_CONFIG_PAR_NONE));
+    MAP_UARTConfigSetExpClk(UART7_BASE, MAP_SysCtlClockGet(), 9600,
+    (UART_CONFIG_WLEN_8 | UART_CONFIG_STOP_ONE |
+    UART_CONFIG_PAR_NONE));
 
     /* CAN 0 */
     // Enable the CAN0 module.
-//    MAP_SysCtlPeripheralEnable(SYSCTL_PERIPH_CAN0);
+    MAP_SysCtlPeripheralEnable(SYSCTL_PERIPH_CAN0);
 
     // Wait for the CAN0 module to be ready.
 
-//    while(!MAP_SysCtlPeripheralReady(SYSCTL_PERIPH_CAN0))
-//    {
-//    }
+    while(!MAP_SysCtlPeripheralReady(SYSCTL_PERIPH_CAN0))
+    {
+    }
 
     // Reset the state of all the message objects and the state of the CAN
     // module to a known state.
-//    MAP_CANInit(CAN0_BASE);
+    MAP_CANInit(CAN0_BASE);
 
     /* CAN 1 */
     // Enable the CAN1 module.
-//    MAP_SysCtlPeripheralEnable(SYSCTL_PERIPH_CAN1);
+    MAP_SysCtlPeripheralEnable(SYSCTL_PERIPH_CAN1);
 
     // Wait for the CAN0 module to be ready.
 
-//    while(!MAP_SysCtlPeripheralReady(SYSCTL_PERIPH_CAN1))
-//    {
-//    }
+    while(!MAP_SysCtlPeripheralReady(SYSCTL_PERIPH_CAN1))
+    {
+    }
 
     // Reset the state of all the message objects and the state of the CAN
     // module to a known state.
-//    MAP_CANInit(CAN1_BASE);
+    MAP_CANInit(CAN1_BASE);
 
     /* ADC 0 */
     // Enable the ADC0 module.
-//    MAP_SysCtlPeripheralEnable(SYSCTL_PERIPH_ADC0);
+    MAP_SysCtlPeripheralEnable(SYSCTL_PERIPH_ADC0);
 
     // Wait for the ADC0 module to be ready.
-//    while(!MAP_SysCtlPeripheralReady(SYSCTL_PERIPH_ADC0))
-//    {
-//    }
+    while(!MAP_SysCtlPeripheralReady(SYSCTL_PERIPH_ADC0))
+    {
+    }
 
     // Enable the first sample sequencer to capture the value of channel 0 when
     // the processor trigger occurs.
-//    MAP_ADCSequenceConfigure(ADC0_BASE, 0, ADC_TRIGGER_PROCESSOR, 0);
-//    MAP_ADCSequenceStepConfigure(ADC0_BASE, 0, 0,
-//    ADC_CTL_IE | ADC_CTL_END | ADC_CTL_CH0);
-//    MAP_ADCSequenceEnable(ADC0_BASE, 0);
+    MAP_ADCSequenceConfigure(ADC0_BASE, 0, ADC_TRIGGER_PROCESSOR, 0);
+    MAP_ADCSequenceStepConfigure(ADC0_BASE, 0, 0,
+    ADC_CTL_IE | ADC_CTL_END | ADC_CTL_CH0);
+    MAP_ADCSequenceEnable(ADC0_BASE, 0);
 
     /* ADC 1 */
     // Enable the ADC1 module.
-//    MAP_SysCtlPeripheralEnable(SYSCTL_PERIPH_ADC1);
+    MAP_SysCtlPeripheralEnable(SYSCTL_PERIPH_ADC1);
 
     // Wait for the ADC0 module to be ready.
-//    while(!MAP_SysCtlPeripheralReady(SYSCTL_PERIPH_ADC1))
-//    {
-//    }
+    while(!MAP_SysCtlPeripheralReady(SYSCTL_PERIPH_ADC1))
+    {
+    }
 
     // Enable the first sample sequencer to capture the value of channel 0 when
     // the processor trigger occurs.
-//    MAP_ADCSequenceConfigure(ADC1_BASE, 0, ADC_TRIGGER_PROCESSOR, 0);
-//    MAP_ADCSequenceStepConfigure(ADC1_BASE, 0, 0,
-//    ADC_CTL_IE | ADC_CTL_END | ADC_CTL_CH0);
-//    MAP_ADCSequenceEnable(ADC1_BASE, 0);
+    MAP_ADCSequenceConfigure(ADC1_BASE, 0, ADC_TRIGGER_PROCESSOR, 0);
+    MAP_ADCSequenceStepConfigure(ADC1_BASE, 0, 0,
+    ADC_CTL_IE | ADC_CTL_END | ADC_CTL_CH0);
+    MAP_ADCSequenceEnable(ADC1_BASE, 0);
 
 
     /* I2C 0 */
     /* Enable the peripheral */
-//    MAP_SysCtlPeripheralEnable(SYSCTL_PERIPH_I2C0);
+    MAP_SysCtlPeripheralEnable(SYSCTL_PERIPH_I2C0);
 
     /* Configure the appropriate pins to be I2C instead of GPIO. */
-//    MAP_GPIOPinConfigure(GPIO_PB2_I2C0SCL);
-//    MAP_GPIOPinConfigure(GPIO_PB3_I2C0SDA);
-//    MAP_GPIOPinTypeI2CSCL(GPIO_PORTB_BASE, GPIO_PIN_2);
-//    MAP_GPIOPinTypeI2C(GPIO_PORTB_BASE, GPIO_PIN_3);
+    MAP_GPIOPinConfigure(GPIO_PB2_I2C0SCL);
+    MAP_GPIOPinConfigure(GPIO_PB3_I2C0SDA);
+    MAP_GPIOPinTypeI2CSCL(GPIO_PORTB_BASE, GPIO_PIN_2);
+    MAP_GPIOPinTypeI2C(GPIO_PORTB_BASE, GPIO_PIN_3);
 
     // Wait for the I2C0 module to be ready.
-//    while(!MAP_SysCtlPeripheralReady(SYSCTL_PERIPH_I2C0))
-//    {
-//    }
+    while(!MAP_SysCtlPeripheralReady(SYSCTL_PERIPH_I2C0))
+    {
+    }
 
     // Initialize Master and Slave
-//    MAP_I2CMasterInitExpClk(I2C0_BASE, MAP_SysCtlClockGet(), true);
+    MAP_I2CMasterInitExpClk(I2C0_BASE, MAP_SysCtlClockGet(), true);
 
     // Specify slave address
-//    MAP_I2CMasterSlaveAddrSet(I2C0_BASE, 0x3B, false);
+    MAP_I2CMasterSlaveAddrSet(I2C0_BASE, 0x3B, false);
 
     /* I2C 2*/
     /* Enable the peripheral */
-//    MAP_SysCtlPeripheralEnable(SYSCTL_PERIPH_I2C2);
+    MAP_SysCtlPeripheralEnable(SYSCTL_PERIPH_I2C2);
 
     /* Configure the appropriate pins to be I2C instead of GPIO. */
-//    MAP_GPIOPinConfigure(GPIO_PN5_I2C2SCL);
-//    MAP_GPIOPinConfigure(GPIO_PN4_I2C2SDA);
-//    MAP_GPIOPinTypeI2CSCL(GPIO_PORTN_BASE, GPIO_PIN_5);
-//    MAP_GPIOPinTypeI2C(GPIO_PORTN_BASE, GPIO_PIN_4);
+    MAP_GPIOPinConfigure(GPIO_PN5_I2C2SCL);
+    MAP_GPIOPinConfigure(GPIO_PN4_I2C2SDA);
+    MAP_GPIOPinTypeI2CSCL(GPIO_PORTN_BASE, GPIO_PIN_5);
+    MAP_GPIOPinTypeI2C(GPIO_PORTN_BASE, GPIO_PIN_4);
 
     // Wait for the I2C2 module to be ready.
-//    while(!MAP_SysCtlPeripheralReady(SYSCTL_PERIPH_I2C2))
-//    {
-//    }
+    while(!MAP_SysCtlPeripheralReady(SYSCTL_PERIPH_I2C2))
+    {
+    }
 
     // Initialize Master and Slave
-//    MAP_I2CMasterInitExpClk(I2C2_BASE, MAP_SysCtlClockGet(), true);
+    MAP_I2CMasterInitExpClk(I2C2_BASE, MAP_SysCtlClockGet(), true);
 
     // Specify slave address
-//    MAP_I2CMasterSlaveAddrSet(I2C2_BASE, 0x3B, false);
+    MAP_I2CMasterSlaveAddrSet(I2C2_BASE, 0x3B, false);
 
     /* SSI2 SPI*/
     /* Enable the peripheral */
-//    MAP_SysCtlPeripheralEnable(SYSCTL_PERIPH_SSI2);
+    MAP_SysCtlPeripheralEnable(SYSCTL_PERIPH_SSI2);
 
     // Wait for the SSI2 module to be ready.
-//    while(!MAP_SysCtlPeripheralReady(SYSCTL_PERIPH_SSI2))
-//    {
-//    }
+    while(!MAP_SysCtlPeripheralReady(SYSCTL_PERIPH_SSI2))
+    {
+    }
 
     // Configure the SSI.
-//    MAP_SSIConfigSetExpClk(SSI2_BASE, MAP_SysCtlClockGet(), SSI_FRF_MOTO_MODE_0,
-//    SSI_MODE_MASTER, 2000000, 8);
+    MAP_SSIConfigSetExpClk(SSI2_BASE, MAP_SysCtlClockGet(), SSI_FRF_MOTO_MODE_0,
+    SSI_MODE_MASTER, 2000000, 8);
 
-//    MAP_SSIAdvModeSet(SSI2_BASE,SSI_ADV_MODE_LEGACY); //SSI_ADV_MODE_LEGACY default
+    MAP_SSIAdvModeSet(SSI2_BASE,SSI_ADV_MODE_LEGACY); //SSI_ADV_MODE_LEGACY default
 
     // Enable the SSI module.
-//    MAP_SSIEnable(SSI2_BASE);
+    MAP_SSIEnable(SSI2_BASE);
 
     /* SSI3 SPI*/
     /* Enable the peripheral */
-//    MAP_SysCtlPeripheralEnable(SYSCTL_PERIPH_SSI3);
+    MAP_SysCtlPeripheralEnable(SYSCTL_PERIPH_SSI3);
 
     // Wait for the SSI3 module to be ready.
-//    while(!MAP_SysCtlPeripheralReady(SYSCTL_PERIPH_SSI3))
-//    {
-//    }
+    while(!MAP_SysCtlPeripheralReady(SYSCTL_PERIPH_SSI3))
+    {
+    }
 
     // Configure the SSI.
-//    MAP_SSIConfigSetExpClk(SSI3_BASE, MAP_SysCtlClockGet(), SSI_FRF_MOTO_MODE_0,
-//    SSI_MODE_MASTER, 2000000, 8);
+    MAP_SSIConfigSetExpClk(SSI3_BASE, MAP_SysCtlClockGet(), SSI_FRF_MOTO_MODE_0,
+    SSI_MODE_MASTER, 2000000, 8);
 
-//    MAP_SSIAdvModeSet(SSI3_BASE,SSI_ADV_MODE_LEGACY); //SSI_ADV_MODE_LEGACY default
+    MAP_SSIAdvModeSet(SSI3_BASE,SSI_ADV_MODE_LEGACY); //SSI_ADV_MODE_LEGACY default
 
     // Enable the SSI module.
-//    MAP_SSIEnable(SSI3_BASE);
+    MAP_SSIEnable(SSI3_BASE);
 
     /* QEI 0 */
     // Enable the QEI0 peripheral
-//    MAP_SysCtlPeripheralEnable(SYSCTL_PERIPH_QEI0);
+    MAP_SysCtlPeripheralEnable(SYSCTL_PERIPH_QEI0);
 
     // Wait for the QEI0 module to be ready.
-//    while(!MAP_SysCtlPeripheralReady(SYSCTL_PERIPH_QEI0))
-//    {
-//    }
+    while(!MAP_SysCtlPeripheralReady(SYSCTL_PERIPH_QEI0))
+    {
+    }
 
     // Configure the quadrature encoder to capture edges on both signals and
     // maintain an absolute position by resetting on index pulses. Using a
     // 1000 line encoder at four edges per line, there are 4000 pulses per
     // revolution; therefore set the maximum position to 3999 as the count
     // is zero based.
-//    MAP_QEIConfigure(QEI0_BASE, (QEI_CONFIG_CAPTURE_A_B | QEI_CONFIG_RESET_IDX |
-//    QEI_CONFIG_QUADRATURE | QEI_CONFIG_NO_SWAP), 3999);
+    MAP_QEIConfigure(QEI0_BASE, (QEI_CONFIG_CAPTURE_A_B | QEI_CONFIG_RESET_IDX |
+    QEI_CONFIG_QUADRATURE | QEI_CONFIG_NO_SWAP), 3999);
 
     // Enable the quadrature encoder.
-//    MAP_QEIEnable(QEI0_BASE);
+    MAP_QEIEnable(QEI0_BASE);
+
+    /* EMAC */
 
     /* EEPROM */
     // Enable the EEPROM module.
@@ -481,13 +542,13 @@ void vApplicationStackOverflowHook( TaskHandle_t pxTask, char *pcTaskName )
 }
 /*-----------------------------------------------------------*/
 
-void *malloc( size_t xSize )
-{
-    /* There should not be a heap defined, so trap any attempts to call
-    malloc. */
-    IntMasterDisable();
-    for( ;; );
-}
+//void *malloc( size_t xSize )
+//{
+//    /* There should not be a heap defined, so trap any attempts to call
+//    malloc. */
+//    IntMasterDisable();
+//    for( ;; );
+//}
 /*-----------------------------------------------------------*/
 
 void vApplicationTickHook( void )
@@ -498,7 +559,52 @@ void vApplicationTickHook( void )
         code must not attempt to block, and only the interrupt safe FreeRTOS API
         functions can be used (those that end in FromISR()). */
 
-    /* Only the full demo uses the tick hook so there is no code is
-        executed here. */
+    lv_tick_inc(1); // for lvgl
 }
 
+void vApplicationIPNetworkEventHook( eIPCallbackEvent_t eNetworkEvent )
+{
+static BaseType_t xTasksAlreadyCreated = pdFALSE;
+
+    /* Both eNetworkUp and eNetworkDown events can be processed here. */
+    if( eNetworkEvent == eNetworkUp )
+    {
+        //LEDWrite(LED_D1,0); // test
+
+        /* Create the tasks that use the TCP/IP stack if they have not already
+        been created. */
+        if( xTasksAlreadyCreated == pdFALSE )
+        {
+            /*
+             * For convenience, tasks that use FreeRTOS-Plus-TCP can be created here
+             * to ensure they are not created before the network is usable.
+             */
+
+            xTasksAlreadyCreated = pdTRUE;
+        }
+    }
+}
+
+BaseType_t xApplicationGetRandomNumber( uint32_t *pulValue ){
+    *( pulValue ) = rand();
+    return pdTRUE;
+}
+
+/*
+ * Callback that provides the inputs necessary to generate a randomized TCP
+ * Initial Sequence Number per RFC 6528.  THIS IS ONLY A DUMMY IMPLEMENTATION
+ * THAT RETURNS A PSEUDO RANDOM NUMBER SO IS NOT INTENDED FOR USE IN PRODUCTION
+ * SYSTEMS.
+ */
+extern uint32_t ulApplicationGetNextSequenceNumber( uint32_t ulSourceAddress,
+                                                    uint16_t usSourcePort,
+                                                    uint32_t ulDestinationAddress,
+                                                    uint16_t usDestinationPort )
+{
+    ( void ) ulSourceAddress;
+    ( void ) usSourcePort;
+    ( void ) ulDestinationAddress;
+    ( void ) usDestinationPort;
+
+    return rand();
+}

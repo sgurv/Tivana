@@ -49,6 +49,9 @@
 								<option id="com.ti.ccstudio.buildDefinitions.TMS470_20.2.compilerID.DIAG_WRAP.318780215" name="Wrap diagnostic messages (--diag_wrap)" superClass="com.ti.ccstudio.buildDefinitions.TMS470_20.2.compilerID.DIAG_WRAP" useByScannerDiscovery="false" value="com.ti.ccstudio.buildDefinitions.TMS470_20.2.compilerID.DIAG_WRAP.off" valueType="enumerated"/>
 								<option IS_BUILTIN_EMPTY="false" IS_VALUE_EMPTY="false" id="com.ti.ccstudio.buildDefinitions.TMS470_20.2.compilerID.INCLUDE_PATH.1226529653" name="Add dir to #include search path (--include_path, -I)" superClass="com.ti.ccstudio.buildDefinitions.TMS470_20.2.compilerID.INCLUDE_PATH" useByScannerDiscovery="false" valueType="includePath">
 									<listOptionValue builtIn="false" value="&quot;C:\ti\TivaWare_C_Series-2.2.0.295&quot;"/>
+									<listOptionValue builtIn="false" value="${ProjDirPath}/middlewares/FreeRTOS-Plus-TCP/source/portable/NetworkInterface/include"/>
+									<listOptionValue builtIn="false" value="${PROJECT_ROOT}/middlewares/FreeRTOS-Plus-TCP/source/portable/Compiler/CCS"/>
+									<listOptionValue builtIn="false" value="${CCS_PROJECT_DIR}/middlewares/FreeRTOS-Plus-TCP/source/include"/>
 									<listOptionValue builtIn="false" value="${PROJECT_ROOT}"/>
 									<listOptionValue builtIn="false" value="${CG_TOOL_ROOT}/include"/>
 									<listOptionValue builtIn="false" value="${workspace_loc:/${ProjName}/middlewares/FreeRTOS}"/>
@@ -58,6 +61,7 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/middlewares/FreeRTOS-Plus-CLI}&quot;"/>
 								</option>
 								<option id="com.ti.ccstudio.buildDefinitions.TMS470_20.2.compilerID.LITTLE_ENDIAN.1760884295" name="Little endian code [See 'General' page to edit] (--little_endian, -me)" superClass="com.ti.ccstudio.buildDefinitions.TMS470_20.2.compilerID.LITTLE_ENDIAN" useByScannerDiscovery="false" value="true" valueType="boolean"/>
+								<option id="com.ti.ccstudio.buildDefinitions.TMS470_20.2.compilerID.C_DIALECT.2070625202" superClass="com.ti.ccstudio.buildDefinitions.TMS470_20.2.compilerID.C_DIALECT" useByScannerDiscovery="false" value="com.ti.ccstudio.buildDefinitions.TMS470_20.2.compilerID.C_DIALECT.C99" valueType="enumerated"/>
 								<inputType id="com.ti.ccstudio.buildDefinitions.TMS470_20.2.compiler.inputType__C_SRCS.34166455" name="C Sources" superClass="com.ti.ccstudio.buildDefinitions.TMS470_20.2.compiler.inputType__C_SRCS"/>
 								<inputType id="com.ti.ccstudio.buildDefinitions.TMS470_20.2.compiler.inputType__CPP_SRCS.64964468" name="C++ Sources" superClass="com.ti.ccstudio.buildDefinitions.TMS470_20.2.compiler.inputType__CPP_SRCS"/>
 								<inputType id="com.ti.ccstudio.buildDefinitions.TMS470_20.2.compiler.inputType__ASM_SRCS.1985575707" name="Assembly Sources" superClass="com.ti.ccstudio.buildDefinitions.TMS470_20.2.compiler.inputType__ASM_SRCS"/>
@@ -87,7 +91,7 @@
 						</toolChain>
 					</folderInfo>
 					<sourceEntries>
-						<entry excluding="middlewares/FreeRTOS/Source/portable/MemMang/heap_2.c|middlewares/FreeRTOS/Source/portable/MemMang/heap_1.c|middlewares/FreeRTOS/Source/portable/MemMang/heap_3.c|middlewares/FreeRTOS/Source/portable/MemMang/heap_5.c" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+						<entry excluding="middlewares/FreeRTOS-Plus-TCP/tools|middlewares/FreeRTOS-Plus-TCP/test|middlewares/FreeRTOS-Plus-TCP/source/portable/NetworkInterface/board_family|middlewares/FreeRTOS-Plus-TCP/source/portable/BufferManagement/BufferAllocation_2.c|middlewares/FreeRTOS-Plus-TCP/docs|middlewares/FreeRTOS-Plus-TCP/source/portable/NetworkInterface/Zynq|middlewares/FreeRTOS-Plus-TCP/source/portable/NetworkInterface/xilinx_ultrascale|middlewares/FreeRTOS-Plus-TCP/source/portable/NetworkInterface/WinPCap|middlewares/FreeRTOS-Plus-TCP/source/portable/NetworkInterface/ATSAME5x|middlewares/FreeRTOS-Plus-TCP/source/portable/NetworkInterface/ATSAM4E|middlewares/FreeRTOS-Plus-TCP/source/portable/NetworkInterface/ThirdParty|middlewares/FreeRTOS-Plus-TCP/source/portable/NetworkInterface/STM32Hxx|middlewares/FreeRTOS-Plus-TCP/source/portable/NetworkInterface/STM32Fxx|middlewares/FreeRTOS-Plus-TCP/source/portable/NetworkInterface/SH2A|middlewares/FreeRTOS-Plus-TCP/source/portable/NetworkInterface/RX|middlewares/FreeRTOS-Plus-TCP/source/portable/NetworkInterface/pic32mzef|middlewares/FreeRTOS-Plus-TCP/source/portable/NetworkInterface/mw300_rd|middlewares/FreeRTOS-Plus-TCP/source/portable/NetworkInterface/MPS2_AN385|middlewares/FreeRTOS-Plus-TCP/source/portable/NetworkInterface/M487|middlewares/FreeRTOS-Plus-TCP/source/portable/NetworkInterface/LPC54018|middlewares/FreeRTOS-Plus-TCP/source/portable/NetworkInterface/LPC18xx|middlewares/FreeRTOS-Plus-TCP/source/portable/NetworkInterface/LPC17xx|middlewares/FreeRTOS-Plus-TCP/source/portable/NetworkInterface/linux|middlewares/FreeRTOS-Plus-TCP/source/portable/NetworkInterface/ksz8851snl|middlewares/FreeRTOS-Plus-TCP/source/portable/NetworkInterface/esp32|middlewares/FreeRTOS-Plus-TCP/source/portable/NetworkInterface/DriverSAM|middlewares/FreeRTOS-Plus-TCP/source/portable/Compiler/Renesas|middlewares/FreeRTOS-Plus-TCP/source/portable/Compiler/MSVC|middlewares/FreeRTOS-Plus-TCP/source/portable/Compiler/Keil|middlewares/FreeRTOS-Plus-TCP/source/portable/Compiler/IAR|middlewares/FreeRTOS-Plus-TCP/source/portable/Compiler/GCC|middlewares/FreeRTOS-Plus-TCP/source/portable/Compiler/CompilerName|middlewares/FreeRTOS/Source/portable/MemMang/heap_2.c|middlewares/FreeRTOS/Source/portable/MemMang/heap_1.c|middlewares/FreeRTOS/Source/portable/MemMang/heap_3.c|middlewares/FreeRTOS/Source/portable/MemMang/heap_5.c" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
 					</sourceEntries>
 				</configuration>
 			</storageModule>
@@ -170,6 +174,9 @@
 							<tool id="com.ti.ccstudio.buildDefinitions.TMS470_20.2.hex.876655179" name="Arm Hex Utility" superClass="com.ti.ccstudio.buildDefinitions.TMS470_20.2.hex"/>
 						</toolChain>
 					</folderInfo>
+					<sourceEntries>
+						<entry excluding="middlewares/FreeRTOS-Plus-TCP/source/portable/NetworkInterface/Zynq|middlewares/FreeRTOS-Plus-TCP/source/portable/NetworkInterface/xilinx_ultrascale|middlewares/FreeRTOS-Plus-TCP/source/portable/NetworkInterface/WinPCap|middlewares/FreeRTOS-Plus-TCP/source/portable/NetworkInterface/ATSAME5x|middlewares/FreeRTOS-Plus-TCP/source/portable/NetworkInterface/ATSAM4E|middlewares/FreeRTOS-Plus-TCP/source/portable/NetworkInterface/ThirdParty|middlewares/FreeRTOS-Plus-TCP/source/portable/NetworkInterface/STM32Hxx|middlewares/FreeRTOS-Plus-TCP/source/portable/NetworkInterface/STM32Fxx|middlewares/FreeRTOS-Plus-TCP/source/portable/NetworkInterface/SH2A|middlewares/FreeRTOS-Plus-TCP/source/portable/NetworkInterface/RX|middlewares/FreeRTOS-Plus-TCP/source/portable/NetworkInterface/pic32mzef|middlewares/FreeRTOS-Plus-TCP/source/portable/NetworkInterface/mw300_rd|middlewares/FreeRTOS-Plus-TCP/source/portable/NetworkInterface/MPS2_AN385|middlewares/FreeRTOS-Plus-TCP/source/portable/NetworkInterface/M487|middlewares/FreeRTOS-Plus-TCP/source/portable/NetworkInterface/LPC54018|middlewares/FreeRTOS-Plus-TCP/source/portable/NetworkInterface/LPC18xx|middlewares/FreeRTOS-Plus-TCP/source/portable/NetworkInterface/LPC17xx|middlewares/FreeRTOS-Plus-TCP/source/portable/NetworkInterface/linux|middlewares/FreeRTOS-Plus-TCP/source/portable/NetworkInterface/ksz8851snl|middlewares/FreeRTOS-Plus-TCP/source/portable/NetworkInterface/include|middlewares/FreeRTOS-Plus-TCP/source/portable/NetworkInterface/esp32|middlewares/FreeRTOS-Plus-TCP/source/portable/NetworkInterface/DriverSAM|middlewares/FreeRTOS-Plus-TCP/source/portable/Compiler/Renesas|middlewares/FreeRTOS-Plus-TCP/source/portable/Compiler/MSVC|middlewares/FreeRTOS-Plus-TCP/source/portable/Compiler/Keil|middlewares/FreeRTOS-Plus-TCP/source/portable/Compiler/IAR|middlewares/FreeRTOS-Plus-TCP/source/portable/Compiler/GCC|middlewares/FreeRTOS-Plus-TCP/source/portable/Compiler/CompilerName" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+					</sourceEntries>
 				</configuration>
 			</storageModule>
 			<storageModule moduleId="org.eclipse.cdt.core.externalSettings"/>
@@ -180,6 +187,14 @@
 		<project id="Tivana.com.ti.ccstudio.buildDefinitions.TMS470.ProjectType.1989398577" name="TMS470" projectType="com.ti.ccstudio.buildDefinitions.TMS470.ProjectType"/>
 	</storageModule>
 	<storageModule moduleId="org.eclipse.cdt.make.core.buildtargets"/>
-	<storageModule moduleId="refreshScope"/>
+	<storageModule moduleId="refreshScope" versionNumber="2">
+		<configuration configurationName="Debug">
+			<resource resourceType="PROJECT" workspacePath="/Tivana"/>
+		</configuration>
+		<configuration configurationName="Release">
+			<resource resourceType="PROJECT" workspacePath="/Tivana"/>
+		</configuration>
+	</storageModule>
 	<storageModule moduleId="scannerConfiguration"/>
+	<storageModule moduleId="org.eclipse.cdt.internal.ui.text.commentOwnerProjectMappings"/>
 </cproject>
