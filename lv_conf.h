@@ -28,8 +28,8 @@
 
 #define LV_COLOR_CHROMA_KEY lv_color_hex(0x00ff00)
 
-#define LV_HOR_RES_MAX 80
-#define LV_VER_RES_MAX 160
+#define LV_HOR_RES_MAX 160
+#define LV_VER_RES_MAX 80
 
 /*=========================
    STDLIB WRAPPER SETTINGS

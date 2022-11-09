@@ -181,9 +181,6 @@ static void prvHelloTask( void *pvParameters )
     //BaseType_t result;
 
 
-
-    //MAP_SSIAdvFrameHoldEnable(SSI2_BASE);
-
     for (;;)
     {
 
@@ -204,24 +201,8 @@ static void prvHelloTask( void *pvParameters )
 //            UARTprintf("Noooh!\n");
 //        }
 
-        //MAP_SSIEnable(SSI2_BASE);
 
-        //MAP_SSIAdvFrameHoldEnable(SSI2_BASE);
-
-//        MAP_SSIDataPut(SSI2_BASE,0xAA);
-//        MAP_SSIDataPut(SSI2_BASE,0xAA);
-//        MAP_SSIDataPut(SSI2_BASE,0xAA);
-//        MAP_SSIDataPut(SSI2_BASE,0xAA);
-//        MAP_SSIDataPut(SSI2_BASE,0xAA);
-        //MAP_SSIAdvDataPutFrameEnd(SSI2_BASE,0x55);
-
-//        MAP_SSIAdvFrameHoldDisable(SSI2_BASE);
-
-        //vTaskDelay( pdMS_TO_TICKS( 100 ));
-        //MAP_SSIDisable(SSI2_BASE);
-
-        vTaskDelay( pdMS_TO_TICKS( 1000 ));
-        //ST7735_FillRectangle(0,0,ST7735_WIDTH, ST7735_HEIGHT,0xFFFF);
+        vTaskDelay( pdMS_TO_TICKS( 10 ));
         /////--- END UART Test
 
     }
@@ -383,24 +364,24 @@ static void prvSetupHardware( void )
 
     /* I2C 0 */
     /* Enable the peripheral */
-//    MAP_SysCtlPeripheralEnable(SYSCTL_PERIPH_I2C0);
-//
-//    /* Configure the appropriate pins to be I2C instead of GPIO. */
-//    MAP_GPIOPinConfigure(GPIO_PB2_I2C0SCL);
-//    MAP_GPIOPinConfigure(GPIO_PB3_I2C0SDA);
-//    MAP_GPIOPinTypeI2CSCL(GPIO_PORTB_BASE, GPIO_PIN_2);
-//    MAP_GPIOPinTypeI2C(GPIO_PORTB_BASE, GPIO_PIN_3);
-//
-//    // Wait for the I2C0 module to be ready.
-//    while(!MAP_SysCtlPeripheralReady(SYSCTL_PERIPH_I2C0))
-//    {
-//    }
-//
-//    // Initialize Master and Slave
-//    MAP_I2CMasterInitExpClk(I2C0_BASE, MAP_SysCtlClockGet(), true);
-//
-//    // Specify slave address
-//    MAP_I2CMasterSlaveAddrSet(I2C0_BASE, 0x3B, false);
+    MAP_SysCtlPeripheralEnable(SYSCTL_PERIPH_I2C0);
+
+    /* Configure the appropriate pins to be I2C instead of GPIO. */
+    MAP_GPIOPinConfigure(GPIO_PB2_I2C0SCL);
+    MAP_GPIOPinConfigure(GPIO_PB3_I2C0SDA);
+    MAP_GPIOPinTypeI2CSCL(GPIO_PORTB_BASE, GPIO_PIN_2);
+    MAP_GPIOPinTypeI2C(GPIO_PORTB_BASE, GPIO_PIN_3);
+
+    // Wait for the I2C0 module to be ready.
+    while(!MAP_SysCtlPeripheralReady(SYSCTL_PERIPH_I2C0))
+    {
+    }
+
+    // Initialize Master and Slave
+    MAP_I2CMasterInitExpClk(I2C0_BASE, MAP_SysCtlClockGet(), true);
+
+    // Specify slave address
+    MAP_I2CMasterSlaveAddrSet(I2C0_BASE, 0x3B, false);
 
     /* I2C 2*/
     /* Enable the peripheral */

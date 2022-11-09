@@ -97,15 +97,15 @@ extern "C" {
 #define ST7735_BLUE     0x001F
 
 //////////////////////////////
-//#define ST7735_XSTART 1
-//#define ST7735_YSTART 26
-//#define ST7735_WIDTH  160
-//#define ST7735_HEIGHT 80
+#define ST7735_XSTART 1
+#define ST7735_YSTART 26
+#define ST7735_WIDTH  160
+#define ST7735_HEIGHT 80
 ///////////////////////////////
-#define ST7735_XSTART 26
-#define ST7735_YSTART 1
-#define ST7735_WIDTH  80
-#define ST7735_HEIGHT 160
+//#define ST7735_XSTART 26
+//#define ST7735_YSTART 1
+//#define ST7735_WIDTH  80
+//#define ST7735_HEIGHT 160
 //////////////////////////////
 
 #define ST7735_HOR_RES  ST7735_WIDTH

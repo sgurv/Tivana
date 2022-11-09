@@ -80,7 +80,7 @@ static const uint8_t
       0x0E,
     ST7735_CMD_INVOFF , 0      ,  // 13: Don't invert display, no args, no delay
     ST7735_CMD_MADCTL , 1      ,  // 14: Memory access control (directions), 1 arg:
-    (ST7735_PARAM_MADCTL_MX | ST7735_PARAM_MADCTL_RGB),        //     row addr/col addr, bottom to top refresh
+    (ST7735_PARAM_MADCTL_MV | ST7735_PARAM_MADCTL_RGB),        //     row addr/col addr, bottom to top refresh
     ST7735_CMD_COLMOD , 1      ,  // 15: set color mode, 1 arg, no delay:
     ST7735_PARAM_COLMOD_IFPF_16B_PER_PIXEL },                 //     16-bit color
 
@@ -89,10 +89,10 @@ static const uint8_t
     3,                        //  3 commands in list:
     ST7735_CMD_CASET  , 4      ,  //  1: Column addr set, 4 args, no delay:
       0x00, 0x00,             //     XSTART = 0
-      0x00, 0x4F,             //     XEND = 79
+      0x00, 0x4F/**0x4F*/,             //     XEND = 79
     ST7735_CMD_RASET  , 4      ,  //  2: Row addr set, 4 args, no delay:
       0x00, 0x00,             //     XSTART = 0
-      0x00, 0x9F ,            //     XEND = 159
+      0x00, 0x9F/**0x9F*/ ,            //     XEND = 159
     ST7735_CMD_INVON, 0 },        //  3: Invert colors
 
 

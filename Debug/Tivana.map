@@ -1,34 +1,34 @@
 ******************************************************************************
                   TI ARM Linker PC v20.2.7                     
 ******************************************************************************
->> Linked Wed Nov  9 15:57:58 2022
+>> Linked Wed Nov  9 18:12:48 2022
 
 OUTPUT FILE NAME:   <Tivana.out>
-ENTRY POINT SYMBOL: "_c_int00_noargs"  address: 00055439
+ENTRY POINT SYMBOL: "_c_int00_noargs"  address: 00055601
 
 
 MEMORY CONFIGURATION
 
          name            origin    length      used     unused   attr    fill
 ----------------------  --------  ---------  --------  --------  ----  --------
-  FLASH                 00000000   00100000  0005aa0e  000a55f2  R  X
-  SRAM                  20000000   00040000  000271b6  00018e4a  RW X
+  FLASH                 00000000   00100000  0005abde  000a5422  R  X
+  SRAM                  20000000   00040000  000277fe  00018802  RW X
 
 
 SEGMENT ALLOCATION MAP
 
 run origin  load origin   length   init length attrs members
 ----------  ----------- ---------- ----------- ----- -------
-00000000    00000000    0005aa10   0005aa10    r-x
+00000000    00000000    0005abe0   0005abe0    r-x
   00000000    00000000    00000208   00000208    r-- .intvecs
-  00000208    00000208    000557a2   000557a2    r-x .text
-  000559ac    000559ac    00004f2c   00004f2c    r-- .const
-  0005a8d8    0005a8d8    00000138   00000138    r-- .cinit
-20000000    20000000    000271b8   00000000    rw-
-  20000000    20000000    00026d4c   00000000    rw- .bss
-  20026d4c    20026d4c    0000025a   00000000    rw- .data
-  20026fa8    20026fa8    00000200   00000000    rw- .stack
-  200271a8    200271a8    00000010   00000000    rw- .sysmem
+  00000208    00000208    0005596a   0005596a    r-x .text
+  00055b74    00055b74    00004f34   00004f34    r-- .const
+  0005aaa8    0005aaa8    00000138   00000138    r-- .cinit
+20000000    20000000    00027800   00000000    rw-
+  20000000    20000000    00027394   00000000    rw- .bss
+  20027394    20027394    0000025a   00000000    rw- .data
+  200275f0    200275f0    00000200   00000000    rw- .stack
+  200277f0    200277f0    00000010   00000000    rw- .sysmem
 
 
 SECTION ALLOCATION MAP
@@ -39,7 +39,7 @@ section   page    origin      length       input sections
 .intvecs   0    00000000    00000208     
                   00000000    00000208     tm4c1294ncpdt_startup_ccs.obj (.intvecs)
 
-.text      0    00000208    000557a2     
+.text      0    00000208    0005596a     
                   00000208    0000328e     lv_chart.obj (.text)
                   00003496    00000002     rtsv7M4_T_le_v4SPD16_eabi.lib : _lock.c.obj (.text:_nop)
                   00003498    00003178     lv_theme_default.obj (.text)
@@ -153,482 +153,485 @@ section   page    origin      length       input sections
                   0004fb02    00000002     --HOLE-- [fill = 0]
                   0004fb04    00000368     rtos_hw_drivers.obj (.text)
                   0004fe6c    00000354     lv_timer.obj (.text)
-                  000501c0    0000034c     lv_tileview.obj (.text)
-                  0005050c    00000324     FreeRTOS_CLI.obj (.text)
-                  00050830    000002fa     lv_obj_class.obj (.text)
-                  00050b2a    00000002     --HOLE-- [fill = 0]
-                  00050b2c    000002f8     FreeRTOS_Tiny_TCP.obj (.text)
-                  00050e24    000002c8     main.obj (.text)
-                  000510ec    000002bc     cli_commands.obj (.text)
-                  000513a8    0000028e     lv_draw_sw_layer.obj (.text)
-                  00051636    00000002     --HOLE-- [fill = 0]
-                  00051638    00000288     FreeRTOS_IP_Timers.obj (.text)
-                  000518c0    00000270     rtsv7M4_T_le_v4SPD16_eabi.lib : _printfi.c.obj (.text:_pconv_a)
-                  00051b30    0000024c     lv_calendar_header_arrow.obj (.text)
-                  00051d7c    00000238     BufferAllocation_1.obj (.text)
-                  00051fb4    00000200     driverlib.lib : sysctl.obj (.text:SysCtlClockFreqSet)
-                  000521b4    000001e4     FreeRTOS_UDP_IP.obj (.text)
-                  00052398    000001dc     lv_hal_indev.obj (.text)
-                  00052574    000001d0     rtsv7M4_T_le_v4SPD16_eabi.lib : _printfi.c.obj (.text:_pconv_g)
-                  00052744    000001b6                                   : fd_add_t2.asm.obj (.text)
-                  000528fa    00000002     --HOLE-- [fill = 0]
-                  000528fc    000001b0     lv_calendar_header_dropdown.obj (.text)
-                  00052aac    0000018c     lv_malloc_builtin.obj (.text)
-                  00052c38    0000017c     lv_spinner.obj (.text)
-                  00052db4    0000016c     driverlib.lib : gpio.obj (.text:GPIOPadConfigSet)
-                  00052f20    00000168     lv_draw_rect.obj (.text)
-                  00053088    0000014c     lv_win.obj (.text)
-                  000531d4    0000014c     thread_display.obj (.text)
-                  00053320    00000148     lv_font.obj (.text)
-                  00053468    00000140     lv_theme.obj (.text)
-                  000535a8    0000013c     rtsv7M4_T_le_v4SPD16_eabi.lib : _printfi.c.obj (.text:_pconv_e)
-                  000536e4    0000013c     port.obj (.text)
-                  00053820    00000136     rtsv7M4_T_le_v4SPD16_eabi.lib : fd_div_t2.asm.obj (.text)
-                  00053956    00000002     --HOLE-- [fill = 0]
-                  00053958    0000012c     FreeRTOS_TCP_WIN.obj (.text)
-                  00053a84    0000012a     list.obj (.text)
-                  00053bae    00000002     --HOLE-- [fill = 0]
-                  00053bb0    00000124     rtsv7M4_T_le_v4SPD16_eabi.lib : _printfi.c.obj (.text:fcvt)
-                  00053cd4    00000124     lv_draw_layer.obj (.text)
-                  00053df8    00000118     driverlib.lib : sysctl.obj (.text:SysCtlClockGet)
-                  00053f10    00000110     rtsv7M4_T_le_v4SPD16_eabi.lib : s_scalbn.c.obj (.text:scalbn)
-                  00054020    000000fc                                   : fd_mul_t2.asm.obj (.text)
-                  0005411c    000000f0     lv_gc.obj (.text)
-                  0005420c    000000f0     lv_mem.obj (.text)
-                  000542fc    000000dc     lv_async.obj (.text)
-                  000543d8    000000da     portasm.obj (.text)
-                  000544b2    000000be     lv_draw_line.obj (.text)
-                  00054570    000000b4     FreeRTOS_ICMP.obj (.text)
-                  00054624    000000b1     rtsv7M4_T_le_v4SPD16_eabi.lib : _printfi.c.obj (.text:_ltostr)
-                  000546d5    00000003     --HOLE-- [fill = 0]
-                  000546d8    0000009c     lv_img_cache.obj (.text)
-                  00054774    0000009c     rtsv7M4_T_le_v4SPD16_eabi.lib : memcpy_t2.asm.obj (.text)
-                  00054810    00000096                                   : ull_div_t2.asm.obj (.text)
-                  000548a6    00000086                                   : fd_cmp_t2.asm.obj (.text:__aeabi_cdcmple)
-                  0005492c    00000086                                   : fd_cmp_t2.asm.obj (.text:__aeabi_cdrcmple)
-                  000549b2    0000007a                                   : memset_t2.asm.obj (.text)
-                  00054a2c    00000078     driverlib.lib : emac.obj (.text:EMACInit)
-                  00054aa4    00000074     lv_hal_tick.obj (.text)
-                  00054b18    00000074     lv_utils.obj (.text)
-                  00054b8c    0000006e     rtsv7M4_T_le_v4SPD16_eabi.lib : _printfi.c.obj (.text:_mcpy)
-                  00054bfa    00000002     --HOLE-- [fill = 0]
-                  00054bfc    00000068     driverlib.lib : interrupt.obj (.text:IntEnable)
-                  00054c64    00000068     rtsv7M4_T_le_v4SPD16_eabi.lib : copy_decompress_lzss.c.obj (.text:decompress:lzss:__TI_decompress_lzss)
-                  00054ccc    00000064                                   : s_frexp.c.obj (.text:frexp)
-                  00054d30    00000060     FreeRTOS_TCP_Utils.obj (.text)
-                  00054d90    0000005e     rtsv7M4_T_le_v4SPD16_eabi.lib : i_divt2.asm.obj (.text)
-                  00054dee    00000056                                   : _printfi.c.obj (.text:_pconv_f)
-                  00054e44    00000054                                   : _ltoa.c.obj (.text:__TI_ltoa)
-                  00054e98    00000052                                   : _printfi.c.obj (.text:_ecpy)
-                  00054eea    00000002     --HOLE-- [fill = 0]
-                  00054eec    00000050     driverlib.lib : sysctl.obj (.text:SysCtlPeripheralReset)
-                  00054f3c    00000050     lv_draw_transform.obj (.text)
-                  00054f8c    0000004c     driverlib.lib : gpio.obj (.text:GPIOPinConfigure)
-                  00054fd8    0000004c     rtsv7M4_T_le_v4SPD16_eabi.lib : atoi.c.obj (.text:atoi)
-                  00055024    0000004c                                   : snprintf.c.obj (.text:snprintf)
-                  00055070    00000048     driverlib.lib : sysctl.obj (.text:_SysCtlFrequencyGet)
-                  000550b8    00000048     rtsv7M4_T_le_v4SPD16_eabi.lib : fd_toi_t2.asm.obj (.text)
-                  00055100    00000046     driverlib.lib : uart.obj (.text:UARTConfigSetExpClk)
-                  00055146    00000002     --HOLE-- [fill = 0]
-                  00055148    00000044     rtsv7M4_T_le_v4SPD16_eabi.lib : autoinit.c.obj (.text:__TI_auto_init_nobinit_nopinit:__TI_auto_init_nobinit_nopinit)
-                  0005518c    00000040                                   : u_divt2.asm.obj (.text)
-                  000551cc    00000040                                   : sprintf.c.obj (.text:sprintf)
-                  0005520c    0000003e                                   : _printfi.c.obj (.text:_fcpy)
-                  0005524a    0000003a     driverlib.lib : emac.obj (.text:EMACIntEnable)
-                  00055284    00000038                   : emac.obj (.text:EMACConfigSet)
-                  000552bc    00000038                   : sysctl.obj (.text:SysCtlPeripheralPresent)
-                  000552f4    00000038                   : sysctl.obj (.text:SysCtlPeripheralReady)
-                  0005532c    00000038     lv_btn.obj (.text)
-                  00055364    00000036     rtsv7M4_T_le_v4SPD16_eabi.lib : strncpy.c.obj (.text:strncpy)
-                  0005539a    00000002     --HOLE-- [fill = 0]
-                  0005539c    00000034     driverlib.lib : emac.obj (.text:EMACConfigGet)
-                  000553d0    00000034                   : emac.obj (.text:EMACIntClear)
-                  00055404    00000034                   : sysctl.obj (.text:SysCtlPeripheralEnable)
-                  00055438    00000034     rtsv7M4_T_le_v4SPD16_eabi.lib : boot_cortex_m.c.obj (.text:_c_int00_noargs:_c_int00_noargs)
-                  0005546c    00000034                                   : rand.c.obj (.text:rand)
-                  000554a0    00000030     driverlib.lib : emac.obj (.text:EMACAddrSet)
-                  000554d0    00000030     rtsv7M4_T_le_v4SPD16_eabi.lib : snprintf.c.obj (.text:_outs)
-                  00055500    00000030     thread_cli.obj (.text)
-                  00055530    0000002e     rtsv7M4_T_le_v4SPD16_eabi.lib : i_tofd_t2.asm.obj (.text)
-                  0005555e    0000002c     driverlib.lib : emac.obj (.text:EMACIntStatus)
-                  0005558a    0000002c                   : gpio.obj (.text:GPIODirModeSet)
-                  000555b6    0000002c     rtsv7M4_T_le_v4SPD16_eabi.lib : strncmp.c.obj (.text:strncmp)
-                  000555e2    00000028                                   : memmov.c.obj (.text:memmove)
-                  0005560a    00000026     driverlib.lib : emac.obj (.text:EMACPHYRead)
-                  00055630    00000026                   : emac.obj (.text:EMACPHYWrite)
-                  00055656    00000002     --HOLE-- [fill = 0]
-                  00055658    00000024                   : interrupt.obj (.text:IntPrioritySet)
-                  0005567c    00000024     rtsv7M4_T_le_v4SPD16_eabi.lib : memcmp.c.obj (.text:memcmp)
-                  000556a0    00000020     driverlib.lib : uart.obj (.text:UARTDisable)
-                  000556c0    00000020                   : sysctl.obj (.text:_SysCtlMemTimingGet)
-                  000556e0    0000001e     rtsv7M4_T_le_v4SPD16_eabi.lib : strcat.c.obj (.text:strcat)
-                  000556fe    0000001c                                   : memccpy.c.obj (.text:memccpy)
-                  0005571a    0000001a     driverlib.lib : gpio.obj (.text:GPIOPinTypeGPIOOutput)
-                  00055734    0000001a     rtsv7M4_T_le_v4SPD16_eabi.lib : s_copysign.c.obj (.text:copysign)
-                  0005574e    00000018                                   : snprintf.c.obj (.text:_outc)
-                  00055766    00000018                                   : sprintf.c.obj (.text:_outs)
-                  0005577e    00000018     lv_draw.obj (.text)
-                  00055796    00000018     rtsv7M4_T_le_v4SPD16_eabi.lib : ll_mul_t2.asm.obj (.text)
-                  000557ae    00000018                                   : strcmp.c.obj (.text:strcmp)
-                  000557c6    00000016     driverlib.lib : emac.obj (.text:EMACRxEnable)
-                  000557dc    00000016                   : emac.obj (.text:EMACTxEnable)
-                  000557f2    00000016                   : gpio.obj (.text:GPIOPinTypeEthernetLED)
-                  00055808    00000016                   : gpio.obj (.text:GPIOPinTypeGPIOInput)
-                  0005581e    00000016                   : gpio.obj (.text:GPIOPinTypeUART)
-                  00055834    00000016                   : gpio.obj (.text:GPIOPinTypeUSBAnalog)
-                  0005584a    00000016                   : gpio.obj (.text:GPIOPinTypeUSBDigital)
-                  00055860    00000016     rtsv7M4_T_le_v4SPD16_eabi.lib : strchr.c.obj (.text:strchr)
-                  00055876    00000002     --HOLE-- [fill = 0]
-                  00055878    00000014     driverlib.lib : flash.obj (.text:FlashUserGet)
-                  0005588c    00000014                   : uart.obj (.text:UARTEnable)
-                  000558a0    00000014     rtsv7M4_T_le_v4SPD16_eabi.lib : strcpy.c.obj (.text:strcpy)
-                  000558b4    00000014                                   : strlen.c.obj (.text:strlen)
-                  000558c8    00000012                                   : wcslen.c.obj (.text:wcslen)
-                  000558da    00000002     --HOLE-- [fill = 0]
-                  000558dc    00000010     driverlib.lib : emac.obj (.text:EMACFrameFilterSet)
-                  000558ec    00000010                   : interrupt.obj (.text:IntMasterDisable)
-                  000558fc    0000000e     rtsv7M4_T_le_v4SPD16_eabi.lib : copy_decompress_none.c.obj (.text:decompress:none:__TI_decompress_none)
-                  0005590a    0000000e     thread_modbus.obj (.text)
-                  00055918    0000000c     driverlib.lib : cpu.obj (.text:CPUcpsid)
-                  00055924    0000000c     rtsv7M4_T_le_v4SPD16_eabi.lib : copy_zero_init.c.obj (.text:decompress:ZI:__TI_zero_init)
-                  00055930    0000000c     tm4c1294ncpdt_startup_ccs.obj (.text)
-                  0005593c    0000000a     driverlib.lib : ssi.obj (.text:SSIDataPut)
-                  00055946    0000000a                   : uart.obj (.text:UARTCharGet)
-                  00055950    0000000a                   : uart.obj (.text:UARTCharPut)
-                  0005595a    0000000a     rtsv7M4_T_le_v4SPD16_eabi.lib : sprintf.c.obj (.text:_outc)
-                  00055964    00000008     driverlib.lib : emac.obj (.text:EMACPowerManagementStatusGet)
-                  0005596c    00000008                   : emac.obj (.text:EMACTxDMAPollDemand)
-                  00055974    00000008                   : ssi.obj (.text:SSIBusy)
-                  0005597c    00000008     rtsv7M4_T_le_v4SPD16_eabi.lib : errno.c.obj (.text:__aeabi_errno_addr)
-                  00055984    00000006     driverlib.lib : emac.obj (.text:EMACRxDMADescriptorListSet)
-                  0005598a    00000006                   : emac.obj (.text:EMACTxDMADescriptorListSet)
-                  00055990    00000006                   : gpio.obj (.text:GPIOPinRead)
-                  00055996    00000006                   : gpio.obj (.text:GPIOPinWrite)
-                  0005599c    00000006                   : uart.obj (.text:UARTClockSourceSet)
-                  000559a2    00000004     rtsv7M4_T_le_v4SPD16_eabi.lib : pre_init.c.obj (.text:_system_pre_init)
-                  000559a6    00000004                                   : exit.c.obj (.text:abort:abort)
+                  000501c0    00000350     main.obj (.text)
+                  00050510    0000034c     lv_tileview.obj (.text)
+                  0005085c    00000324     FreeRTOS_CLI.obj (.text)
+                  00050b80    000002fa     lv_obj_class.obj (.text)
+                  00050e7a    00000002     --HOLE-- [fill = 0]
+                  00050e7c    000002f8     FreeRTOS_Tiny_TCP.obj (.text)
+                  00051174    000002bc     cli_commands.obj (.text)
+                  00051430    0000028e     lv_draw_sw_layer.obj (.text)
+                  000516be    00000002     --HOLE-- [fill = 0]
+                  000516c0    0000028c     thread_display.obj (.text)
+                  0005194c    00000288     FreeRTOS_IP_Timers.obj (.text)
+                  00051bd4    00000270     rtsv7M4_T_le_v4SPD16_eabi.lib : _printfi.c.obj (.text:_pconv_a)
+                  00051e44    0000024c     lv_calendar_header_arrow.obj (.text)
+                  00052090    00000238     BufferAllocation_1.obj (.text)
+                  000522c8    00000200     driverlib.lib : sysctl.obj (.text:SysCtlClockFreqSet)
+                  000524c8    000001e4     FreeRTOS_UDP_IP.obj (.text)
+                  000526ac    000001dc     lv_hal_indev.obj (.text)
+                  00052888    000001d0     rtsv7M4_T_le_v4SPD16_eabi.lib : _printfi.c.obj (.text:_pconv_g)
+                  00052a58    000001b6                                   : fd_add_t2.asm.obj (.text)
+                  00052c0e    00000002     --HOLE-- [fill = 0]
+                  00052c10    000001b0     lv_calendar_header_dropdown.obj (.text)
+                  00052dc0    0000018c     lv_malloc_builtin.obj (.text)
+                  00052f4c    0000017c     lv_spinner.obj (.text)
+                  000530c8    0000016c     driverlib.lib : gpio.obj (.text:GPIOPadConfigSet)
+                  00053234    00000168     lv_draw_rect.obj (.text)
+                  0005339c    0000014c     lv_win.obj (.text)
+                  000534e8    00000148     lv_font.obj (.text)
+                  00053630    00000140     lv_theme.obj (.text)
+                  00053770    0000013c     rtsv7M4_T_le_v4SPD16_eabi.lib : _printfi.c.obj (.text:_pconv_e)
+                  000538ac    0000013c     port.obj (.text)
+                  000539e8    00000136     rtsv7M4_T_le_v4SPD16_eabi.lib : fd_div_t2.asm.obj (.text)
+                  00053b1e    00000002     --HOLE-- [fill = 0]
+                  00053b20    0000012c     FreeRTOS_TCP_WIN.obj (.text)
+                  00053c4c    0000012a     list.obj (.text)
+                  00053d76    00000002     --HOLE-- [fill = 0]
+                  00053d78    00000124     rtsv7M4_T_le_v4SPD16_eabi.lib : _printfi.c.obj (.text:fcvt)
+                  00053e9c    00000124     lv_draw_layer.obj (.text)
+                  00053fc0    00000118     driverlib.lib : sysctl.obj (.text:SysCtlClockGet)
+                  000540d8    00000110     rtsv7M4_T_le_v4SPD16_eabi.lib : s_scalbn.c.obj (.text:scalbn)
+                  000541e8    000000fc                                   : fd_mul_t2.asm.obj (.text)
+                  000542e4    000000f0     lv_gc.obj (.text)
+                  000543d4    000000f0     lv_mem.obj (.text)
+                  000544c4    000000dc     lv_async.obj (.text)
+                  000545a0    000000da     portasm.obj (.text)
+                  0005467a    000000be     lv_draw_line.obj (.text)
+                  00054738    000000b4     FreeRTOS_ICMP.obj (.text)
+                  000547ec    000000b1     rtsv7M4_T_le_v4SPD16_eabi.lib : _printfi.c.obj (.text:_ltostr)
+                  0005489d    00000003     --HOLE-- [fill = 0]
+                  000548a0    0000009c     lv_img_cache.obj (.text)
+                  0005493c    0000009c     rtsv7M4_T_le_v4SPD16_eabi.lib : memcpy_t2.asm.obj (.text)
+                  000549d8    00000096                                   : ull_div_t2.asm.obj (.text)
+                  00054a6e    00000086                                   : fd_cmp_t2.asm.obj (.text:__aeabi_cdcmple)
+                  00054af4    00000086                                   : fd_cmp_t2.asm.obj (.text:__aeabi_cdrcmple)
+                  00054b7a    0000007a                                   : memset_t2.asm.obj (.text)
+                  00054bf4    00000078     driverlib.lib : emac.obj (.text:EMACInit)
+                  00054c6c    00000074     lv_hal_tick.obj (.text)
+                  00054ce0    00000074     lv_utils.obj (.text)
+                  00054d54    0000006e     rtsv7M4_T_le_v4SPD16_eabi.lib : _printfi.c.obj (.text:_mcpy)
+                  00054dc2    00000002     --HOLE-- [fill = 0]
+                  00054dc4    00000068     driverlib.lib : interrupt.obj (.text:IntEnable)
+                  00054e2c    00000068     rtsv7M4_T_le_v4SPD16_eabi.lib : copy_decompress_lzss.c.obj (.text:decompress:lzss:__TI_decompress_lzss)
+                  00054e94    00000064                                   : s_frexp.c.obj (.text:frexp)
+                  00054ef8    00000060     FreeRTOS_TCP_Utils.obj (.text)
+                  00054f58    0000005e     rtsv7M4_T_le_v4SPD16_eabi.lib : i_divt2.asm.obj (.text)
+                  00054fb6    00000056                                   : _printfi.c.obj (.text:_pconv_f)
+                  0005500c    00000054                                   : _ltoa.c.obj (.text:__TI_ltoa)
+                  00055060    00000052                                   : _printfi.c.obj (.text:_ecpy)
+                  000550b2    00000002     --HOLE-- [fill = 0]
+                  000550b4    00000050     driverlib.lib : sysctl.obj (.text:SysCtlPeripheralReset)
+                  00055104    00000050     lv_draw_transform.obj (.text)
+                  00055154    0000004c     driverlib.lib : gpio.obj (.text:GPIOPinConfigure)
+                  000551a0    0000004c     rtsv7M4_T_le_v4SPD16_eabi.lib : atoi.c.obj (.text:atoi)
+                  000551ec    0000004c                                   : snprintf.c.obj (.text:snprintf)
+                  00055238    00000048     driverlib.lib : sysctl.obj (.text:_SysCtlFrequencyGet)
+                  00055280    00000048     rtsv7M4_T_le_v4SPD16_eabi.lib : fd_toi_t2.asm.obj (.text)
+                  000552c8    00000046     driverlib.lib : uart.obj (.text:UARTConfigSetExpClk)
+                  0005530e    00000002     --HOLE-- [fill = 0]
+                  00055310    00000044     rtsv7M4_T_le_v4SPD16_eabi.lib : autoinit.c.obj (.text:__TI_auto_init_nobinit_nopinit:__TI_auto_init_nobinit_nopinit)
+                  00055354    00000040                                   : u_divt2.asm.obj (.text)
+                  00055394    00000040                                   : sprintf.c.obj (.text:sprintf)
+                  000553d4    0000003e                                   : _printfi.c.obj (.text:_fcpy)
+                  00055412    0000003a     driverlib.lib : emac.obj (.text:EMACIntEnable)
+                  0005544c    00000038                   : emac.obj (.text:EMACConfigSet)
+                  00055484    00000038                   : sysctl.obj (.text:SysCtlPeripheralPresent)
+                  000554bc    00000038                   : sysctl.obj (.text:SysCtlPeripheralReady)
+                  000554f4    00000038     lv_btn.obj (.text)
+                  0005552c    00000036     rtsv7M4_T_le_v4SPD16_eabi.lib : strncpy.c.obj (.text:strncpy)
+                  00055562    00000002     --HOLE-- [fill = 0]
+                  00055564    00000034     driverlib.lib : emac.obj (.text:EMACConfigGet)
+                  00055598    00000034                   : emac.obj (.text:EMACIntClear)
+                  000555cc    00000034                   : sysctl.obj (.text:SysCtlPeripheralEnable)
+                  00055600    00000034     rtsv7M4_T_le_v4SPD16_eabi.lib : boot_cortex_m.c.obj (.text:_c_int00_noargs:_c_int00_noargs)
+                  00055634    00000034                                   : rand.c.obj (.text:rand)
+                  00055668    00000030     driverlib.lib : emac.obj (.text:EMACAddrSet)
+                  00055698    00000030     rtsv7M4_T_le_v4SPD16_eabi.lib : snprintf.c.obj (.text:_outs)
+                  000556c8    00000030     thread_cli.obj (.text)
+                  000556f8    0000002e     rtsv7M4_T_le_v4SPD16_eabi.lib : i_tofd_t2.asm.obj (.text)
+                  00055726    0000002c     driverlib.lib : emac.obj (.text:EMACIntStatus)
+                  00055752    0000002c                   : gpio.obj (.text:GPIODirModeSet)
+                  0005577e    0000002c     rtsv7M4_T_le_v4SPD16_eabi.lib : strncmp.c.obj (.text:strncmp)
+                  000557aa    00000028                                   : memmov.c.obj (.text:memmove)
+                  000557d2    00000026     driverlib.lib : emac.obj (.text:EMACPHYRead)
+                  000557f8    00000026                   : emac.obj (.text:EMACPHYWrite)
+                  0005581e    00000002     --HOLE-- [fill = 0]
+                  00055820    00000024                   : interrupt.obj (.text:IntPrioritySet)
+                  00055844    00000024     rtsv7M4_T_le_v4SPD16_eabi.lib : memcmp.c.obj (.text:memcmp)
+                  00055868    00000020     driverlib.lib : uart.obj (.text:UARTDisable)
+                  00055888    00000020                   : sysctl.obj (.text:_SysCtlMemTimingGet)
+                  000558a8    0000001e     rtsv7M4_T_le_v4SPD16_eabi.lib : strcat.c.obj (.text:strcat)
+                  000558c6    0000001c                                   : memccpy.c.obj (.text:memccpy)
+                  000558e2    0000001a     driverlib.lib : gpio.obj (.text:GPIOPinTypeGPIOOutput)
+                  000558fc    0000001a     rtsv7M4_T_le_v4SPD16_eabi.lib : s_copysign.c.obj (.text:copysign)
+                  00055916    00000018                                   : snprintf.c.obj (.text:_outc)
+                  0005592e    00000018                                   : sprintf.c.obj (.text:_outs)
+                  00055946    00000018     lv_draw.obj (.text)
+                  0005595e    00000018     rtsv7M4_T_le_v4SPD16_eabi.lib : ll_mul_t2.asm.obj (.text)
+                  00055976    00000018                                   : strcmp.c.obj (.text:strcmp)
+                  0005598e    00000016     driverlib.lib : emac.obj (.text:EMACRxEnable)
+                  000559a4    00000016                   : emac.obj (.text:EMACTxEnable)
+                  000559ba    00000016                   : gpio.obj (.text:GPIOPinTypeEthernetLED)
+                  000559d0    00000016                   : gpio.obj (.text:GPIOPinTypeGPIOInput)
+                  000559e6    00000016                   : gpio.obj (.text:GPIOPinTypeUART)
+                  000559fc    00000016                   : gpio.obj (.text:GPIOPinTypeUSBAnalog)
+                  00055a12    00000016                   : gpio.obj (.text:GPIOPinTypeUSBDigital)
+                  00055a28    00000016     rtsv7M4_T_le_v4SPD16_eabi.lib : strchr.c.obj (.text:strchr)
+                  00055a3e    00000002     --HOLE-- [fill = 0]
+                  00055a40    00000014     driverlib.lib : flash.obj (.text:FlashUserGet)
+                  00055a54    00000014                   : uart.obj (.text:UARTEnable)
+                  00055a68    00000014     rtsv7M4_T_le_v4SPD16_eabi.lib : strcpy.c.obj (.text:strcpy)
+                  00055a7c    00000014                                   : strlen.c.obj (.text:strlen)
+                  00055a90    00000012                                   : wcslen.c.obj (.text:wcslen)
+                  00055aa2    00000002     --HOLE-- [fill = 0]
+                  00055aa4    00000010     driverlib.lib : emac.obj (.text:EMACFrameFilterSet)
+                  00055ab4    00000010                   : interrupt.obj (.text:IntMasterDisable)
+                  00055ac4    0000000e     rtsv7M4_T_le_v4SPD16_eabi.lib : copy_decompress_none.c.obj (.text:decompress:none:__TI_decompress_none)
+                  00055ad2    0000000e     thread_modbus.obj (.text)
+                  00055ae0    0000000c     driverlib.lib : cpu.obj (.text:CPUcpsid)
+                  00055aec    0000000c     rtsv7M4_T_le_v4SPD16_eabi.lib : copy_zero_init.c.obj (.text:decompress:ZI:__TI_zero_init)
+                  00055af8    0000000c     tm4c1294ncpdt_startup_ccs.obj (.text)
+                  00055b04    0000000a     driverlib.lib : ssi.obj (.text:SSIDataPut)
+                  00055b0e    0000000a                   : uart.obj (.text:UARTCharGet)
+                  00055b18    0000000a                   : uart.obj (.text:UARTCharPut)
+                  00055b22    0000000a     rtsv7M4_T_le_v4SPD16_eabi.lib : sprintf.c.obj (.text:_outc)
+                  00055b2c    00000008     driverlib.lib : emac.obj (.text:EMACPowerManagementStatusGet)
+                  00055b34    00000008                   : emac.obj (.text:EMACTxDMAPollDemand)
+                  00055b3c    00000008                   : ssi.obj (.text:SSIBusy)
+                  00055b44    00000008     rtsv7M4_T_le_v4SPD16_eabi.lib : errno.c.obj (.text:__aeabi_errno_addr)
+                  00055b4c    00000006     driverlib.lib : emac.obj (.text:EMACRxDMADescriptorListSet)
+                  00055b52    00000006                   : emac.obj (.text:EMACTxDMADescriptorListSet)
+                  00055b58    00000006                   : gpio.obj (.text:GPIOPinRead)
+                  00055b5e    00000006                   : gpio.obj (.text:GPIOPinWrite)
+                  00055b64    00000006                   : uart.obj (.text:UARTClockSourceSet)
+                  00055b6a    00000004     rtsv7M4_T_le_v4SPD16_eabi.lib : pre_init.c.obj (.text:_system_pre_init)
+                  00055b6e    00000004                                   : exit.c.obj (.text:abort:abort)
 
-.const     0    000559ac    00004f2c     
-                  000559ac    00002280     lv_font_montserrat_14.obj (.const:.string:glyph_bitmap)
-                  00057c2c    00000bad     lv_font_montserrat_14.obj (.const:.string:kern_class_values)
-                  000587d9    00000001     --HOLE-- [fill = 0]
-                  000587da    00000002     lv_draw_sw_transform.obj (.const:$P$T0$1)
-                  000587dc    000004f0     lv_font_montserrat_14.obj (.const:glyph_dsc)
-                  00058ccc    0000028c     lv_calendar_header_dropdown.obj (.const:.string)
-                  00058f58    000001b0     driverlib.lib : sysctl.obj (.const:g_pppui32XTALtoVCO)
-                  00059108    00000198     lv_keyboard.obj (.const:.string)
-                  000592a0    0000017c     cli_commands.obj (.const:.string)
-                  0005941c    00000101     rtsv7M4_T_le_v4SPD16_eabi.lib : ctype.c.obj (.const:.string:_ctypes_)
-                  0005951d    00000100     lv_draw_sw_letter.obj (.const:.string:_lv_bpp8_opa_table)
-                  0005961d    00000001     --HOLE-- [fill = 0]
-                  0005961e    000000be     lv_color.obj (.const:colors$2)
-                  000596dc    000000b6     lv_math.obj (.const:sin0_90_table)
-                  00059792    00000002     lv_textarea.obj (.const:.string:$P$T0$1)
-                  00059794    000000b0     lv_keyboard.obj (.const:default_kb_map_lc)
-                  00059844    000000b0     lv_keyboard.obj (.const:default_kb_map_spec)
-                  000598f4    000000b0     lv_keyboard.obj (.const:default_kb_map_uc)
-                  000599a4    0000009e     lv_font_montserrat_14.obj (.const:.string:kern_left_class_mapping)
-                  00059a42    0000009e     lv_font_montserrat_14.obj (.const:.string:kern_right_class_mapping)
-                  00059ae0    0000009c     driverlib.lib : interrupt.obj (.const:g_pui32Regs)
-                  00059b7c    00000098     lv_color.obj (.const:colors$3)
-                  00059c14    00000090     driverlib.lib : gpio.obj (.const:g_pui32GPIOBaseAddrs)
-                  00059ca4    0000007c     lv_font_montserrat_14.obj (.const:unicode_list_1)
-                  00059d20    00000070     lv_style.obj (.const:.string:_lv_style_builtin_prop_flag_lookup_table)
-                  00059d90    0000006c     driverlib.lib : sysctl.obj (.const:g_pui32Xtals)
-                  00059dfc    0000006a     lv_calendar_header_arrow.obj (.const:.string)
-                  00059e66    00000002     lv_img_decoder.obj (.const:.string:$P$T1$1)
-                  00059e68    00000054     lv_keyboard.obj (.const:default_kb_map_num)
-                  00059ebc    00000050     lv_keyboard.obj (.const:default_kb_ctrl_lc_map)
-                  00059f0c    00000050     lv_keyboard.obj (.const:default_kb_ctrl_spec_map)
-                  00059f5c    00000050     lv_keyboard.obj (.const:default_kb_ctrl_uc_map)
-                  00059fac    0000003b     ST7735.obj (.const:.string:init_cmds1)
-                  00059fe7    00000001     --HOLE-- [fill = 0]
-                  00059fe8    00000038     FreeRTOS_CLI.obj (.const:.string)
-                  0005a020    00000030     driverlib.lib : sysctl.obj (.const:g_sXTALtoMEMTIM)
-                  0005a050    0000002e     lv_btnmatrix.obj (.const:.string)
-                  0005a07e    0000002b     ST7735.obj (.const:.string:init_cmds3)
-                  0005a0a9    00000002     lv_draw_sw_letter.obj (.const:.string:_lv_bpp1_opa_table)
-                  0005a0ab    00000001     --HOLE-- [fill = 0]
-                  0005a0ac    00000028     lv_font_montserrat_14.obj (.const:cmaps)
-                  0005a0d4    00000026     FreeRTOS_ARP.obj (.const:.string:xDefaultPartARPPacketHeader$4)
-                  0005a0fa    00000026     lv_color.obj (.const:colors$1)
-                  0005a120    00000022     lv_keyboard.obj (.const:default_kb_ctrl_num_map)
-                  0005a142    00000021     lv_draw_sw_line.obj (.const:.string:wcorr$1)
-                  0005a163    00000020     FreeRTOS_Sockets.obj (.const:xPercTable$3)
-                  0005a183    00000001     --HOLE-- [fill = 0]
-                  0005a184    0000001c     lv_draw_sw_rect.obj (.const:$P$T0$1)
-                  0005a1a0    0000001c     lv_calendar.obj (.const:.string)
-                  0005a1bc    0000001c     lv_arc.obj (.const:lv_arc_class)
-                  0005a1d8    0000001c     lv_bar.obj (.const:lv_bar_class)
-                  0005a1f4    0000001c     lv_btn.obj (.const:lv_btn_class)
-                  0005a210    0000001c     lv_btnmatrix.obj (.const:lv_btnmatrix_class)
-                  0005a22c    0000001c     lv_calendar.obj (.const:lv_calendar_class)
-                  0005a248    0000001c     lv_calendar_header_arrow.obj (.const:lv_calendar_header_arrow_class)
-                  0005a264    0000001c     lv_calendar_header_dropdown.obj (.const:lv_calendar_header_dropdown_class)
-                  0005a280    0000001c     lv_chart.obj (.const:lv_chart_class)
-                  0005a29c    0000001c     lv_checkbox.obj (.const:lv_checkbox_class)
-                  0005a2b8    0000001c     lv_colorwheel.obj (.const:lv_colorwheel_class)
-                  0005a2d4    0000001c     lv_dropdown.obj (.const:lv_dropdown_class)
-                  0005a2f0    0000001c     lv_dropdown.obj (.const:lv_dropdownlist_class)
-                  0005a30c    0000001c     lv_font_montserrat_14.obj (.const:lv_font_montserrat_14)
-                  0005a328    0000001c     lv_img.obj (.const:lv_img_class)
-                  0005a344    0000001c     lv_keyboard.obj (.const:lv_keyboard_class)
-                  0005a360    0000001c     lv_label.obj (.const:lv_label_class)
-                  0005a37c    0000001c     lv_led.obj (.const:lv_led_class)
-                  0005a398    0000001c     lv_line.obj (.const:lv_line_class)
-                  0005a3b4    0000001c     lv_list.obj (.const:lv_list_btn_class)
-                  0005a3d0    0000001c     lv_list.obj (.const:lv_list_class)
-                  0005a3ec    0000001c     lv_list.obj (.const:lv_list_text_class)
-                  0005a408    0000001c     lv_menu.obj (.const:lv_menu_class)
-                  0005a424    0000001c     lv_menu.obj (.const:lv_menu_cont_class)
-                  0005a440    0000001c     lv_menu.obj (.const:lv_menu_main_cont_class)
-                  0005a45c    0000001c     lv_menu.obj (.const:lv_menu_main_header_cont_class)
-                  0005a478    0000001c     lv_menu.obj (.const:lv_menu_page_class)
-                  0005a494    0000001c     lv_menu.obj (.const:lv_menu_section_class)
-                  0005a4b0    0000001c     lv_menu.obj (.const:lv_menu_separator_class)
-                  0005a4cc    0000001c     lv_menu.obj (.const:lv_menu_sidebar_cont_class)
-                  0005a4e8    0000001c     lv_menu.obj (.const:lv_menu_sidebar_header_cont_class)
-                  0005a504    0000001c     lv_meter.obj (.const:lv_meter_class)
-                  0005a520    0000001c     lv_msgbox.obj (.const:lv_msgbox_backdrop_class)
-                  0005a53c    0000001c     lv_msgbox.obj (.const:lv_msgbox_class)
-                  0005a558    0000001c     lv_obj.obj (.const:lv_obj_class)
-                  0005a574    0000001c     lv_roller.obj (.const:lv_roller_class)
-                  0005a590    0000001c     lv_roller.obj (.const:lv_roller_label_class)
-                  0005a5ac    0000001c     lv_slider.obj (.const:lv_slider_class)
-                  0005a5c8    0000001c     lv_spinbox.obj (.const:lv_spinbox_class)
-                  0005a5e4    0000001c     lv_spinner.obj (.const:lv_spinner_class)
-                  0005a600    0000001c     lv_switch.obj (.const:lv_switch_class)
-                  0005a61c    0000001c     lv_table.obj (.const:lv_table_class)
-                  0005a638    0000001c     lv_tabview.obj (.const:lv_tabview_class)
-                  0005a654    0000001c     lv_textarea.obj (.const:lv_textarea_class)
-                  0005a670    0000001c     lv_tileview.obj (.const:lv_tileview_class)
-                  0005a68c    0000001c     lv_tileview.obj (.const:lv_tileview_tile_class)
-                  0005a6a8    0000001c     lv_win.obj (.const:lv_win_class)
-                  0005a6c4    00000019     FreeRTOS_DHCP.obj (.const:.string:ucDHCPRequestOptions$1)
-                  0005a6dd    00000018     FreeRTOS_DHCP.obj (.const:.string:ucDHCPDiscoverOptions$2)
-                  0005a6f5    00000003     --HOLE-- [fill = 0]
-                  0005a6f8    00000018     lv_font_montserrat_14.obj (.const:font_dsc)
-                  0005a710    00000018     driverlib.lib : emac.obj (.const:g_pi16MIIClockDiv)
-                  0005a728    00000016     lv_theme_default.obj (.const:trans_props$1)
-                  0005a73e    00000002     --HOLE-- [fill = 0]
-                  0005a740    00000014     driverlib.lib : interrupt.obj (.const:g_pui32EnRegs)
-                  0005a754    00000012     uartstdio.obj (.const:.string)
-                  0005a766    00000010     lv_img_buf.obj (.const:$P$T3$3)
-                  0005a776    00000010     lv_img_buf.obj (.const:.string:$P$T2$2)
-                  0005a786    00000010     lv_img_decoder.obj (.const:.string:$P$T3$3)
-                  0005a796    00000010     lv_draw_sw_letter.obj (.const:.string:_lv_bpp4_opa_table)
-                  0005a7a6    00000002     --HOLE-- [fill = 0]
-                  0005a7a8    00000010     lv_font_montserrat_14.obj (.const:kern_classes)
-                  0005a7b8    00000010     cli_commands.obj (.const:xEightCommand)
-                  0005a7c8    00000010     cli_commands.obj (.const:xFiveCommand)
-                  0005a7d8    00000010     cli_commands.obj (.const:xFourCommand)
-                  0005a7e8    00000010     FreeRTOS_CLI.obj (.const:xHelpCommand)
-                  0005a7f8    00000010     cli_commands.obj (.const:xLedOffCommand)
-                  0005a808    00000010     cli_commands.obj (.const:xLedOnCommand)
-                  0005a818    00000010     cli_commands.obj (.const:xSevenCommand)
-                  0005a828    00000010     cli_commands.obj (.const:xSixCommand)
-                  0005a838    00000010     cli_commands.obj (.const:xThreeCommand)
-                  0005a848    0000000f     ST7735.obj (.const:.string:init_cmds2)
-                  0005a857    00000001     --HOLE-- [fill = 0]
-                  0005a858    0000000c     uartstdio.obj (.const:g_ui32UARTBase)
-                  0005a864    0000000c     uartstdio.obj (.const:g_ui32UARTPeriph)
-                  0005a870    00000008     lv_draw_sw_polygon.obj (.const:$P$T0$1)
-                  0005a878    00000008     lv_tlsf.obj (.const:$P$T0$1)
-                  0005a880    00000008     driverlib.lib : sysctl.obj (.const:g_pui32VCOFrequencies)
-                  0005a888    00000006     FreeRTOS_IP.obj (.const:xBroadcastMACAddress)
-                  0005a88e    00000005     FreeRTOS_Sockets.obj (.const:$P$T0$1)
-                  0005a893    00000005     FreeRTOS_IP.obj (.const:xNetworkDownEvent$1)
-                  0005a898    00000005     FreeRTOS_IP.obj (.const:xNetworkDownEvent$2)
-                  0005a89d    00000001     --HOLE-- [fill = 0]
-                  0005a89e    00000004     lv_obj_scroll.obj (.const:$P$T0$1)
-                  0005a8a2    00000002     --HOLE-- [fill = 0]
-                  0005a8a4    00000004     lv_obj_style.obj (.const:$P$T0$1)
-                  0005a8a8    00000004     lv_obj_pos.obj (.const:$P$T0$2)
-                  0005a8ac    00000004     lv_obj_scroll.obj (.const:$P$T1$2)
-                  0005a8b0    00000004     lv_obj_pos.obj (.const:$P$T1$3)
-                  0005a8b4    00000004     lv_img_buf.obj (.const:.string:$P$T1$1)
-                  0005a8b8    00000004     lv_img_decoder.obj (.const:.string:$P$T2$2)
-                  0005a8bc    00000004     lv_draw_sw_letter.obj (.const:.string:_lv_bpp2_opa_table)
-                  0005a8c0    00000004     BufferAllocation_1.obj (.const)
-                  0005a8c4    00000004     lv_style.obj (.const:null_style_value)
-                  0005a8c8    00000004     port.obj (.const)
-                  0005a8cc    00000004     tasks.obj (.const)
-                  0005a8d0    00000004     uartstdio.obj (.const)
-                  0005a8d4    00000004     NetworkInterface.obj (.const:xPHYProperties)
+.const     0    00055b74    00004f34     
+                  00055b74    00002280     lv_font_montserrat_14.obj (.const:.string:glyph_bitmap)
+                  00057df4    00000bad     lv_font_montserrat_14.obj (.const:.string:kern_class_values)
+                  000589a1    00000001     --HOLE-- [fill = 0]
+                  000589a2    00000002     lv_draw_sw_transform.obj (.const:$P$T0$1)
+                  000589a4    000004f0     lv_font_montserrat_14.obj (.const:glyph_dsc)
+                  00058e94    0000028c     lv_calendar_header_dropdown.obj (.const:.string)
+                  00059120    000001b0     driverlib.lib : sysctl.obj (.const:g_pppui32XTALtoVCO)
+                  000592d0    00000198     lv_keyboard.obj (.const:.string)
+                  00059468    0000017c     cli_commands.obj (.const:.string)
+                  000595e4    00000101     rtsv7M4_T_le_v4SPD16_eabi.lib : ctype.c.obj (.const:.string:_ctypes_)
+                  000596e5    00000100     lv_draw_sw_letter.obj (.const:.string:_lv_bpp8_opa_table)
+                  000597e5    00000001     --HOLE-- [fill = 0]
+                  000597e6    000000be     lv_color.obj (.const:colors$2)
+                  000598a4    000000b6     lv_math.obj (.const:sin0_90_table)
+                  0005995a    00000002     lv_textarea.obj (.const:.string:$P$T0$1)
+                  0005995c    000000b0     lv_keyboard.obj (.const:default_kb_map_lc)
+                  00059a0c    000000b0     lv_keyboard.obj (.const:default_kb_map_spec)
+                  00059abc    000000b0     lv_keyboard.obj (.const:default_kb_map_uc)
+                  00059b6c    0000009e     lv_font_montserrat_14.obj (.const:.string:kern_left_class_mapping)
+                  00059c0a    0000009e     lv_font_montserrat_14.obj (.const:.string:kern_right_class_mapping)
+                  00059ca8    0000009c     driverlib.lib : interrupt.obj (.const:g_pui32Regs)
+                  00059d44    00000098     lv_color.obj (.const:colors$3)
+                  00059ddc    00000090     driverlib.lib : gpio.obj (.const:g_pui32GPIOBaseAddrs)
+                  00059e6c    0000007c     lv_font_montserrat_14.obj (.const:unicode_list_1)
+                  00059ee8    00000070     lv_style.obj (.const:.string:_lv_style_builtin_prop_flag_lookup_table)
+                  00059f58    0000006c     driverlib.lib : sysctl.obj (.const:g_pui32Xtals)
+                  00059fc4    0000006a     lv_calendar_header_arrow.obj (.const:.string)
+                  0005a02e    00000002     lv_img_decoder.obj (.const:.string:$P$T1$1)
+                  0005a030    00000054     lv_keyboard.obj (.const:default_kb_map_num)
+                  0005a084    00000050     lv_keyboard.obj (.const:default_kb_ctrl_lc_map)
+                  0005a0d4    00000050     lv_keyboard.obj (.const:default_kb_ctrl_spec_map)
+                  0005a124    00000050     lv_keyboard.obj (.const:default_kb_ctrl_uc_map)
+                  0005a174    0000003b     ST7735.obj (.const:.string:init_cmds1)
+                  0005a1af    00000001     --HOLE-- [fill = 0]
+                  0005a1b0    00000038     FreeRTOS_CLI.obj (.const:.string)
+                  0005a1e8    00000030     driverlib.lib : sysctl.obj (.const:g_sXTALtoMEMTIM)
+                  0005a218    0000002e     lv_btnmatrix.obj (.const:.string)
+                  0005a246    0000002b     ST7735.obj (.const:.string:init_cmds3)
+                  0005a271    00000002     lv_draw_sw_letter.obj (.const:.string:_lv_bpp1_opa_table)
+                  0005a273    00000001     --HOLE-- [fill = 0]
+                  0005a274    00000028     lv_font_montserrat_14.obj (.const:cmaps)
+                  0005a29c    00000026     FreeRTOS_ARP.obj (.const:.string:xDefaultPartARPPacketHeader$4)
+                  0005a2c2    00000026     lv_color.obj (.const:colors$1)
+                  0005a2e8    00000022     lv_keyboard.obj (.const:default_kb_ctrl_num_map)
+                  0005a30a    00000021     lv_draw_sw_line.obj (.const:.string:wcorr$1)
+                  0005a32b    00000020     FreeRTOS_Sockets.obj (.const:xPercTable$3)
+                  0005a34b    00000001     --HOLE-- [fill = 0]
+                  0005a34c    0000001c     lv_draw_sw_rect.obj (.const:$P$T0$1)
+                  0005a368    0000001c     lv_calendar.obj (.const:.string)
+                  0005a384    0000001c     lv_arc.obj (.const:lv_arc_class)
+                  0005a3a0    0000001c     lv_bar.obj (.const:lv_bar_class)
+                  0005a3bc    0000001c     lv_btn.obj (.const:lv_btn_class)
+                  0005a3d8    0000001c     lv_btnmatrix.obj (.const:lv_btnmatrix_class)
+                  0005a3f4    0000001c     lv_calendar.obj (.const:lv_calendar_class)
+                  0005a410    0000001c     lv_calendar_header_arrow.obj (.const:lv_calendar_header_arrow_class)
+                  0005a42c    0000001c     lv_calendar_header_dropdown.obj (.const:lv_calendar_header_dropdown_class)
+                  0005a448    0000001c     lv_chart.obj (.const:lv_chart_class)
+                  0005a464    0000001c     lv_checkbox.obj (.const:lv_checkbox_class)
+                  0005a480    0000001c     lv_colorwheel.obj (.const:lv_colorwheel_class)
+                  0005a49c    0000001c     lv_dropdown.obj (.const:lv_dropdown_class)
+                  0005a4b8    0000001c     lv_dropdown.obj (.const:lv_dropdownlist_class)
+                  0005a4d4    0000001c     lv_font_montserrat_14.obj (.const:lv_font_montserrat_14)
+                  0005a4f0    0000001c     lv_img.obj (.const:lv_img_class)
+                  0005a50c    0000001c     lv_keyboard.obj (.const:lv_keyboard_class)
+                  0005a528    0000001c     lv_label.obj (.const:lv_label_class)
+                  0005a544    0000001c     lv_led.obj (.const:lv_led_class)
+                  0005a560    0000001c     lv_line.obj (.const:lv_line_class)
+                  0005a57c    0000001c     lv_list.obj (.const:lv_list_btn_class)
+                  0005a598    0000001c     lv_list.obj (.const:lv_list_class)
+                  0005a5b4    0000001c     lv_list.obj (.const:lv_list_text_class)
+                  0005a5d0    0000001c     lv_menu.obj (.const:lv_menu_class)
+                  0005a5ec    0000001c     lv_menu.obj (.const:lv_menu_cont_class)
+                  0005a608    0000001c     lv_menu.obj (.const:lv_menu_main_cont_class)
+                  0005a624    0000001c     lv_menu.obj (.const:lv_menu_main_header_cont_class)
+                  0005a640    0000001c     lv_menu.obj (.const:lv_menu_page_class)
+                  0005a65c    0000001c     lv_menu.obj (.const:lv_menu_section_class)
+                  0005a678    0000001c     lv_menu.obj (.const:lv_menu_separator_class)
+                  0005a694    0000001c     lv_menu.obj (.const:lv_menu_sidebar_cont_class)
+                  0005a6b0    0000001c     lv_menu.obj (.const:lv_menu_sidebar_header_cont_class)
+                  0005a6cc    0000001c     lv_meter.obj (.const:lv_meter_class)
+                  0005a6e8    0000001c     lv_msgbox.obj (.const:lv_msgbox_backdrop_class)
+                  0005a704    0000001c     lv_msgbox.obj (.const:lv_msgbox_class)
+                  0005a720    0000001c     lv_obj.obj (.const:lv_obj_class)
+                  0005a73c    0000001c     lv_roller.obj (.const:lv_roller_class)
+                  0005a758    0000001c     lv_roller.obj (.const:lv_roller_label_class)
+                  0005a774    0000001c     lv_slider.obj (.const:lv_slider_class)
+                  0005a790    0000001c     lv_spinbox.obj (.const:lv_spinbox_class)
+                  0005a7ac    0000001c     lv_spinner.obj (.const:lv_spinner_class)
+                  0005a7c8    0000001c     lv_switch.obj (.const:lv_switch_class)
+                  0005a7e4    0000001c     lv_table.obj (.const:lv_table_class)
+                  0005a800    0000001c     lv_tabview.obj (.const:lv_tabview_class)
+                  0005a81c    0000001c     lv_textarea.obj (.const:lv_textarea_class)
+                  0005a838    0000001c     lv_tileview.obj (.const:lv_tileview_class)
+                  0005a854    0000001c     lv_tileview.obj (.const:lv_tileview_tile_class)
+                  0005a870    0000001c     lv_win.obj (.const:lv_win_class)
+                  0005a88c    00000019     FreeRTOS_DHCP.obj (.const:.string:ucDHCPRequestOptions$1)
+                  0005a8a5    00000018     FreeRTOS_DHCP.obj (.const:.string:ucDHCPDiscoverOptions$2)
+                  0005a8bd    00000003     --HOLE-- [fill = 0]
+                  0005a8c0    00000018     lv_font_montserrat_14.obj (.const:font_dsc)
+                  0005a8d8    00000018     driverlib.lib : emac.obj (.const:g_pi16MIIClockDiv)
+                  0005a8f0    00000016     lv_theme_default.obj (.const:trans_props$1)
+                  0005a906    00000002     --HOLE-- [fill = 0]
+                  0005a908    00000014     driverlib.lib : interrupt.obj (.const:g_pui32EnRegs)
+                  0005a91c    00000012     uartstdio.obj (.const:.string)
+                  0005a92e    00000010     lv_img_buf.obj (.const:$P$T3$3)
+                  0005a93e    00000010     lv_img_buf.obj (.const:.string:$P$T2$2)
+                  0005a94e    00000010     lv_img_decoder.obj (.const:.string:$P$T3$3)
+                  0005a95e    00000010     lv_draw_sw_letter.obj (.const:.string:_lv_bpp4_opa_table)
+                  0005a96e    00000002     --HOLE-- [fill = 0]
+                  0005a970    00000010     lv_font_montserrat_14.obj (.const:kern_classes)
+                  0005a980    00000010     cli_commands.obj (.const:xEightCommand)
+                  0005a990    00000010     cli_commands.obj (.const:xFiveCommand)
+                  0005a9a0    00000010     cli_commands.obj (.const:xFourCommand)
+                  0005a9b0    00000010     FreeRTOS_CLI.obj (.const:xHelpCommand)
+                  0005a9c0    00000010     cli_commands.obj (.const:xLedOffCommand)
+                  0005a9d0    00000010     cli_commands.obj (.const:xLedOnCommand)
+                  0005a9e0    00000010     cli_commands.obj (.const:xSevenCommand)
+                  0005a9f0    00000010     cli_commands.obj (.const:xSixCommand)
+                  0005aa00    00000010     cli_commands.obj (.const:xThreeCommand)
+                  0005aa10    0000000f     ST7735.obj (.const:.string:init_cmds2)
+                  0005aa1f    00000001     --HOLE-- [fill = 0]
+                  0005aa20    0000000c     uartstdio.obj (.const:g_ui32UARTBase)
+                  0005aa2c    0000000c     uartstdio.obj (.const:g_ui32UARTPeriph)
+                  0005aa38    00000008     lv_draw_sw_polygon.obj (.const:$P$T0$1)
+                  0005aa40    00000008     lv_tlsf.obj (.const:$P$T0$1)
+                  0005aa48    00000008     thread_display.obj (.const:btn_points$1)
+                  0005aa50    00000008     driverlib.lib : sysctl.obj (.const:g_pui32VCOFrequencies)
+                  0005aa58    00000006     FreeRTOS_IP.obj (.const:xBroadcastMACAddress)
+                  0005aa5e    00000005     FreeRTOS_Sockets.obj (.const:$P$T0$1)
+                  0005aa63    00000005     FreeRTOS_IP.obj (.const:xNetworkDownEvent$1)
+                  0005aa68    00000005     FreeRTOS_IP.obj (.const:xNetworkDownEvent$2)
+                  0005aa6d    00000001     --HOLE-- [fill = 0]
+                  0005aa6e    00000004     lv_obj_scroll.obj (.const:$P$T0$1)
+                  0005aa72    00000002     --HOLE-- [fill = 0]
+                  0005aa74    00000004     lv_obj_style.obj (.const:$P$T0$1)
+                  0005aa78    00000004     lv_obj_pos.obj (.const:$P$T0$2)
+                  0005aa7c    00000004     lv_obj_scroll.obj (.const:$P$T1$2)
+                  0005aa80    00000004     lv_obj_pos.obj (.const:$P$T1$3)
+                  0005aa84    00000004     lv_img_buf.obj (.const:.string:$P$T1$1)
+                  0005aa88    00000004     lv_img_decoder.obj (.const:.string:$P$T2$2)
+                  0005aa8c    00000004     lv_draw_sw_letter.obj (.const:.string:_lv_bpp2_opa_table)
+                  0005aa90    00000004     BufferAllocation_1.obj (.const)
+                  0005aa94    00000004     lv_style.obj (.const:null_style_value)
+                  0005aa98    00000004     port.obj (.const)
+                  0005aa9c    00000004     tasks.obj (.const)
+                  0005aaa0    00000004     uartstdio.obj (.const)
+                  0005aaa4    00000004     NetworkInterface.obj (.const:xPHYProperties)
 
-.cinit     0    0005a8d8    00000138     
-                  0005a8d8    00000112     (.cinit..data.load) [load image, compression = lzss]
-                  0005a9ea    00000002     --HOLE-- [fill = 0]
-                  0005a9ec    0000000c     (__TI_handler_table)
-                  0005a9f8    00000008     (.cinit..bss.load) [load image, compression = zero_init]
-                  0005aa00    00000010     (__TI_cinit_table)
+.cinit     0    0005aaa8    00000138     
+                  0005aaa8    00000112     (.cinit..data.load) [load image, compression = lzss]
+                  0005abba    00000002     --HOLE-- [fill = 0]
+                  0005abbc    0000000c     (__TI_handler_table)
+                  0005abc8    00000008     (.cinit..bss.load) [load image, compression = zero_init]
+                  0005abd0    00000010     (__TI_cinit_table)
 
 .init_array 
 *          0    00000000    00000000     UNINITIALIZED
 
-.bss       0    20000000    00026d4c     UNINITIALIZED
+.bss       0    20000000    00027394     UNINITIALIZED
                   20000000    00020000     lv_malloc_builtin.obj (.bss:work_mem_int$1)
                   20020000    00004f10     heap_4.obj (.bss:ucHeap)
-                  20024f10    000009c0     NetworkInterface.obj (.bss:_network_buffers)
-                  200258d0    00000640     thread_display.obj (.bss:buf_1)
-                  20025f10    00000400     thread_cli.obj (.bss:cOutputString$2)
-                  20026310    00000140     tasks.obj (.bss:pxReadyTasksLists)
-                  20026450    00000100     NetworkInterface.obj (.bss:_rx_descriptors)
-                  20026550    00000100     NetworkInterface.obj (.bss:_tx_descriptors)
-                  20026650    00000100     lv_draw_sw_letter.obj (.bss:opa_table$1)
-                  20026750    00000090     BufferAllocation_1.obj (.bss:xNetworkBuffers)
-                  200267e0    00000080     (.common:_lv_draw_mask_list)
-                  20026860    00000078     FreeRTOS_ARP.obj (.bss:xARPCache)
-                  200268d8    00000070     (.common:_lv_circle_cache)
-                  20026948    00000050     (.common:xQueueRegistry)
-                  20026998    0000004c     thread_display.obj (.bss:disp_drv)
-                  200269e4    00000040     NetworkInterface.obj (.bss:xPhyObject)
-                  20026a24    0000003c     thread_cli.obj (.bss:cInputString$1)
-                  20026a60    0000002c     (.common:_lv_img_cache_single)
-                  20026a8c    00000024     lv_theme_default.obj (.bss:theme)
-                  20026ab0    00000021     FreeRTOS_DHCP.obj (.bss:xDHCPData)
-                  20026ad1    00000001     lv_colorwheel.obj (.bss)
-                  20026ad2    00000002     lv_theme_default.obj (.bss:color_card)
-                  20026ad4    0000001c     thread_display.obj (.bss:disp_buf)
-                  20026af0    00000014     lv_theme_default.obj (.bss:trans_delayed$2)
-                  20026b04    00000014     lv_theme_default.obj (.bss:trans_normal$3)
-                  20026b18    00000014     tasks.obj (.bss:xDelayedTaskList1)
-                  20026b2c    00000014     tasks.obj (.bss:xDelayedTaskList2)
-                  20026b40    00000014     BufferAllocation_1.obj (.bss:xFreeBuffersList)
-                  20026b54    00000014     tasks.obj (.bss:xPendingReadyList)
-                  20026b68    00000014     tasks.obj (.bss:xSuspendedTaskList)
-                  20026b7c    00000014     tasks.obj (.bss:xTasksWaitingTermination)
-                  20026b90    00000014     (.common:xBoundTCPSocketsList)
-                  20026ba4    00000014     (.common:xBoundUDPSocketsList)
-                  20026bb8    00000011     FreeRTOS_IP_Timers.obj (.bss:xARPResolutionTimer)
-                  20026bc9    00000011     FreeRTOS_IP_Timers.obj (.bss:xARPTimer)
-                  20026bda    00000011     FreeRTOS_IP_Timers.obj (.bss:xDHCPTimer)
-                  20026beb    00000011     FreeRTOS_IP_Timers.obj (.bss:xTCPTimer)
-                  20026bfc    0000000c     lv_malloc_builtin.obj (.bss)
-                  20026c08    0000000c     lv_tileview.obj (.bss)
-                  20026c14    0000000c     (.common:_lv_anim_ll)
-                  20026c20    0000000c     (.common:_lv_disp_ll)
-                  20026c2c    0000000c     (.common:_lv_fsdrv_ll)
-                  20026c38    0000000c     (.common:_lv_group_ll)
-                  20026c44    0000000c     (.common:_lv_img_decoder_ll)
-                  20026c50    0000000c     (.common:_lv_indev_ll)
-                  20026c5c    0000000c     (.common:_lv_obj_style_trans_ll)
-                  20026c68    0000000c     (.common:_lv_timer_ll)
-                  20026c74    0000000c     (.common:_subs_ll)
-                  20026c80    00000008     lv_font_montserrat_14.obj (.bss:cache)
-                  20026c88    00000008     lv_theme_default.obj (.bss:dark_filter$4)
-                  20026c90    00000008     lv_theme_default.obj (.bss:grey_filter$5)
-                  20026c98    00000008     lv_anim.obj (.bss)
-                  20026ca0    00000008     lv_area.obj (.bss)
-                  20026ca8    00000008     lv_refr.obj (.bss)
-                  20026cb0    00000008     lv_spinner.obj (.bss)
-                  20026cb8    00000008     tasks.obj (.bss)
-                  20026cc0    00000008     FreeRTOS_ARP.obj (.bss:xARPClashTimeOut$3)
-                  20026cc8    00000008     heap_4.obj (.bss:xStart)
-                  20026cd0    00000005     lv_theme_default.obj (.bss)
-                  20026cd5    00000001     lv_hal_tick.obj (.bss)
-                  20026cd6    00000002     lv_theme_default.obj (.bss:color_grey)
-                  20026cd8    00000004     FreeRTOS_DHCP.obj (.bss)
-                  20026cdc    00000004     FreeRTOS_CLI.obj (.bss:cOutputBuffer)
-                  20026ce0    00000004     lv_event.obj (.bss)
-                  20026ce4    00000004     lv_group.obj (.bss)
-                  20026ce8    00000004     lv_hal_disp.obj (.bss)
-                  20026cec    00000004     lv_indev.obj (.bss)
-                  20026cf0    00000004     lv_obj_pos.obj (.bss)
-                  20026cf4    00000004     lv_tabview.obj (.bss)
-                  20026cf8    00000004     lv_textarea.obj (.bss)
-                  20026cfc    00000004     (.common:_lv_grad_cache_mem)
-                  20026d00    00000004     (.common:_lv_layout_list)
-                  20026d04    00000004     (.common:_lv_style_custom_prop_flag_lookup_table)
-                  20026d08    00000004     (.common:_lv_theme_basic_styles)
-                  20026d0c    00000004     (.common:_lv_theme_default_styles)
-                  20026d10    00000004     (.common:_lv_timer_act)
-                  20026d14    00000004     (.common:g_ui32SysClock)
-                  20026d18    00000004     (.common:xProcessedTCPMessage)
-                  20026d1c    00000002     lv_theme_default.obj (.bss:color_scr)
-                  20026d1e    00000002     lv_theme_default.obj (.bss:color_text)
-                  20026d20    00000002     lv_draw_sw_blend.obj (.bss:last_dest_color$7)
-                  20026d22    00000002     lv_draw_sw_blend.obj (.bss:last_res_color$9)
-                  20026d24    00000002     lv_draw_sw_blend.obj (.bss:last_src_color$8)
-                  20026d26    00000002     lv_timer.obj (.bss)
-                  20026d28    00000002     lv_win.obj (.bss)
-                  20026d2a    00000002     (.common:LV_LAYOUT_FLEX)
-                  20026d2c    00000002     (.common:LV_LAYOUT_GRID)
-                  20026d2e    00000002     (.common:LV_STYLE_FLEX_CROSS_PLACE)
-                  20026d30    00000002     (.common:LV_STYLE_FLEX_FLOW)
-                  20026d32    00000002     (.common:LV_STYLE_FLEX_GROW)
-                  20026d34    00000002     (.common:LV_STYLE_FLEX_MAIN_PLACE)
-                  20026d36    00000002     (.common:LV_STYLE_FLEX_TRACK_PLACE)
-                  20026d38    00000002     (.common:LV_STYLE_GRID_CELL_COLUMN_POS)
-                  20026d3a    00000002     (.common:LV_STYLE_GRID_CELL_COLUMN_SPAN)
-                  20026d3c    00000002     (.common:LV_STYLE_GRID_CELL_ROW_POS)
-                  20026d3e    00000002     (.common:LV_STYLE_GRID_CELL_ROW_SPAN)
-                  20026d40    00000002     (.common:LV_STYLE_GRID_CELL_X_ALIGN)
-                  20026d42    00000002     (.common:LV_STYLE_GRID_CELL_Y_ALIGN)
-                  20026d44    00000002     (.common:LV_STYLE_GRID_COLUMN_ALIGN)
-                  20026d46    00000002     (.common:LV_STYLE_GRID_COLUMN_DSC_ARRAY)
-                  20026d48    00000002     (.common:LV_STYLE_GRID_ROW_ALIGN)
-                  20026d4a    00000002     (.common:LV_STYLE_GRID_ROW_DSC_ARRAY)
+                  20024f10    00000c80     thread_display.obj (.bss:buf_1)
+                  20025b90    000009c0     NetworkInterface.obj (.bss:_network_buffers)
+                  20026550    00000400     thread_cli.obj (.bss:cOutputString$2)
+                  20026950    00000140     tasks.obj (.bss:pxReadyTasksLists)
+                  20026a90    00000100     NetworkInterface.obj (.bss:_rx_descriptors)
+                  20026b90    00000100     NetworkInterface.obj (.bss:_tx_descriptors)
+                  20026c90    00000100     lv_draw_sw_letter.obj (.bss:opa_table$1)
+                  20026d90    00000090     BufferAllocation_1.obj (.bss:xNetworkBuffers)
+                  20026e20    00000080     (.common:_lv_draw_mask_list)
+                  20026ea0    00000078     FreeRTOS_ARP.obj (.bss:xARPCache)
+                  20026f18    00000070     (.common:_lv_circle_cache)
+                  20026f88    00000050     (.common:xQueueRegistry)
+                  20026fd8    0000004c     thread_display.obj (.bss:disp_drv)
+                  20027024    00000040     NetworkInterface.obj (.bss:xPhyObject)
+                  20027064    0000003c     thread_cli.obj (.bss:cInputString$1)
+                  200270a0    0000002c     (.common:_lv_img_cache_single)
+                  200270cc    00000024     lv_theme_default.obj (.bss:theme)
+                  200270f0    00000021     FreeRTOS_DHCP.obj (.bss:xDHCPData)
+                  20027111    00000001     lv_colorwheel.obj (.bss)
+                  20027112    00000002     lv_theme_default.obj (.bss:color_card)
+                  20027114    0000001c     thread_display.obj (.bss:disp_buf)
+                  20027130    00000014     lv_theme_default.obj (.bss:trans_delayed$2)
+                  20027144    00000014     lv_theme_default.obj (.bss:trans_normal$3)
+                  20027158    00000014     tasks.obj (.bss:xDelayedTaskList1)
+                  2002716c    00000014     tasks.obj (.bss:xDelayedTaskList2)
+                  20027180    00000014     BufferAllocation_1.obj (.bss:xFreeBuffersList)
+                  20027194    00000014     tasks.obj (.bss:xPendingReadyList)
+                  200271a8    00000014     tasks.obj (.bss:xSuspendedTaskList)
+                  200271bc    00000014     tasks.obj (.bss:xTasksWaitingTermination)
+                  200271d0    00000014     (.common:xBoundTCPSocketsList)
+                  200271e4    00000014     (.common:xBoundUDPSocketsList)
+                  200271f8    00000011     FreeRTOS_IP_Timers.obj (.bss:xARPResolutionTimer)
+                  20027209    00000011     FreeRTOS_IP_Timers.obj (.bss:xARPTimer)
+                  2002721a    00000011     FreeRTOS_IP_Timers.obj (.bss:xDHCPTimer)
+                  2002722b    00000011     FreeRTOS_IP_Timers.obj (.bss:xTCPTimer)
+                  2002723c    0000000c     lv_malloc_builtin.obj (.bss)
+                  20027248    0000000c     lv_tileview.obj (.bss)
+                  20027254    0000000c     (.common:_lv_anim_ll)
+                  20027260    0000000c     (.common:_lv_disp_ll)
+                  2002726c    0000000c     (.common:_lv_fsdrv_ll)
+                  20027278    0000000c     (.common:_lv_group_ll)
+                  20027284    0000000c     (.common:_lv_img_decoder_ll)
+                  20027290    0000000c     (.common:_lv_indev_ll)
+                  2002729c    0000000c     (.common:_lv_obj_style_trans_ll)
+                  200272a8    0000000c     (.common:_lv_timer_ll)
+                  200272b4    0000000c     (.common:_subs_ll)
+                  200272c0    00000008     lv_font_montserrat_14.obj (.bss:cache)
+                  200272c8    00000008     lv_theme_default.obj (.bss:dark_filter$4)
+                  200272d0    00000008     lv_theme_default.obj (.bss:grey_filter$5)
+                  200272d8    00000008     lv_anim.obj (.bss)
+                  200272e0    00000008     lv_area.obj (.bss)
+                  200272e8    00000008     lv_refr.obj (.bss)
+                  200272f0    00000008     lv_spinner.obj (.bss)
+                  200272f8    00000008     tasks.obj (.bss)
+                  20027300    00000008     FreeRTOS_ARP.obj (.bss:xARPClashTimeOut$3)
+                  20027308    00000008     heap_4.obj (.bss:xStart)
+                  20027310    00000005     lv_theme_default.obj (.bss)
+                  20027315    00000001     lv_hal_tick.obj (.bss)
+                  20027316    00000002     lv_theme_default.obj (.bss:color_grey)
+                  20027318    00000004     FreeRTOS_DHCP.obj (.bss)
+                  2002731c    00000004     FreeRTOS_CLI.obj (.bss:cOutputBuffer)
+                  20027320    00000004     lv_event.obj (.bss)
+                  20027324    00000004     lv_group.obj (.bss)
+                  20027328    00000004     lv_hal_disp.obj (.bss)
+                  2002732c    00000004     lv_indev.obj (.bss)
+                  20027330    00000004     lv_obj_pos.obj (.bss)
+                  20027334    00000004     lv_tabview.obj (.bss)
+                  20027338    00000004     lv_textarea.obj (.bss)
+                  2002733c    00000004     (.common:_lv_grad_cache_mem)
+                  20027340    00000004     (.common:_lv_layout_list)
+                  20027344    00000004     (.common:_lv_style_custom_prop_flag_lookup_table)
+                  20027348    00000004     (.common:_lv_theme_basic_styles)
+                  2002734c    00000004     (.common:_lv_theme_default_styles)
+                  20027350    00000004     (.common:_lv_timer_act)
+                  20027354    00000004     (.common:g_ui32SysClock)
+                  20027358    00000004     (.common:led1)
+                  2002735c    00000004     (.common:led2)
+                  20027360    00000004     (.common:xProcessedTCPMessage)
+                  20027364    00000002     lv_theme_default.obj (.bss:color_scr)
+                  20027366    00000002     lv_theme_default.obj (.bss:color_text)
+                  20027368    00000002     lv_draw_sw_blend.obj (.bss:last_dest_color$7)
+                  2002736a    00000002     lv_draw_sw_blend.obj (.bss:last_res_color$9)
+                  2002736c    00000002     lv_draw_sw_blend.obj (.bss:last_src_color$8)
+                  2002736e    00000002     lv_timer.obj (.bss)
+                  20027370    00000002     lv_win.obj (.bss)
+                  20027372    00000002     (.common:LV_LAYOUT_FLEX)
+                  20027374    00000002     (.common:LV_LAYOUT_GRID)
+                  20027376    00000002     (.common:LV_STYLE_FLEX_CROSS_PLACE)
+                  20027378    00000002     (.common:LV_STYLE_FLEX_FLOW)
+                  2002737a    00000002     (.common:LV_STYLE_FLEX_GROW)
+                  2002737c    00000002     (.common:LV_STYLE_FLEX_MAIN_PLACE)
+                  2002737e    00000002     (.common:LV_STYLE_FLEX_TRACK_PLACE)
+                  20027380    00000002     (.common:LV_STYLE_GRID_CELL_COLUMN_POS)
+                  20027382    00000002     (.common:LV_STYLE_GRID_CELL_COLUMN_SPAN)
+                  20027384    00000002     (.common:LV_STYLE_GRID_CELL_ROW_POS)
+                  20027386    00000002     (.common:LV_STYLE_GRID_CELL_ROW_SPAN)
+                  20027388    00000002     (.common:LV_STYLE_GRID_CELL_X_ALIGN)
+                  2002738a    00000002     (.common:LV_STYLE_GRID_CELL_Y_ALIGN)
+                  2002738c    00000002     (.common:LV_STYLE_GRID_COLUMN_ALIGN)
+                  2002738e    00000002     (.common:LV_STYLE_GRID_COLUMN_DSC_ARRAY)
+                  20027390    00000002     (.common:LV_STYLE_GRID_ROW_ALIGN)
+                  20027392    00000002     (.common:LV_STYLE_GRID_ROW_DSC_ARRAY)
 
-.data      0    20026d4c    0000025a     UNINITIALIZED
-                  20026d4c    00000034     tasks.obj (.data)
-                  20026d80    00000030     lv_calendar_header_arrow.obj (.data:month_names_def)
-                  20026db0    00000024     lv_keyboard.obj (.data:kb_ctrl)
-                  20026dd4    00000024     lv_keyboard.obj (.data:kb_map)
-                  20026df8    00000020     lv_txt.obj (.data)
-                  20026e18    0000001c     FreeRTOS_IP.obj (.data)
-                  20026e34    0000001c     lv_calendar.obj (.data:day_names_def)
-                  20026e50    0000001c     lv_btnmatrix.obj (.data:lv_btnmatrix_def_map)
-                  20026e6c    00000018     heap_4.obj (.data)
-                  20026e84    00000018     FreeRTOS_UDP_IP.obj (.data:xDefaultPartUDPPacketHeader)
-                  20026e9c    00000014     FreeRTOS_IP.obj (.data:xDefaultAddressing)
-                  20026eb0    00000014     FreeRTOS_IP.obj (.data:xNetworkAddressing)
-                  20026ec4    00000010     lv_timer.obj (.data)
-                  20026ed4    0000000c     FreeRTOS_ARP.obj (.data)
-                  20026ee0    0000000c     FreeRTOS_CLI.obj (.data)
-                  20026eec    0000000c     NetworkInterface.obj (.data:_rx_descriptor_list)
-                  20026ef8    0000000c     NetworkInterface.obj (.data:_tx_descriptor_list)
-                  20026f04    00000009     lv_draw_sw_gradient.obj (.data)
-                  20026f0d    00000003     rtos_hw_drivers.obj (.data)
-                  20026f10    00000008     rtsv7M4_T_le_v4SPD16_eabi.lib : _lock.c.obj (.data:$O1$$)
-                  20026f18    00000008     BufferAllocation_1.obj (.data)
-                  20026f20    00000008     NetworkInterface.obj (.data)
-                  20026f28    00000008     lv_calendar_header_dropdown.obj (.data)
-                  20026f30    00000008     lv_colorwheel.obj (.data)
-                  20026f38    00000008     lv_draw_sw_blend.obj (.data)
-                  20026f40    00000008     lv_draw_sw_letter.obj (.data)
-                  20026f48    00000008     lv_obj.obj (.data)
-                  20026f50    00000008     FreeRTOS_CLI.obj (.data:xRegisteredCommands)
-                  20026f58    00000006     lv_style.obj (.data)
-                  20026f5e    00000002     lv_draw_sw_blend.obj (.data:bg_color_save$4)
-                  20026f60    00000005     lv_indev.obj (.data)
-                  20026f65    00000001     lv_obj_pos.obj (.data)
-                  20026f66    00000002     lv_draw_sw_blend.obj (.data:fg_color_save$3)
-                  20026f68    00000005     uartstdio.obj (.data)
-                  20026f6d    00000001     lv_obj_style.obj (.data)
-                  20026f6e    00000002     lv_draw_sw_blend.obj (.data:res_color_saved$5)
-                  20026f70    00000004     FreeRTOS_IP_Utils.obj (.data)
-                  20026f74    00000004     FreeRTOS_Sockets.obj (.data)
-                  20026f78    00000004     FreeRTOS_TCP_IP.obj (.data)
-                  20026f7c    00000004     FreeRTOS_Tiny_TCP.obj (.data)
-                  20026f80    00000004     lv_area.obj (.data)
-                  20026f84    00000004     lv_event.obj (.data)
-                  20026f88    00000004     lv_hal_tick.obj (.data)
-                  20026f8c    00000004     lv_math.obj (.data)
-                  20026f90    00000004     lv_mem.obj (.data)
-                  20026f94    00000004     main.obj (.data)
-                  20026f98    00000004     port.obj (.data)
-                  20026f9c    00000004     rtsv7M4_T_le_v4SPD16_eabi.lib : errno.c.obj (.data)
-                  20026fa0    00000004                                   : rand.c.obj (.data)
-                  20026fa4    00000001     lv_theme_default.obj (.data)
-                  20026fa5    00000001     thread_display.obj (.data)
+.data      0    20027394    0000025a     UNINITIALIZED
+                  20027394    00000034     tasks.obj (.data)
+                  200273c8    00000030     lv_calendar_header_arrow.obj (.data:month_names_def)
+                  200273f8    00000024     lv_keyboard.obj (.data:kb_ctrl)
+                  2002741c    00000024     lv_keyboard.obj (.data:kb_map)
+                  20027440    00000020     lv_txt.obj (.data)
+                  20027460    0000001c     FreeRTOS_IP.obj (.data)
+                  2002747c    0000001c     lv_calendar.obj (.data:day_names_def)
+                  20027498    0000001c     lv_btnmatrix.obj (.data:lv_btnmatrix_def_map)
+                  200274b4    00000018     heap_4.obj (.data)
+                  200274cc    00000018     FreeRTOS_UDP_IP.obj (.data:xDefaultPartUDPPacketHeader)
+                  200274e4    00000014     FreeRTOS_IP.obj (.data:xDefaultAddressing)
+                  200274f8    00000014     FreeRTOS_IP.obj (.data:xNetworkAddressing)
+                  2002750c    00000010     lv_timer.obj (.data)
+                  2002751c    0000000c     FreeRTOS_ARP.obj (.data)
+                  20027528    0000000c     FreeRTOS_CLI.obj (.data)
+                  20027534    0000000c     NetworkInterface.obj (.data:_rx_descriptor_list)
+                  20027540    0000000c     NetworkInterface.obj (.data:_tx_descriptor_list)
+                  2002754c    00000009     lv_draw_sw_gradient.obj (.data)
+                  20027555    00000003     rtos_hw_drivers.obj (.data)
+                  20027558    00000008     rtsv7M4_T_le_v4SPD16_eabi.lib : _lock.c.obj (.data:$O1$$)
+                  20027560    00000008     BufferAllocation_1.obj (.data)
+                  20027568    00000008     NetworkInterface.obj (.data)
+                  20027570    00000008     lv_calendar_header_dropdown.obj (.data)
+                  20027578    00000008     lv_colorwheel.obj (.data)
+                  20027580    00000008     lv_draw_sw_blend.obj (.data)
+                  20027588    00000008     lv_draw_sw_letter.obj (.data)
+                  20027590    00000008     lv_obj.obj (.data)
+                  20027598    00000008     FreeRTOS_CLI.obj (.data:xRegisteredCommands)
+                  200275a0    00000006     lv_style.obj (.data)
+                  200275a6    00000002     lv_draw_sw_blend.obj (.data:bg_color_save$4)
+                  200275a8    00000005     lv_indev.obj (.data)
+                  200275ad    00000001     lv_obj_pos.obj (.data)
+                  200275ae    00000002     lv_draw_sw_blend.obj (.data:fg_color_save$3)
+                  200275b0    00000005     uartstdio.obj (.data)
+                  200275b5    00000001     lv_obj_style.obj (.data)
+                  200275b6    00000002     lv_draw_sw_blend.obj (.data:res_color_saved$5)
+                  200275b8    00000004     FreeRTOS_IP_Utils.obj (.data)
+                  200275bc    00000004     FreeRTOS_Sockets.obj (.data)
+                  200275c0    00000004     FreeRTOS_TCP_IP.obj (.data)
+                  200275c4    00000004     FreeRTOS_Tiny_TCP.obj (.data)
+                  200275c8    00000004     lv_area.obj (.data)
+                  200275cc    00000004     lv_event.obj (.data)
+                  200275d0    00000004     lv_hal_tick.obj (.data)
+                  200275d4    00000004     lv_math.obj (.data)
+                  200275d8    00000004     lv_mem.obj (.data)
+                  200275dc    00000004     main.obj (.data)
+                  200275e0    00000004     port.obj (.data)
+                  200275e4    00000004     rtsv7M4_T_le_v4SPD16_eabi.lib : errno.c.obj (.data)
+                  200275e8    00000004                                   : rand.c.obj (.data)
+                  200275ec    00000001     lv_theme_default.obj (.data)
+                  200275ed    00000001     thread_display.obj (.data)
 
-.stack     0    20026fa8    00000200     UNINITIALIZED
-                  20026fa8    00000004     rtsv7M4_T_le_v4SPD16_eabi.lib : boot_cortex_m.c.obj (.stack)
-                  20026fac    000001fc     --HOLE--
+.stack     0    200275f0    00000200     UNINITIALIZED
+                  200275f0    00000004     rtsv7M4_T_le_v4SPD16_eabi.lib : boot_cortex_m.c.obj (.stack)
+                  200275f4    000001fc     --HOLE--
 
-.sysmem    0    200271a8    00000010     UNINITIALIZED
-                  200271a8    00000010     rtsv7M4_T_le_v4SPD16_eabi.lib : memory.c.obj (.sysmem)
+.sysmem    0    200277f0    00000010     UNINITIALIZED
+                  200277f0    00000010     rtsv7M4_T_le_v4SPD16_eabi.lib : memory.c.obj (.sysmem)
 
 __llvm_prf_cnts 
 *          0    20000000    00000000     UNINITIALIZED
@@ -638,10 +641,10 @@ MODULE SUMMARY
        Module                            code     ro data   rw data
        ------                            ----     -------   -------
     .\
-       main.obj                          712      0         8      
+       main.obj                          848      0         8      
        tm4c1294ncpdt_startup_ccs.obj     12       520       0      
     +--+---------------------------------+--------+---------+---------+
-       Total:                            724      520       8      
+       Total:                            860      520       8      
                                                                    
     .\drivers\
        rtos_hw_drivers.obj               872      0         3      
@@ -956,11 +959,11 @@ MODULE SUMMARY
        Total:                            332      28        2      
                                                                    
     .\thread\
-       thread_display.obj                332      0         1705   
+       thread_display.obj                652      8         3313   
        thread_cli.obj                    48       0         1084   
        thread_modbus.obj                 14       0         0      
     +--+---------------------------------+--------+---------+---------+
-       Total:                            394      0         2789   
+       Total:                            714      8         4397   
                                                                    
     .\utils\
        uartstdio.obj                     1192     46        5      
@@ -1031,19 +1034,19 @@ MODULE SUMMARY
        Stack:                            0        0         512    
        Linker Generated:                 0        310       0      
     +--+---------------------------------+--------+---------+---------+
-       Grand Total:                      350043   21082     160182 
+       Grand Total:                      350499   21090     161790 
 
 
 LINKER GENERATED COPY TABLES
 
-__TI_cinit_table @ 0005aa00 records: 2, size/record: 8, table size: 16
-	.data: load addr=0005a8d8, load size=00000112 bytes, run addr=20026d4c, run size=0000025a bytes, compression=lzss
-	.bss: load addr=0005a9f8, load size=00000008 bytes, run addr=20000000, run size=00026d4c bytes, compression=zero_init
+__TI_cinit_table @ 0005abd0 records: 2, size/record: 8, table size: 16
+	.data: load addr=0005aaa8, load size=00000112 bytes, run addr=20027394, run size=0000025a bytes, compression=lzss
+	.bss: load addr=0005abc8, load size=00000008 bytes, run addr=20000000, run size=00027394 bytes, compression=zero_init
 
 
 LINKER GENERATED HANDLER TABLE
 
-__TI_handler_table @ 0005a9ec records: 3, size/record: 4, table size: 12
+__TI_handler_table @ 0005abbc records: 3, size/record: 4, table size: 12
 	index: 0, handler: __TI_decompress_lzss
 	index: 1, handler: __TI_decompress_none
 	index: 2, handler: __TI_zero_init
@@ -1055,29 +1058,29 @@ address   name
 -------   ----                                        
 0004fdc9  ButtonsInit                                 
 0004fd29  ButtonsPoll                                 
-000559a7  C$$EXIT                                     
-00055919  CPUcpsid                                    
-000554a1  EMACAddrSet                                 
-0005539d  EMACConfigGet                               
-00055285  EMACConfigSet                               
-000558dd  EMACFrameFilterSet                          
-00054a2d  EMACInit                                    
-000553d1  EMACIntClear                                
-0005524b  EMACIntEnable                               
-0005555f  EMACIntStatus                               
-0005560b  EMACPHYRead                                 
-00055631  EMACPHYWrite                                
-00055965  EMACPowerManagementStatusGet                
-00055985  EMACRxDMADescriptorListSet                  
-000557c7  EMACRxEnable                                
-0005598b  EMACTxDMADescriptorListSet                  
-0005596d  EMACTxDMAPollDemand                         
-000557dd  EMACTxEnable                                
-00055879  FlashUserGet                                
-00050631  FreeRTOS_CLIGetOutputBuffer                 
-00050635  FreeRTOS_CLIGetParameter                    
-0005054b  FreeRTOS_CLIProcessCommand                  
-0005050d  FreeRTOS_CLIRegisterCommand                 
+00055b6f  C$$EXIT                                     
+00055ae1  CPUcpsid                                    
+00055669  EMACAddrSet                                 
+00055565  EMACConfigGet                               
+0005544d  EMACConfigSet                               
+00055aa5  EMACFrameFilterSet                          
+00054bf5  EMACInit                                    
+00055599  EMACIntClear                                
+00055413  EMACIntEnable                               
+00055727  EMACIntStatus                               
+000557d3  EMACPHYRead                                 
+000557f9  EMACPHYWrite                                
+00055b2d  EMACPowerManagementStatusGet                
+00055b4d  EMACRxDMADescriptorListSet                  
+0005598f  EMACRxEnable                                
+00055b53  EMACTxDMADescriptorListSet                  
+00055b35  EMACTxDMAPollDemand                         
+000559a5  EMACTxEnable                                
+00055a41  FlashUserGet                                
+00050981  FreeRTOS_CLIGetOutputBuffer                 
+00050985  FreeRTOS_CLIGetParameter                    
+0005089b  FreeRTOS_CLIProcessCommand                  
+0005085d  FreeRTOS_CLIRegisterCommand                 
 0004328f  FreeRTOS_ClearARP                           
 0001108b  FreeRTOS_EUI48_ntop                         
 00011161  FreeRTOS_EUI48_pton                         
@@ -1140,123 +1143,123 @@ address   name
 00041f05  FreeRTOS_strerror_r                         
 0001203d  FreeRTOS_tx_size                            
 00011ff7  FreeRTOS_tx_space                           
-0005558b  GPIODirModeSet                              
-00052db5  GPIOPadConfigSet                            
-00054f8d  GPIOPinConfigure                            
-00055991  GPIOPinRead                                 
-000557f3  GPIOPinTypeEthernetLED                      
-00055809  GPIOPinTypeGPIOInput                        
-0005571b  GPIOPinTypeGPIOOutput                       
-0005581f  GPIOPinTypeUART                             
-00055835  GPIOPinTypeUSBAnalog                        
-0005584b  GPIOPinTypeUSBDigital                       
-00055997  GPIOPinWrite                                
-00054bfd  IntEnable                                   
-000558ed  IntMasterDisable                            
-00055659  IntPrioritySet                              
+00055753  GPIODirModeSet                              
+000530c9  GPIOPadConfigSet                            
+00055155  GPIOPinConfigure                            
+00055b59  GPIOPinRead                                 
+000559bb  GPIOPinTypeEthernetLED                      
+000559d1  GPIOPinTypeGPIOInput                        
+000558e3  GPIOPinTypeGPIOOutput                       
+000559e7  GPIOPinTypeUART                             
+000559fd  GPIOPinTypeUSBAnalog                        
+00055a13  GPIOPinTypeUSBDigital                       
+00055b5f  GPIOPinWrite                                
+00054dc5  IntEnable                                   
+00055ab5  IntMasterDisable                            
+00055821  IntPrioritySet                              
 0004fccd  LEDRead                                     
 0004fc3d  LEDWrite                                    
-20026d2a  LV_LAYOUT_FLEX                              
-20026d2c  LV_LAYOUT_GRID                              
-20026d2e  LV_STYLE_FLEX_CROSS_PLACE                   
-20026d30  LV_STYLE_FLEX_FLOW                          
-20026d32  LV_STYLE_FLEX_GROW                          
-20026d34  LV_STYLE_FLEX_MAIN_PLACE                    
-20026d36  LV_STYLE_FLEX_TRACK_PLACE                   
-20026d38  LV_STYLE_GRID_CELL_COLUMN_POS               
-20026d3a  LV_STYLE_GRID_CELL_COLUMN_SPAN              
-20026d3c  LV_STYLE_GRID_CELL_ROW_POS                  
-20026d3e  LV_STYLE_GRID_CELL_ROW_SPAN                 
-20026d40  LV_STYLE_GRID_CELL_X_ALIGN                  
-20026d42  LV_STYLE_GRID_CELL_Y_ALIGN                  
-20026d44  LV_STYLE_GRID_COLUMN_ALIGN                  
-20026d46  LV_STYLE_GRID_COLUMN_DSC_ARRAY              
-20026d48  LV_STYLE_GRID_ROW_ALIGN                     
-20026d4a  LV_STYLE_GRID_ROW_DSC_ARRAY                 
+20027372  LV_LAYOUT_FLEX                              
+20027374  LV_LAYOUT_GRID                              
+20027376  LV_STYLE_FLEX_CROSS_PLACE                   
+20027378  LV_STYLE_FLEX_FLOW                          
+2002737a  LV_STYLE_FLEX_GROW                          
+2002737c  LV_STYLE_FLEX_MAIN_PLACE                    
+2002737e  LV_STYLE_FLEX_TRACK_PLACE                   
+20027380  LV_STYLE_GRID_CELL_COLUMN_POS               
+20027382  LV_STYLE_GRID_CELL_COLUMN_SPAN              
+20027384  LV_STYLE_GRID_CELL_ROW_POS                  
+20027386  LV_STYLE_GRID_CELL_ROW_SPAN                 
+20027388  LV_STYLE_GRID_CELL_X_ALIGN                  
+2002738a  LV_STYLE_GRID_CELL_Y_ALIGN                  
+2002738c  LV_STYLE_GRID_COLUMN_ALIGN                  
+2002738e  LV_STYLE_GRID_COLUMN_DSC_ARRAY              
+20027390  LV_STYLE_GRID_ROW_ALIGN                     
+20027392  LV_STYLE_GRID_ROW_DSC_ARRAY                 
 0004fb05  PinoutSet                                   
-00054571  ProcessICMPPacket                           
-00055931  ResetISR                                    
-00055975  SSIBusy                                     
-0005593d  SSIDataPut                                  
+00054739  ProcessICMPPacket                           
+00055af9  ResetISR                                    
+00055b3d  SSIBusy                                     
+00055b05  SSIDataPut                                  
 0004d6c9  ST7735_DrawPixel                            
 0004d5b1  ST7735_FillRectangle                        
 0004d72d  ST7735_SetAddressWindow                     
 0004d4c3  ST7735_flush                                
 0004d4a1  ST7735_init                                 
-00051fb5  SysCtlClockFreqSet                          
-00053df9  SysCtlClockGet                              
-00055405  SysCtlPeripheralEnable                      
-000552bd  SysCtlPeripheralPresent                     
-000552f5  SysCtlPeripheralReady                       
-00054eed  SysCtlPeripheralReset                       
-00055947  UARTCharGet                                 
-00055951  UARTCharPut                                 
-0005599d  UARTClockSourceSet                          
-00055101  UARTConfigSetExpClk                         
-000556a1  UARTDisable                                 
-0005588d  UARTEnable                                  
+000522c9  SysCtlClockFreqSet                          
+00053fc1  SysCtlClockGet                              
+000555cd  SysCtlPeripheralEnable                      
+00055485  SysCtlPeripheralPresent                     
+000554bd  SysCtlPeripheralReady                       
+000550b5  SysCtlPeripheralReset                       
+00055b0f  UARTCharGet                                 
+00055b19  UARTCharPut                                 
+00055b65  UARTClockSourceSet                          
+000552c9  UARTConfigSetExpClk                         
+00055869  UARTDisable                                 
+00055a55  UARTEnable                                  
 0004ce65  UARTStdioConfig                             
 0004cfb5  UARTgetc                                    
 0004cefb  UARTgets                                    
 0004d2d7  UARTprintf                                  
 0004cfdd  UARTvprintf                                 
 0004ceab  UARTwrite                                   
-200271a8  __STACK_END                                 
+200277f0  __STACK_END                                 
 00000200  __STACK_SIZE                                
-20027fa8  __STACK_TOP                                 
+200285f0  __STACK_TOP                                 
 00000010  __SYSMEM_SIZE                               
-0005aa00  __TI_CINIT_Base                             
-0005aa10  __TI_CINIT_Limit                            
-0005a9ec  __TI_Handler_Table_Base                     
-0005a9f8  __TI_Handler_Table_Limit                    
-00055149  __TI_auto_init_nobinit_nopinit              
-00054c65  __TI_decompress_lzss                        
-000558fd  __TI_decompress_none                        
-00054e45  __TI_ltoa                                   
+0005abd0  __TI_CINIT_Base                             
+0005abe0  __TI_CINIT_Limit                            
+0005abbc  __TI_Handler_Table_Base                     
+0005abc8  __TI_Handler_Table_Limit                    
+00055311  __TI_auto_init_nobinit_nopinit              
+00054e2d  __TI_decompress_lzss                        
+00055ac5  __TI_decompress_none                        
+0005500d  __TI_ltoa                                   
 ffffffff  __TI_pprof_out_hndl                         
 0003cd05  __TI_printfi                                
 ffffffff  __TI_prof_data_size                         
 ffffffff  __TI_prof_data_start                        
 00000000  __TI_static_base__                          
-00055925  __TI_zero_init                              
-000548a7  __aeabi_cdcmpeq                             
-000548a7  __aeabi_cdcmple                             
-0005492d  __aeabi_cdrcmple                            
-000550b9  __aeabi_d2iz                                
-0005274f  __aeabi_dadd                                
-00053821  __aeabi_ddiv                                
-00054021  __aeabi_dmul                                
-00052745  __aeabi_dsub                                
-0005597d  __aeabi_errno_addr                          
-00055531  __aeabi_i2d                                 
-00054d91  __aeabi_idiv                                
+00055aed  __TI_zero_init                              
+00054a6f  __aeabi_cdcmpeq                             
+00054a6f  __aeabi_cdcmple                             
+00054af5  __aeabi_cdrcmple                            
+00055281  __aeabi_d2iz                                
+00052a63  __aeabi_dadd                                
+000539e9  __aeabi_ddiv                                
+000541e9  __aeabi_dmul                                
+00052a59  __aeabi_dsub                                
+00055b45  __aeabi_errno_addr                          
+000556f9  __aeabi_i2d                                 
+00054f59  __aeabi_idiv                                
 00009307  __aeabi_idiv0                               
-00054d91  __aeabi_idivmod                             
+00054f59  __aeabi_idivmod                             
 00009307  __aeabi_ldiv0                               
-00055797  __aeabi_lmul                                
-000549b3  __aeabi_memclr                              
-000549b3  __aeabi_memclr4                             
-000549b3  __aeabi_memclr8                             
-00054775  __aeabi_memcpy                              
-00054775  __aeabi_memcpy4                             
-00054775  __aeabi_memcpy8                             
-000549b5  __aeabi_memset                              
-000549b5  __aeabi_memset4                             
-000549b5  __aeabi_memset8                             
-0005518d  __aeabi_uidiv                               
-0005518d  __aeabi_uidivmod                            
-00054811  __aeabi_uldivmod                            
+0005595f  __aeabi_lmul                                
+00054b7b  __aeabi_memclr                              
+00054b7b  __aeabi_memclr4                             
+00054b7b  __aeabi_memclr8                             
+0005493d  __aeabi_memcpy                              
+0005493d  __aeabi_memcpy4                             
+0005493d  __aeabi_memcpy8                             
+00054b7d  __aeabi_memset                              
+00054b7d  __aeabi_memset4                             
+00054b7d  __aeabi_memset8                             
+00055355  __aeabi_uidiv                               
+00055355  __aeabi_uidivmod                            
+000549d9  __aeabi_uldivmod                            
 ffffffff  __binit__                                   
 ffffffff  __c_args__                                  
 UNDEFED   __mpu_init                                  
-20026fa8  __stack                                     
+200275f0  __stack                                     
 20000000  __start___llvm_prf_cnts                     
 20000000  __stop___llvm_prf_cnts                      
-00055439  _c_int00_noargs                             
-0005941c  _ctypes_                                    
-20026f10  _lock                                       
+00055601  _c_int00_noargs                             
+000595e4  _ctypes_                                    
+20027558  _lock                                       
 00041017  _lv_anim_core_init                          
-20026c14  _lv_anim_ll                                 
+20027254  _lv_anim_ll                                 
 0003614f  _lv_area_intersect                          
 000366e7  _lv_area_is_equal                           
 00036501  _lv_area_is_in                              
@@ -1265,35 +1268,35 @@ UNDEFED   __mpu_init
 000362ab  _lv_area_is_point_on                        
 00036215  _lv_area_join                               
 00036045  _lv_area_set_pos                            
-0005a0a9  _lv_bpp1_opa_table                          
-0005a8bc  _lv_bpp2_opa_table                          
-0005a796  _lv_bpp4_opa_table                          
-0005951d  _lv_bpp8_opa_table                          
-200268d8  _lv_circle_cache                            
+0005a271  _lv_bpp1_opa_table                          
+0005aa8c  _lv_bpp2_opa_table                          
+0005a95e  _lv_bpp4_opa_table                          
+000596e5  _lv_bpp8_opa_table                          
+20026f18  _lv_circle_cache                            
 0003fc5b  _lv_disp_get_refr_timer                     
-20026c20  _lv_disp_ll                                 
+20027260  _lv_disp_ll                                 
 0001e909  _lv_disp_refr_timer                         
 00006941  _lv_draw_mask_cleanup                       
-200267e0  _lv_draw_mask_list                          
+20026e20  _lv_draw_mask_list                          
 0003e2cd  _lv_event_mark_deleted                      
 0004c001  _lv_font_clean_up_fmt_txt                   
 0003eb77  _lv_fs_init                                 
-20026c2c  _lv_fsdrv_ll                                
-0005412f  _lv_gc_clear_roots                          
-20026cfc  _lv_grad_cache_mem                          
+2002726c  _lv_fsdrv_ll                                
+000542f7  _lv_gc_clear_roots                          
+2002733c  _lv_grad_cache_mem                          
 0003fdf5  _lv_group_init                              
-20026c38  _lv_group_ll                                
+20027278  _lv_group_ll                                
 000323f5  _lv_img_buf_get_transformed_area            
-000546eb  _lv_img_cache_open                          
-20026a60  _lv_img_cache_single                        
+000548b3  _lv_img_cache_open                          
+200270a0  _lv_img_cache_single                        
 00034369  _lv_img_decoder_init                        
-20026c44  _lv_img_decoder_ll                          
-20026c50  _lv_indev_ll                                
-00052503  _lv_indev_read                              
+20027284  _lv_img_decoder_ll                          
+20027290  _lv_indev_ll                                
+00052817  _lv_indev_read                              
 0002c0d1  _lv_indev_scroll_handler                    
 0002c265  _lv_indev_scroll_throw_handler              
 0001e797  _lv_inv_area                                
-20026d00  _lv_layout_list                             
+20027340  _lv_layout_list                             
 0004de4b  _lv_ll_chg_list                             
 0004de13  _lv_ll_clear                                
 0004dee3  _lv_ll_get_head                             
@@ -1308,7 +1311,7 @@ UNDEFED   __mpu_init
 0004dff7  _lv_ll_is_empty                             
 0004df7b  _lv_ll_move_before                          
 0004dd6f  _lv_ll_remove                               
-000509eb  _lv_obj_destruct                            
+00050d3b  _lv_obj_destruct                            
 0003346d  _lv_obj_get_ext_draw_size                   
 00033489  _lv_obj_get_layer_type                      
 00012ce1  _lv_obj_scroll_by_raw                       
@@ -1316,64 +1319,66 @@ UNDEFED   __mpu_init
 0001d491  _lv_obj_style_create_transition             
 0001cd61  _lv_obj_style_init                          
 0001d6d1  _lv_obj_style_state_compare                 
-20026c5c  _lv_obj_style_trans_ll                      
+2002729c  _lv_obj_style_trans_ll                      
 0001e8f3  _lv_refr_get_disp_refreshing                
 0001e61b  _lv_refr_init                               
 0001e8f9  _lv_refr_set_disp_refreshing                
-00059d20  _lv_style_builtin_prop_flag_lookup_table    
-20026d04  _lv_style_custom_prop_flag_lookup_table     
-20026f58  _lv_style_custom_prop_flag_lookup_table_size
+00059ee8  _lv_style_builtin_prop_flag_lookup_table    
+20027344  _lv_style_custom_prop_flag_lookup_table     
+200275a0  _lv_style_custom_prop_flag_lookup_table_size
 0004417b  _lv_style_get_prop_group                    
 000441a7  _lv_style_prop_lookup_flags                 
-20026d08  _lv_theme_basic_styles                      
-20026d0c  _lv_theme_default_styles                    
-20026d10  _lv_timer_act                               
+20027348  _lv_theme_basic_styles                      
+2002734c  _lv_theme_default_styles                    
+20027350  _lv_timer_act                               
 0004fe6d  _lv_timer_core_init                         
-20026c68  _lv_timer_ll                                
+200272a8  _lv_timer_ll                                
 00038191  _lv_txt_cut                                 
-20026e00  _lv_txt_encoded_conv_wc                     
-20026e0c  _lv_txt_encoded_get_byte_id                 
-20026e10  _lv_txt_encoded_get_char_id                 
+20027448  _lv_txt_encoded_conv_wc                     
+20027454  _lv_txt_encoded_get_byte_id                 
+20027458  _lv_txt_encoded_get_char_id                 
 00038251  _lv_txt_encoded_letter_next_2               
-20026e04  _lv_txt_encoded_next                        
-20026e08  _lv_txt_encoded_prev                        
-20026df8  _lv_txt_encoded_size                        
-20026e14  _lv_txt_get_encoded_length                  
+2002744c  _lv_txt_encoded_next                        
+20027450  _lv_txt_encoded_prev                        
+20027440  _lv_txt_encoded_size                        
+2002745c  _lv_txt_get_encoded_length                  
 00037e65  _lv_txt_get_next_line                       
 00038113  _lv_txt_ins                                 
 000380a1  _lv_txt_is_cmd                              
 000381fd  _lv_txt_set_text_vfmt                       
-20026dfc  _lv_txt_unicode_to_encoded                  
-00054b19  _lv_utils_bsearch                           
+20027444  _lv_txt_unicode_to_encoded                  
+00054ce1  _lv_utils_bsearch                           
 00003497  _nop                                        
-20026c74  _subs_ll                                    
-200271a8  _sys_memory                                 
+200272b4  _subs_ll                                    
+200277f0  _sys_memory                                 
 UNDEFED   _system_post_cinit                          
-000559a3  _system_pre_init                            
-20026f14  _unlock                                     
-000559a7  abort                                       
-00054fd9  atoi                                        
+00055b6b  _system_pre_init                            
+2002755c  _unlock                                     
+00055b6f  abort                                       
+000551a1  atoi                                        
 ffffffff  binit                                       
-00055735  copysign                                    
-00055735  copysignl                                   
+000558fd  copysign                                    
+000558fd  copysignl                                   
 0000b3ab  draw_border_generic                         
 00042ef1  eARPGetCacheEntry                           
 00042a7d  eARPProcessPacket                           
 0003bc55  eConsiderFrameForProcessing                 
 000444a1  eGetDHCPState                               
 0000e5e9  eTaskGetState                               
-20026f9c  errno                                       
+200275e4  errno                                       
 00048911  freertos_tcp_ethernet_int                   
-00054ccd  frexp                                       
-00054ccd  frexpl                                      
+00054e95  frexp                                       
+00054e95  frexpl                                      
 00000000  g_pfnVectors                                
-20026d14  g_ui32SysClock                              
+20027354  g_ui32SysClock                              
 00003451  get_tick_gsc                                
 00011e85  lTCPAddRxdata                               
-00050b73  lTCPWindowRxCheck                           
-00050bb9  lTCPWindowTxAdd                             
-00053f11  ldexp                                       
-00053f11  ldexpl                                      
+00050ec3  lTCPWindowRxCheck                           
+00050f09  lTCPWindowTxAdd                             
+000540d9  ldexp                                       
+000540d9  ldexpl                                      
+20027358  led1                                        
+2002735c  led2                                        
 00041289  lv_anim_count_running                       
 000411a7  lv_anim_del                                 
 00041225  lv_anim_del_all                             
@@ -1392,7 +1397,7 @@ ffffffff  binit
 000412c9  lv_anim_speed_to_time                       
 00041079  lv_anim_start                               
 0002362f  lv_arc_align_obj_to_angle                   
-0005a1bc  lv_arc_class                                
+0005a384  lv_arc_class                                
 00022f99  lv_arc_create                               
 000235a1  lv_arc_get_angle_end                        
 00023593  lv_arc_get_angle_start                      
@@ -1424,10 +1429,10 @@ ffffffff  binit
 00035fd1  lv_area_set                                 
 00036025  lv_area_set_height                          
 00036005  lv_area_set_width                           
-000542fd  lv_async_call                               
-0005434b  lv_async_call_cancel                        
+000544c5  lv_async_call                               
+00054513  lv_async_call_cancel                        
 0004e21f  lv_atan2                                    
-0005a1d8  lv_bar_class                                
+0005a3a0  lv_bar_class                                
 00030a67  lv_bar_create                               
 00030cc5  lv_bar_get_max_value                        
 00030cb3  lv_bar_get_min_value                        
@@ -1439,9 +1444,9 @@ ffffffff  binit
 00030b07  lv_bar_set_start_value                      
 00030a7f  lv_bar_set_value                            
 0004e149  lv_bezier3                                  
-0005a1f4  lv_btn_class                                
-0005532d  lv_btn_create                               
-0005a210  lv_btnmatrix_class                          
+0005a3bc  lv_btn_class                                
+000554f5  lv_btn_create                               
+0005a3d8  lv_btnmatrix_class                          
 000142fb  lv_btnmatrix_clear_btn_ctrl                 
 00014381  lv_btnmatrix_clear_btn_ctrl_all             
 00013f5b  lv_btnmatrix_create                         
@@ -1458,7 +1463,7 @@ ffffffff  binit
 00013f73  lv_btnmatrix_set_map                        
 0001440d  lv_btnmatrix_set_one_checked                
 00014255  lv_btnmatrix_set_selected_btn               
-0005a22c  lv_calendar_class                           
+0005a3f4  lv_calendar_class                           
 000455a7  lv_calendar_create                          
 0004587b  lv_calendar_get_btnmatrix                   
 000458b5  lv_calendar_get_highlighted_dates           
@@ -1466,17 +1471,17 @@ ffffffff  binit
 000458d9  lv_calendar_get_pressed_date                
 000458a3  lv_calendar_get_showed_date                 
 00045891  lv_calendar_get_today_date                  
-0005a248  lv_calendar_header_arrow_class              
-00051b5d  lv_calendar_header_arrow_create             
-0005a264  lv_calendar_header_dropdown_class           
-000528fd  lv_calendar_header_dropdown_create          
+0005a410  lv_calendar_header_arrow_class              
+00051e71  lv_calendar_header_arrow_create             
+0005a42c  lv_calendar_header_dropdown_class           
+00052c11  lv_calendar_header_dropdown_create          
 000455bf  lv_calendar_set_day_names                   
 00045637  lv_calendar_set_highlighted_dates           
 00045667  lv_calendar_set_showed_date                 
 000455ff  lv_calendar_set_today_date                  
 00000bd9  lv_chart_add_cursor                         
 000009df  lv_chart_add_series                         
-0005a280  lv_chart_class                              
+0005a448  lv_chart_class                              
 0000033d  lv_chart_create                             
 00000cb3  lv_chart_get_cursor_point                   
 0000071b  lv_chart_get_point_count                    
@@ -1511,7 +1516,7 @@ ffffffff  binit
 00000b85  lv_chart_set_x_start_point                  
 000005f5  lv_chart_set_zoom_x                         
 0000062f  lv_chart_set_zoom_y                         
-0005a29c  lv_checkbox_class                           
+0005a464  lv_checkbox_class                           
 00049bd3  lv_checkbox_create                          
 00049c8f  lv_checkbox_get_text                        
 00049beb  lv_checkbox_set_text                        
@@ -1525,7 +1530,7 @@ ffffffff  binit
 00048eb1  lv_color_lighten                            
 000490eb  lv_color_rgb_to_hsv                         
 000492b5  lv_color_to_hsv                             
-0005a2b8  lv_colorwheel_class                         
+0005a480  lv_colorwheel_class                         
 0002f87d  lv_colorwheel_create                        
 0002f9d7  lv_colorwheel_get_color_mode                
 0002f9ef  lv_colorwheel_get_color_mode_fixed          
@@ -1579,16 +1584,16 @@ ffffffff  binit
 0004a1fb  lv_draw_img                                 
 0004a405  lv_draw_img_decoded                         
 0004a1cd  lv_draw_img_dsc_init                        
-0005577f  lv_draw_init                                
+00055947  lv_draw_init                                
 000422c5  lv_draw_label                               
 00042275  lv_draw_label_dsc_init                      
-00053d71  lv_draw_layer_adjust                        
-00053d93  lv_draw_layer_blend                         
-00053ce7  lv_draw_layer_create                        
-00053db1  lv_draw_layer_destroy                       
+00053f39  lv_draw_layer_adjust                        
+00053f5b  lv_draw_layer_blend                         
+00053eaf  lv_draw_layer_create                        
+00053f79  lv_draw_layer_destroy                       
 000429c1  lv_draw_letter                              
-00054543  lv_draw_line                                
-00054521  lv_draw_line_dsc_init                       
+0005470b  lv_draw_line                                
+000546e9  lv_draw_line_dsc_init                       
 000066c7  lv_draw_mask_add                            
 00006d9d  lv_draw_mask_angle_init                     
 00006729  lv_draw_mask_apply                          
@@ -1604,8 +1609,8 @@ ffffffff  binit
 00006f25  lv_draw_mask_radius_init                    
 00006897  lv_draw_mask_remove_custom                  
 00006857  lv_draw_mask_remove_id                      
-00053055  lv_draw_rect                                
-00052fd5  lv_draw_rect_dsc_init                       
+00053369  lv_draw_rect                                
+000532e9  lv_draw_rect_dsc_init                       
 0002d30f  lv_draw_sw_arc                              
 000093bb  lv_draw_sw_bg                               
 00017d8d  lv_draw_sw_blend                            
@@ -1615,20 +1620,20 @@ ffffffff  binit
 0004e60b  lv_draw_sw_deinit_ctx                       
 00046785  lv_draw_sw_img_decoded                      
 0004e591  lv_draw_sw_init_ctx                         
-00051539  lv_draw_sw_layer_adjust                     
-00051589  lv_draw_sw_layer_blend                      
-000513f3  lv_draw_sw_layer_create                     
-00051627  lv_draw_sw_layer_destroy                    
+000515c1  lv_draw_sw_layer_adjust                     
+00051611  lv_draw_sw_layer_blend                      
+0005147b  lv_draw_sw_layer_create                     
+000516af  lv_draw_sw_layer_destroy                    
 0004a77b  lv_draw_sw_letter                           
 0003939f  lv_draw_sw_line                             
 0004c411  lv_draw_sw_polygon                          
 0000937f  lv_draw_sw_rect                             
 000351fd  lv_draw_sw_transform                        
 0004e61f  lv_draw_sw_wait_for_finish                  
-00054f3d  lv_draw_transform                           
-00055781  lv_draw_wait_for_finish                     
+00055105  lv_draw_transform                           
+00055949  lv_draw_wait_for_finish                     
 00021981  lv_dropdown_add_option                      
-0005a2d4  lv_dropdown_class                           
+0005a49c  lv_dropdown_class                           
 00021b17  lv_dropdown_clear_options                   
 00022153  lv_dropdown_close                           
 000217d7  lv_dropdown_create                          
@@ -1651,7 +1656,7 @@ ffffffff  binit
 00021bff  lv_dropdown_set_selected_highlight          
 00021be7  lv_dropdown_set_symbol                      
 000217ef  lv_dropdown_set_text                        
-0005a2f0  lv_dropdownlist_class                       
+0005a4b8  lv_dropdownlist_class                       
 0003e269  lv_event_get_code                           
 0003e88d  lv_event_get_cover_area                     
 0003e25b  lv_event_get_current_target                 
@@ -1674,13 +1679,13 @@ ffffffff  binit
 0003e2ab  lv_event_stop_processing                    
 000289a7  lv_flex_init                                
 0004bea5  lv_font_get_bitmap_fmt_txt                  
-00053321  lv_font_get_glyph_bitmap                    
-0005333b  lv_font_get_glyph_dsc                       
+000534e9  lv_font_get_glyph_bitmap                    
+00053503  lv_font_get_glyph_dsc                       
 0004beff  lv_font_get_glyph_dsc_fmt_txt               
-00053443  lv_font_get_glyph_width                     
-0005a30c  lv_font_montserrat_14                       
-0005422b  lv_free                                     
-00052b8d  lv_free_builtin                             
+0005360b  lv_font_get_glyph_width                     
+0005a4d4  lv_font_montserrat_14                       
+000543f3  lv_free                                     
+00052ea1  lv_free_builtin                             
 0003ec73  lv_fs_close                                 
 0003f269  lv_fs_dir_close                             
 0003f199  lv_fs_dir_open                              
@@ -1736,12 +1741,12 @@ ffffffff  binit
 0003215f  lv_img_buf_set_palette                      
 00031ca7  lv_img_buf_set_px_alpha                     
 00031edd  lv_img_buf_set_px_color                     
-00054767  lv_img_cache_invalidate_src                 
-0005475b  lv_img_cache_set_size                       
+0005492f  lv_img_cache_invalidate_src                 
+00054923  lv_img_cache_set_size                       
 0004a263  lv_img_cf_get_px_size                       
 0004a33f  lv_img_cf_has_alpha                         
 0004a309  lv_img_cf_is_chroma_keyed                   
-0005a328  lv_img_class                                
+0005a4f0  lv_img_class                                
 0002aefb  lv_img_create                               
 00034b45  lv_img_decoder_built_in_close               
 00034689  lv_img_decoder_built_in_info                
@@ -1774,15 +1779,15 @@ ffffffff  binit
 0002af13  lv_img_set_src                              
 0002b423  lv_img_set_zoom                             
 0004a3ad  lv_img_src_get_type                         
-000524b3  lv_indev_delete                             
-000523ab  lv_indev_drv_init                           
-000523e5  lv_indev_drv_register                       
-00052443  lv_indev_drv_update                         
+000527c7  lv_indev_delete                             
+000526bf  lv_indev_drv_init                           
+000526f9  lv_indev_drv_register                       
+00052757  lv_indev_drv_update                         
 0001ffd3  lv_indev_enable                             
 0002002d  lv_indev_get_act                            
 00020255  lv_indev_get_gesture_dir                    
 00020269  lv_indev_get_key                            
-000524e9  lv_indev_get_next                           
+000527fd  lv_indev_get_next                           
 0002033f  lv_indev_get_obj_act                        
 00020201  lv_indev_get_point                          
 00020345  lv_indev_get_read_timer                     
@@ -1802,7 +1807,7 @@ ffffffff  binit
 00020327  lv_indev_wait_release                       
 00024abd  lv_init                                     
 00024ab3  lv_is_initialized                           
-0005a344  lv_keyboard_class                           
+0005a50c  lv_keyboard_class                           
 0004c949  lv_keyboard_create                          
 0004ca79  lv_keyboard_def_event_cb                    
 0004ca3f  lv_keyboard_get_mode                        
@@ -1811,7 +1816,7 @@ ffffffff  binit
 0004c995  lv_keyboard_set_mode                        
 0004c9c1  lv_keyboard_set_popovers                    
 0004c961  lv_keyboard_set_textarea                    
-0005a360  lv_label_class                              
+0005a528  lv_label_class                              
 00015cc7  lv_label_create                             
 00016765  lv_label_cut_text                           
 000161e1  lv_label_get_letter_on                      
@@ -1831,7 +1836,7 @@ ffffffff  binit
 00015f37  lv_label_set_text_selection_start           
 00015e0f  lv_label_set_text_static                    
 0000c543  lv_layout_register                          
-0005a37c  lv_led_class                                
+0005a544  lv_led_class                                
 0004d905  lv_led_create                               
 0004d9cb  lv_led_get_brightness                       
 0004d997  lv_led_off                                  
@@ -1839,31 +1844,31 @@ ffffffff  binit
 0004d939  lv_led_set_brightness                       
 0004d91d  lv_led_set_color                            
 0004d9a5  lv_led_toggle                               
-0005a398  lv_line_class                               
+0005a560  lv_line_class                               
 0004f085  lv_line_create                              
 0004f10f  lv_line_get_y_invert                        
 0004f09d  lv_line_set_points                          
 0004f0cd  lv_line_set_y_invert                        
-0005a3b4  lv_list_btn_class                           
-0005a3d0  lv_list_class                               
-0005a3ec  lv_list_text_class                          
-0005420d  lv_malloc                                   
-00052b45  lv_malloc_builtin                           
+0005a57c  lv_list_btn_class                           
+0005a598  lv_list_class                               
+0005a5b4  lv_list_text_class                          
+000543d5  lv_malloc                                   
+00052e59  lv_malloc_builtin                           
 0004e3f3  lv_map                                      
-00052abf  lv_mem_deinit_builtin                       
-00052aad  lv_mem_init_builtin                         
-000542df  lv_mem_monitor                              
-00052acf  lv_mem_monitor_builtin                      
-000542c9  lv_mem_test                                 
-00052bbb  lv_mem_test_builtin                         
-0005427d  lv_memcpy                                   
+00052dd3  lv_mem_deinit_builtin                       
+00052dc1  lv_mem_init_builtin                         
+000544a7  lv_mem_monitor                              
+00052de3  lv_mem_monitor_builtin                      
+00054491  lv_mem_test                                 
+00052ecf  lv_mem_test_builtin                         
+00054445  lv_memcpy                                   
 0004b8fd  lv_memcpy_builtin                           
-00054291  lv_memset                                   
+00054459  lv_memset                                   
 0004bd39  lv_memset_builtin                           
 0003a571  lv_menu_back_btn_is_root                    
-0005a408  lv_menu_class                               
+0005a5d0  lv_menu_class                               
 0003a5a5  lv_menu_clear_history                       
-0005a424  lv_menu_cont_class                          
+0005a5ec  lv_menu_cont_class                          
 00039fdf  lv_menu_cont_create                         
 00039f8d  lv_menu_create                              
 0003a4fd  lv_menu_get_cur_main_page                   
@@ -1872,13 +1877,13 @@ ffffffff  binit
 0003a533  lv_menu_get_main_header_back_btn            
 0003a549  lv_menu_get_sidebar_header                  
 0003a55b  lv_menu_get_sidebar_header_back_btn         
-0005a440  lv_menu_main_cont_class                     
-0005a45c  lv_menu_main_header_cont_class              
-0005a478  lv_menu_page_class                          
+0005a608  lv_menu_main_cont_class                     
+0005a624  lv_menu_main_header_cont_class              
+0005a640  lv_menu_page_class                          
 00039fa5  lv_menu_page_create                         
-0005a494  lv_menu_section_class                       
+0005a65c  lv_menu_section_class                       
 00039ff7  lv_menu_section_create                      
-0005a4b0  lv_menu_separator_class                     
+0005a678  lv_menu_separator_class                     
 0003a00f  lv_menu_separator_create                    
 0003a3c9  lv_menu_set_load_page_event                 
 0003a345  lv_menu_set_mode_header                     
@@ -1887,14 +1892,14 @@ ffffffff  binit
 0003a43b  lv_menu_set_page_title                      
 0003a4ad  lv_menu_set_page_title_static               
 0003a1e1  lv_menu_set_sidebar_page                    
-0005a4cc  lv_menu_sidebar_cont_class                  
-0005a4e8  lv_menu_sidebar_header_cont_class           
+0005a694  lv_menu_sidebar_cont_class                  
+0005a6b0  lv_menu_sidebar_header_cont_class           
 00029dc9  lv_meter_add_arc                            
 00029d63  lv_meter_add_needle_img                     
 00029cff  lv_meter_add_needle_line                    
 00029bf9  lv_meter_add_scale                          
 00029e31  lv_meter_add_scale_lines                    
-0005a504  lv_meter_class                              
+0005a6cc  lv_meter_class                              
 00029be1  lv_meter_create                             
 00029f7d  lv_meter_set_indicator_end_value            
 00029f21  lv_meter_set_indicator_start_value          
@@ -1902,8 +1907,8 @@ ffffffff  binit
 00029c95  lv_meter_set_scale_major_ticks              
 00029cd1  lv_meter_set_scale_range                    
 00029c5f  lv_meter_set_scale_ticks                    
-0005a520  lv_msgbox_backdrop_class                    
-0005a53c  lv_msgbox_class                             
+0005a6e8  lv_msgbox_backdrop_class                    
+0005a704  lv_msgbox_class                             
 0003e30b  lv_obj_add_event_cb                         
 00024b8b  lv_obj_add_flag                             
 00024c91  lv_obj_add_state                            
@@ -1915,9 +1920,9 @@ ffffffff  binit
 0003322b  lv_obj_calculate_ext_draw_size              
 0001dad1  lv_obj_calculate_style_text_align           
 00024df7  lv_obj_check_type                           
-0005a558  lv_obj_class                                
-00050843  lv_obj_class_create_obj                     
-00050973  lv_obj_class_init_obj                       
+0005a720  lv_obj_class                                
+00050b93  lv_obj_class_create_obj                     
+00050cc3  lv_obj_class_init_obj                       
 00046f31  lv_obj_clean                                
 00024c0b  lv_obj_clear_flag                           
 00024ccf  lv_obj_clear_state                          
@@ -1984,8 +1989,8 @@ ffffffff  binit
 00032bdf  lv_obj_init_draw_rect_dsc                   
 0000d72d  lv_obj_invalidate                           
 0000d6f1  lv_obj_invalidate_area                      
-00050a21  lv_obj_is_editable                          
-00050a69  lv_obj_is_group_def                         
+00050d71  lv_obj_is_editable                          
+00050db9  lv_obj_is_group_def                         
 0000c489  lv_obj_is_layout_positioned                 
 00012d59  lv_obj_is_scrolling                         
 00024e63  lv_obj_is_valid                             
@@ -2135,8 +2140,8 @@ ffffffff  binit
 0003ab8f  lv_obj_set_style_width                      
 0003ac67  lv_obj_set_style_x                          
 0003ac8b  lv_obj_set_style_y                          
-00050215  lv_obj_set_tile                             
-00050267  lv_obj_set_tile_id                          
+00050565  lv_obj_set_tile                             
+000505b7  lv_obj_set_tile_id                          
 0000c357  lv_obj_set_width                            
 0000bea3  lv_obj_set_x                                
 0000bee1  lv_obj_set_y                                
@@ -2153,25 +2158,25 @@ ffffffff  binit
 00036b2d  lv_point_transform                          
 0004e391  lv_pow                                      
 0004e479  lv_rand                                     
-00054243  lv_realloc                                  
-00052b79  lv_realloc_builtin                          
+0005440b  lv_realloc                                  
+00052e8d  lv_realloc_builtin                          
 0001e61d  lv_refr_now                                 
-0005a574  lv_roller_class                             
+0005a73c  lv_roller_class                             
 0002e61b  lv_roller_create                            
 0002ea3b  lv_roller_get_option_cnt                    
 0002ea2b  lv_roller_get_options                       
 0002e93d  lv_roller_get_selected                      
 0002e97f  lv_roller_get_selected_str                  
-0005a590  lv_roller_label_class                       
+0005a758  lv_roller_label_class                       
 0002e633  lv_roller_set_options                       
 0002e7fd  lv_roller_set_selected                      
 0002e8e9  lv_roller_set_visible_row_count             
 0003f79b  lv_scr_load_anim                            
-0005a5ac  lv_slider_class                             
+0005a774  lv_slider_class                             
 00033607  lv_slider_create                            
 0003361f  lv_slider_is_dragged                        
 00039317  lv_snprintf_builtin                         
-0005a5c8  lv_spinbox_class                            
+0005a790  lv_spinbox_class                            
 0004070d  lv_spinbox_create                           
 00040ab7  lv_spinbox_decrement                        
 00040a11  lv_spinbox_get_rollover                     
@@ -2187,12 +2192,12 @@ ffffffff  binit
 00040725  lv_spinbox_set_value                        
 00040979  lv_spinbox_step_next                        
 000409a9  lv_spinbox_step_prev                        
-0005a5e4  lv_spinner_class                            
-00052cb9  lv_spinner_create                           
+0005a7ac  lv_spinner_class                            
+00052fcd  lv_spinner_create                           
 0004e1cf  lv_sqrt                                     
-000542a9  lv_strlen                                   
+00054471  lv_strlen                                   
 0004be3d  lv_strlen_builtin                           
-000542b5  lv_strncpy                                  
+0005447d  lv_strncpy                                  
 0004be61  lv_strncpy_builtin                          
 00043e83  lv_style_get_num_custom_props               
 0004402f  lv_style_get_prop                           
@@ -2304,10 +2309,10 @@ ffffffff  binit
 00044d8d  lv_style_set_x                              
 00044da7  lv_style_set_y                              
 00044051  lv_style_transition_dsc_init                
-0005a600  lv_switch_class                             
+0005a7c8  lv_switch_class                             
 0004ae73  lv_switch_create                            
 0001b5a5  lv_table_add_cell_ctrl                      
-0005a61c  lv_table_class                              
+0005a7e4  lv_table_class                              
 0001b671  lv_table_clear_cell_ctrl                    
 0001b0b5  lv_table_create                             
 0001b73d  lv_table_get_cell_value                     
@@ -2322,7 +2327,7 @@ ffffffff  binit
 0001b561  lv_table_set_col_width                      
 0001b2ed  lv_table_set_row_cnt                        
 00047e7d  lv_tabview_add_tab                          
-0005a638  lv_tabview_class                            
+0005a800  lv_tabview_class                            
 00047e4d  lv_tabview_create                           
 0004815b  lv_tabview_get_content                      
 00048149  lv_tabview_get_tab_act                      
@@ -2331,7 +2336,7 @@ ffffffff  binit
 00048055  lv_tabview_set_act                          
 00019559  lv_textarea_add_char                        
 0001966b  lv_textarea_add_text                        
-0005a654  lv_textarea_class                           
+0005a81c  lv_textarea_class                           
 0001a03d  lv_textarea_clear_selection                 
 00019541  lv_textarea_create                          
 0001a0c1  lv_textarea_cursor_down                     
@@ -2367,26 +2372,26 @@ ffffffff  binit
 00019899  lv_textarea_set_text                        
 00019dad  lv_textarea_set_text_selection              
 00019f93  lv_textarea_text_is_selected                
-00053497  lv_theme_apply                              
+0005365f  lv_theme_apply                              
 00005385  lv_theme_default_get                        
 000052b5  lv_theme_default_init                       
 00005395  lv_theme_default_is_inited                  
-00053529  lv_theme_get_color_primary                  
-0005354f  lv_theme_get_color_secondary                
-0005350f  lv_theme_get_font_large                     
-000534f5  lv_theme_get_font_normal                    
-000534db  lv_theme_get_font_small                     
-00053479  lv_theme_get_from_obj                       
-000534c9  lv_theme_set_apply_cb                       
-000534b7  lv_theme_set_parent                         
-00054add  lv_tick_elaps                               
-00054abf  lv_tick_get                                 
-00054aa5  lv_tick_inc                                 
-000501d9  lv_tileview_add_tile                        
-0005a670  lv_tileview_class                           
-000501c1  lv_tileview_create                          
-00050309  lv_tileview_get_tile_act                    
-0005a68c  lv_tileview_tile_class                      
+000536f1  lv_theme_get_color_primary                  
+00053717  lv_theme_get_color_secondary                
+000536d7  lv_theme_get_font_large                     
+000536bd  lv_theme_get_font_normal                    
+000536a3  lv_theme_get_font_small                     
+00053641  lv_theme_get_from_obj                       
+00053691  lv_theme_set_apply_cb                       
+0005367f  lv_theme_set_parent                         
+00054ca5  lv_tick_elaps                               
+00054c87  lv_tick_get                                 
+00054c6d  lv_tick_inc                                 
+00050529  lv_tileview_add_tile                        
+0005a838  lv_tileview_class                           
+00050511  lv_tileview_create                          
+00050659  lv_tileview_get_tile_act                    
+0005a854  lv_tileview_tile_class                      
 0004ffcd  lv_timer_create                             
 0004ffbd  lv_timer_create_basic                       
 0005003d  lv_timer_del                                
@@ -2425,31 +2430,31 @@ ffffffff  binit
 00037b7b  lv_txt_get_size                             
 00037fe3  lv_txt_get_width                            
 0003934b  lv_vsnprintf_builtin                        
-000530e5  lv_win_add_btn                              
-000530ad  lv_win_add_title                            
-0005a6a8  lv_win_class                                
-00053089  lv_win_create                               
-00053141  lv_win_get_content                          
-00053133  lv_win_get_header                           
-00050e25  main                                        
-000556ff  memccpy                                     
-0005567d  memcmp                                      
-00054775  memcpy                                      
-000555e3  memmove                                     
-000549bb  memset                                      
+000533f9  lv_win_add_btn                              
+000533c1  lv_win_add_title                            
+0005a870  lv_win_class                                
+0005339d  lv_win_create                               
+00053455  lv_win_get_content                          
+00053447  lv_win_get_header                           
+000501c1  main                                        
+000558c7  memccpy                                     
+00055845  memcmp                                      
+0005493d  memcpy                                      
+000557ab  memmove                                     
+00054b83  memset                                      
 00037a7f  pcQueueGetName                              
 0000ed91  pcTaskGetName                               
 0004f40b  prvCheckOptions                             
 0004f5e9  prvCheckRxData                              
-00055501  prvCommandInterpreterTask                   
-000531f3  prvDisplayTask                              
+000556c9  prvCommandInterpreterTask                   
+000516df  prvDisplayTask                              
 0003df29  prvHandleListen                             
-0005590b  prvModbusTask                               
+00055ad3  prvModbusTask                               
 00041a41  prvProcessNetworkDownEvent                  
 0003cc3d  prvSendData                                 
 0003cbb7  prvSetOptions                               
 0003c885  prvSetSynAckOptions                         
-00054d31  prvSocketSetMSS                             
+00054ef9  prvSocketSetMSS                             
 0004f6b5  prvStoreRxData                              
 0003cb71  prvTCPAddTxData                             
 0003c8cd  prvTCPBufferResize                          
@@ -2465,46 +2470,46 @@ ffffffff  binit
 0003d7b3  prvTCPStatusAgeCheck                        
 0004eccd  pvPortMalloc                                
 0000fb57  pvTaskIncrementMutexHeldCount               
-20026e18  pxARPWaitingNetworkBuffer                   
-20026d4c  pxCurrentTCB                                
+20027460  pxARPWaitingNetworkBuffer                   
+20027394  pxCurrentTCB                                
 00041969  pxDuplicateNetworkBufferWithDescriptor      
-00051e1f  pxGetNetworkBufferWithDescriptor            
-00051eab  pxNetworkBufferGetFromISR                   
+00052133  pxGetNetworkBufferWithDescriptor            
+000521bf  pxNetworkBufferGetFromISR                   
 00041a01  pxPacketBuffer_to_NetworkBuffer             
-000536e5  pxPortInitialiseStack                       
-00051f89  pxResizeNetworkBufferWithDescriptor         
+000538ad  pxPortInitialiseStack                       
+0005229d  pxResizeNetworkBufferWithDescriptor         
 00011ccd  pxTCPSocketLookup                           
 00041a0f  pxUDPPayloadBuffer_to_NetworkBuffer         
 00010e53  pxUDPSocketLookup                           
-0005546d  rand                                        
-00053f11  scalbn                                      
-00053f11  scalbnl                                     
-00055025  snprintf                                    
-000551cd  sprintf                                     
-000556e1  strcat                                      
-00055861  strchr                                      
-000557af  strcmp                                      
-000558a1  strcpy                                      
-000558b5  strlen                                      
-000555b7  strncmp                                     
-00055365  strncpy                                     
+00055635  rand                                        
+000540d9  scalbn                                      
+000540d9  scalbnl                                     
+000551ed  snprintf                                    
+00055395  sprintf                                     
+000558a9  strcat                                      
+00055a29  strchr                                      
+00055977  strcmp                                      
+00055a69  strcpy                                      
+00055a7d  strlen                                      
+0005577f  strncmp                                     
+0005552d  strncpy                                     
 000377ab  ucQueueGetQueueType                         
-00051043  ulApplicationGetNextSequenceNumber          
+00050451  ulApplicationGetNextSequenceNumber          
 000420d3  ulChar2u32                                  
-0005a8c8  ulMaxSyscallInterruptPriority               
-000543e9  ulPortGetIPSR                               
-00050d91  ulTCPWindowTxAck                            
-00050c55  ulTCPWindowTxGet                            
+0005aa98  ulMaxSyscallInterruptPriority               
+000545b1  ulPortGetIPSR                               
+000510e1  ulTCPWindowTxAck                            
+00050fa5  ulTCPWindowTxGet                            
 0000fb79  ulTaskGenericNotifyTake                     
 000101e5  ulTaskGenericNotifyValueClear               
 000420f9  usChar2u16                                  
 00041d29  usGenerateChecksum                          
 00041a83  usGenerateProtocolChecksum                  
-20026e20  usPacketIdentifier                          
+20027468  usPacketIdentifier                          
 0004ec9b  uxEventGroupGetNumber                       
-00051f7d  uxGetMinimumFreeNetworkBuffers              
-00051f83  uxGetNumberOfFreeNetworkBuffers             
-00053b67  uxListRemove                                
+00052291  uxGetMinimumFreeNetworkBuffers              
+00052297  uxGetNumberOfFreeNetworkBuffers             
+00053d2f  uxListRemove                                
 0003778b  uxQueueGetQueueNumber                       
 00037729  uxQueueMessagesWaiting                      
 0003775f  uxQueueMessagesWaitingFromISR               
@@ -2525,57 +2530,57 @@ ffffffff  binit
 0000e6ab  uxTaskPriorityGet                           
 0000e6d5  uxTaskPriorityGetFromISR                    
 0000fb35  uxTaskResetEventItemValue                   
-0005a8cc  uxTopUsedPriority                           
+0005aa9c  uxTopUsedPriority                           
 00043057  vARPAgeCache                                
 0004321d  vARPGenerateRequestPacket                   
 00042d3d  vARPRefreshCacheEntry                       
 0004311f  vARPSendGratuitous                          
-0005178b  vARPTimerReload                             
-00051015  vApplicationIPNetworkEventHook              
-00050ffd  vApplicationIdleHook                        
-00050ff5  vApplicationMallocFailedHook                
-00050fff  vApplicationStackOverflowHook               
-0005100b  vApplicationTickHook                        
-00051691  vCheckNetworkTimers                         
+00051a9f  vARPTimerReload                             
+00050423  vApplicationIPNetworkEventHook              
+0005040b  vApplicationIdleHook                        
+00050403  vApplicationMallocFailedHook                
+0005040d  vApplicationStackOverflowHook               
+00050419  vApplicationTickHook                        
+000519a5  vCheckNetworkTimers                         
 000444a7  vDHCPProcess                                
 00044489  vDHCPSetPreferredIPAddress                  
-00051799  vDHCPTimerReload                            
+00051aad  vDHCPTimerReload                            
 0004ec55  vEventGroupClearBitsCallback                
 0004ec11  vEventGroupDelete                           
 0004ec45  vEventGroupSetBitsCallback                  
 0004ecbb  vEventGroupSetNumber                        
 0003b8c1  vIPNetworkUpCalls                           
-00051851  vIPSetARPResolutionTimerEnableState         
-0005182d  vIPSetARPTimerEnableState                   
-00051875  vIPSetDHCPTimerEnableState                  
-000517ff  vIPSetTCPTimerExpiredState                  
-00051757  vIPTimerStartARPResolution                  
-00053a85  vListInitialise                             
-00053ab5  vListInitialiseItem                         
-00053b01  vListInsert                                 
-00053ac5  vListInsertEnd                              
-00051efb  vNetworkBufferReleaseFromISR                
+00051b65  vIPSetARPResolutionTimerEnableState         
+00051b41  vIPSetARPTimerEnableState                   
+00051b89  vIPSetDHCPTimerEnableState                  
+00051b13  vIPSetTCPTimerExpiredState                  
+00051a6b  vIPTimerStartARPResolution                  
+00053c4d  vListInitialise                             
+00053c7d  vListInitialiseItem                         
+00053cc9  vListInsert                                 
+00053c8d  vListInsertEnd                              
+0005220f  vNetworkBufferReleaseFromISR                
 0004872d  vNetworkInterfaceAllocateRAMToBuffers       
 00010373  vNetworkSocketsInit                         
 000433af  vPhyInitialise                              
-000544a5  vPortEnableVFP                              
-00053785  vPortEndScheduler                           
-00053787  vPortEnterCritical                          
-000537a7  vPortExitCritical                           
+0005466d  vPortEnableVFP                              
+0005394d  vPortEndScheduler                           
+0005394f  vPortEnterCritical                          
+0005396f  vPortExitCritical                           
 0004edfb  vPortFree                                   
 0004efad  vPortGetHeapStats                           
 0004ee61  vPortInitialiseBlocks                       
-00054461  vPortSVCHandler                             
-000537e3  vPortSetupTimerInterrupt                    
-00054481  vPortStartFirstTask                         
+00054629  vPortSVCHandler                             
+000539ab  vPortSetupTimerInterrupt                    
+00054649  vPortStartFirstTask                         
 00041a81  vPreCheckConfigs                            
-000521b5  vProcessGeneratedUDPPacket                  
+000524c9  vProcessGeneratedUDPPacket                  
 00037a11  vQueueAddToRegistry                         
 00037775  vQueueDelete                                
 00037799  vQueueSetQueueNumber                        
 00037abf  vQueueUnregisterQueue                       
-000510ed  vRegisterCLICommands                        
-00051f33  vReleaseNetworkBufferAndDescriptor          
+00051175  vRegisterCLICommands                        
+00052247  vReleaseNetworkBufferAndDescriptor          
 0003c175  vReturnEthernetFrame                        
 0004190d  vSetMultiCastIPv4MacAddress                 
 000107c3  vSocketBind                                 
@@ -2585,10 +2590,10 @@ ffffffff  binit
 0004f86f  vStreamBufferClear                          
 0004f891  vStreamBufferMoveMid                        
 0004b3cd  vTCPStateChange                             
-0005177d  vTCPTimerReload                             
-0005399d  vTCPWindowCreate                            
-00050e15  vTCPWindowDestroy                           
-000539cf  vTCPWindowInit                              
+00051a91  vTCPTimerReload                             
+00053b65  vTCPWindowCreate                            
+00051165  vTCPWindowDestroy                           
+00053b97  vTCPWindowInit                              
 0000e599  vTaskDelay                                  
 0000e451  vTaskDelete                                 
 0000eb97  vTaskEndScheduler                           
@@ -2608,18 +2613,18 @@ ffffffff  binit
 0000e879  vTaskSuspend                                
 0000ebb3  vTaskSuspendAll                             
 0000f0ad  vTaskSwitchContext                          
-000558c9  wcslen                                      
+00055a91  wcslen                                      
 00043195  xARPWaitResolution                          
-00051033  xApplicationGetRandomNumber                 
-20026b90  xBoundTCPSocketsList                        
-20026ba4  xBoundUDPSocketsList                        
-0005a888  xBroadcastMACAddress                        
-0005a8c0  xBufferAllocFixedSize                       
-00051639  xCalculateSleepTime                         
+00050441  xApplicationGetRandomNumber                 
+200271d0  xBoundTCPSocketsList                        
+200271e4  xBoundUDPSocketsList                        
+0005aa58  xBroadcastMACAddress                        
+0005aa90  xBufferAllocFixedSize                       
+0005194d  xCalculateSleepTime                         
 000432a9  xCheckLoopback                              
 00042cd9  xCheckRequiresARPResolution                 
-20026e9c  xDefaultAddressing                          
-20026e84  xDefaultPartUDPPacketHeader                 
+200274e4  xDefaultAddressing                          
+200274cc  xDefaultPartUDPPacketHeader                 
 0004eae7  xEventGroupClearBits                        
 0004e905  xEventGroupCreate                           
 0004eb13  xEventGroupGetBitsFromISR                   
@@ -2632,12 +2637,12 @@ ffffffff  binit
 00042c89  xIsIPInARPCache                             
 0003bdaf  xIsIPv4Multicast                            
 0003b8d9  xIsNetworkDownEventPending                  
-20026eb0  xNetworkAddressing                          
-00051d8b  xNetworkBuffersInitialise                   
-20026e1c  xNetworkEventQueue                          
+200274f8  xNetworkAddressing                          
+0005209f  xNetworkBuffersInitialise                   
+20027464  xNetworkEventQueue                          
 00048555  xNetworkInterfaceInitialise                 
 000486b9  xNetworkInterfaceOutput                     
-0005a8d4  xPHYProperties                              
+0005aaa4  xPHYProperties                              
 00043a9f  xPhyCheckLinkStatus                         
 00043599  xPhyConfigure                               
 000433cf  xPhyDiscover                                
@@ -2645,12 +2650,12 @@ ffffffff  binit
 000437f9  xPhyStartAutoNegotiation                    
 0004ee55  xPortGetFreeHeapSize                        
 0004ee5b  xPortGetMinimumEverFreeHeapSize             
-00054401  xPortPendSVHandler                          
-0005374f  xPortStartScheduler                         
-000537bd  xPortSysTickHandler                         
+000545c9  xPortPendSVHandler                          
+00053917  xPortStartScheduler                         
+00053985  xPortSysTickHandler                         
 0004b5ed  xProcessReceivedTCPPacket                   
-000522f7  xProcessReceivedUDPPacket                   
-20026d18  xProcessedTCPMessage                        
+0005260b  xProcessReceivedUDPPacket                   
+20027360  xProcessedTCPMessage                        
 0003700d  xQueueCreateCountingSemaphore               
 00036f61  xQueueCreateMutex                           
 00036e87  xQueueGenericCreate                         
@@ -2665,23 +2670,23 @@ ffffffff  binit
 000376d7  xQueuePeekFromISR                           
 000372a3  xQueueReceive                               
 0003763d  xQueueReceiveFromISR                        
-20026948  xQueueRegistry                              
+20026f88  xQueueRegistry                              
 000373c1  xQueueSemaphoreTake                         
 00036fc9  xQueueTakeMutexRecursive                    
 000418e5  xSendDHCPEvent                              
 0003bbc9  xSendEventStructToIPTask                    
 0003bba1  xSendEventToIPTask                          
-0005397b  xSequenceGreaterThan                        
-00053959  xSequenceLessThan                           
+00053b43  xSequenceGreaterThan                        
+00053b21  xSequenceLessThan                           
 00012143  xSocketValid                                
 0004f8df  xStreamBufferLessThenEqual                  
 0004b87d  xTCPCheckNewClient                          
 0004b369  xTCPSocketCheck                             
 00011c05  xTCPTimerCheck                              
-20026f7c  xTCPWindowLoggingLevel                      
-00050e03  xTCPWindowRxEmpty                           
-00050cd7  xTCPWindowTxDone                            
-00050d19  xTCPWindowTxHasData                         
+200275c4  xTCPWindowLoggingLevel                      
+00051153  xTCPWindowRxEmpty                           
+00051027  xTCPWindowTxDone                            
+00051069  xTCPWindowTxHasData                         
 0000eea5  xTaskCatchUpTicks                           
 0000f491  xTaskCheckForTimeOut                        
 0000e205  xTaskCreate                                 
@@ -3965,384 +3970,386 @@ address   name
 000500c7  lv_timer_enable                             
 000500db  lv_timer_get_idle                           
 000500e1  lv_timer_get_next                           
-000501c1  lv_tileview_create                          
-000501d9  lv_tileview_add_tile                        
-00050215  lv_obj_set_tile                             
-00050267  lv_obj_set_tile_id                          
-00050309  lv_tileview_get_tile_act                    
-0005050d  FreeRTOS_CLIRegisterCommand                 
-0005054b  FreeRTOS_CLIProcessCommand                  
-00050631  FreeRTOS_CLIGetOutputBuffer                 
-00050635  FreeRTOS_CLIGetParameter                    
-00050843  lv_obj_class_create_obj                     
-00050973  lv_obj_class_init_obj                       
-000509eb  _lv_obj_destruct                            
-00050a21  lv_obj_is_editable                          
-00050a69  lv_obj_is_group_def                         
-00050b73  lTCPWindowRxCheck                           
-00050bb9  lTCPWindowTxAdd                             
-00050c55  ulTCPWindowTxGet                            
-00050cd7  xTCPWindowTxDone                            
-00050d19  xTCPWindowTxHasData                         
-00050d91  ulTCPWindowTxAck                            
-00050e03  xTCPWindowRxEmpty                           
-00050e15  vTCPWindowDestroy                           
-00050e25  main                                        
-00050ff5  vApplicationMallocFailedHook                
-00050ffd  vApplicationIdleHook                        
-00050fff  vApplicationStackOverflowHook               
-0005100b  vApplicationTickHook                        
-00051015  vApplicationIPNetworkEventHook              
-00051033  xApplicationGetRandomNumber                 
-00051043  ulApplicationGetNextSequenceNumber          
-000510ed  vRegisterCLICommands                        
-000513f3  lv_draw_sw_layer_create                     
-00051539  lv_draw_sw_layer_adjust                     
-00051589  lv_draw_sw_layer_blend                      
-00051627  lv_draw_sw_layer_destroy                    
-00051639  xCalculateSleepTime                         
-00051691  vCheckNetworkTimers                         
-00051757  vIPTimerStartARPResolution                  
-0005177d  vTCPTimerReload                             
-0005178b  vARPTimerReload                             
-00051799  vDHCPTimerReload                            
-000517ff  vIPSetTCPTimerExpiredState                  
-0005182d  vIPSetARPTimerEnableState                   
-00051851  vIPSetARPResolutionTimerEnableState         
-00051875  vIPSetDHCPTimerEnableState                  
-00051b5d  lv_calendar_header_arrow_create             
-00051d8b  xNetworkBuffersInitialise                   
-00051e1f  pxGetNetworkBufferWithDescriptor            
-00051eab  pxNetworkBufferGetFromISR                   
-00051efb  vNetworkBufferReleaseFromISR                
-00051f33  vReleaseNetworkBufferAndDescriptor          
-00051f7d  uxGetMinimumFreeNetworkBuffers              
-00051f83  uxGetNumberOfFreeNetworkBuffers             
-00051f89  pxResizeNetworkBufferWithDescriptor         
-00051fb5  SysCtlClockFreqSet                          
-000521b5  vProcessGeneratedUDPPacket                  
-000522f7  xProcessReceivedUDPPacket                   
-000523ab  lv_indev_drv_init                           
-000523e5  lv_indev_drv_register                       
-00052443  lv_indev_drv_update                         
-000524b3  lv_indev_delete                             
-000524e9  lv_indev_get_next                           
-00052503  _lv_indev_read                              
-00052745  __aeabi_dsub                                
-0005274f  __aeabi_dadd                                
-000528fd  lv_calendar_header_dropdown_create          
-00052aad  lv_mem_init_builtin                         
-00052abf  lv_mem_deinit_builtin                       
-00052acf  lv_mem_monitor_builtin                      
-00052b45  lv_malloc_builtin                           
-00052b79  lv_realloc_builtin                          
-00052b8d  lv_free_builtin                             
-00052bbb  lv_mem_test_builtin                         
-00052cb9  lv_spinner_create                           
-00052db5  GPIOPadConfigSet                            
-00052fd5  lv_draw_rect_dsc_init                       
-00053055  lv_draw_rect                                
-00053089  lv_win_create                               
-000530ad  lv_win_add_title                            
-000530e5  lv_win_add_btn                              
-00053133  lv_win_get_header                           
-00053141  lv_win_get_content                          
-000531f3  prvDisplayTask                              
-00053321  lv_font_get_glyph_bitmap                    
-0005333b  lv_font_get_glyph_dsc                       
-00053443  lv_font_get_glyph_width                     
-00053479  lv_theme_get_from_obj                       
-00053497  lv_theme_apply                              
-000534b7  lv_theme_set_parent                         
-000534c9  lv_theme_set_apply_cb                       
-000534db  lv_theme_get_font_small                     
-000534f5  lv_theme_get_font_normal                    
-0005350f  lv_theme_get_font_large                     
-00053529  lv_theme_get_color_primary                  
-0005354f  lv_theme_get_color_secondary                
-000536e5  pxPortInitialiseStack                       
-0005374f  xPortStartScheduler                         
-00053785  vPortEndScheduler                           
-00053787  vPortEnterCritical                          
-000537a7  vPortExitCritical                           
-000537bd  xPortSysTickHandler                         
-000537e3  vPortSetupTimerInterrupt                    
-00053821  __aeabi_ddiv                                
-00053959  xSequenceLessThan                           
-0005397b  xSequenceGreaterThan                        
-0005399d  vTCPWindowCreate                            
-000539cf  vTCPWindowInit                              
-00053a85  vListInitialise                             
-00053ab5  vListInitialiseItem                         
-00053ac5  vListInsertEnd                              
-00053b01  vListInsert                                 
-00053b67  uxListRemove                                
-00053ce7  lv_draw_layer_create                        
-00053d71  lv_draw_layer_adjust                        
-00053d93  lv_draw_layer_blend                         
-00053db1  lv_draw_layer_destroy                       
-00053df9  SysCtlClockGet                              
-00053f11  ldexp                                       
-00053f11  ldexpl                                      
-00053f11  scalbn                                      
-00053f11  scalbnl                                     
-00054021  __aeabi_dmul                                
-0005412f  _lv_gc_clear_roots                          
-0005420d  lv_malloc                                   
-0005422b  lv_free                                     
-00054243  lv_realloc                                  
-0005427d  lv_memcpy                                   
-00054291  lv_memset                                   
-000542a9  lv_strlen                                   
-000542b5  lv_strncpy                                  
-000542c9  lv_mem_test                                 
-000542df  lv_mem_monitor                              
-000542fd  lv_async_call                               
-0005434b  lv_async_call_cancel                        
-000543e9  ulPortGetIPSR                               
-00054401  xPortPendSVHandler                          
-00054461  vPortSVCHandler                             
-00054481  vPortStartFirstTask                         
-000544a5  vPortEnableVFP                              
-00054521  lv_draw_line_dsc_init                       
-00054543  lv_draw_line                                
-00054571  ProcessICMPPacket                           
-000546eb  _lv_img_cache_open                          
-0005475b  lv_img_cache_set_size                       
-00054767  lv_img_cache_invalidate_src                 
-00054775  __aeabi_memcpy                              
-00054775  __aeabi_memcpy4                             
-00054775  __aeabi_memcpy8                             
-00054775  memcpy                                      
-00054811  __aeabi_uldivmod                            
-000548a7  __aeabi_cdcmpeq                             
-000548a7  __aeabi_cdcmple                             
-0005492d  __aeabi_cdrcmple                            
-000549b3  __aeabi_memclr                              
-000549b3  __aeabi_memclr4                             
-000549b3  __aeabi_memclr8                             
-000549b5  __aeabi_memset                              
-000549b5  __aeabi_memset4                             
-000549b5  __aeabi_memset8                             
-000549bb  memset                                      
-00054a2d  EMACInit                                    
-00054aa5  lv_tick_inc                                 
-00054abf  lv_tick_get                                 
-00054add  lv_tick_elaps                               
-00054b19  _lv_utils_bsearch                           
-00054bfd  IntEnable                                   
-00054c65  __TI_decompress_lzss                        
-00054ccd  frexp                                       
-00054ccd  frexpl                                      
-00054d31  prvSocketSetMSS                             
-00054d91  __aeabi_idiv                                
-00054d91  __aeabi_idivmod                             
-00054e45  __TI_ltoa                                   
-00054eed  SysCtlPeripheralReset                       
-00054f3d  lv_draw_transform                           
-00054f8d  GPIOPinConfigure                            
-00054fd9  atoi                                        
-00055025  snprintf                                    
-000550b9  __aeabi_d2iz                                
-00055101  UARTConfigSetExpClk                         
-00055149  __TI_auto_init_nobinit_nopinit              
-0005518d  __aeabi_uidiv                               
-0005518d  __aeabi_uidivmod                            
-000551cd  sprintf                                     
-0005524b  EMACIntEnable                               
-00055285  EMACConfigSet                               
-000552bd  SysCtlPeripheralPresent                     
-000552f5  SysCtlPeripheralReady                       
-0005532d  lv_btn_create                               
-00055365  strncpy                                     
-0005539d  EMACConfigGet                               
-000553d1  EMACIntClear                                
-00055405  SysCtlPeripheralEnable                      
-00055439  _c_int00_noargs                             
-0005546d  rand                                        
-000554a1  EMACAddrSet                                 
-00055501  prvCommandInterpreterTask                   
-00055531  __aeabi_i2d                                 
-0005555f  EMACIntStatus                               
-0005558b  GPIODirModeSet                              
-000555b7  strncmp                                     
-000555e3  memmove                                     
-0005560b  EMACPHYRead                                 
-00055631  EMACPHYWrite                                
-00055659  IntPrioritySet                              
-0005567d  memcmp                                      
-000556a1  UARTDisable                                 
-000556e1  strcat                                      
-000556ff  memccpy                                     
-0005571b  GPIOPinTypeGPIOOutput                       
-00055735  copysign                                    
-00055735  copysignl                                   
-0005577f  lv_draw_init                                
-00055781  lv_draw_wait_for_finish                     
-00055797  __aeabi_lmul                                
-000557af  strcmp                                      
-000557c7  EMACRxEnable                                
-000557dd  EMACTxEnable                                
-000557f3  GPIOPinTypeEthernetLED                      
-00055809  GPIOPinTypeGPIOInput                        
-0005581f  GPIOPinTypeUART                             
-00055835  GPIOPinTypeUSBAnalog                        
-0005584b  GPIOPinTypeUSBDigital                       
-00055861  strchr                                      
-00055879  FlashUserGet                                
-0005588d  UARTEnable                                  
-000558a1  strcpy                                      
-000558b5  strlen                                      
-000558c9  wcslen                                      
-000558dd  EMACFrameFilterSet                          
-000558ed  IntMasterDisable                            
-000558fd  __TI_decompress_none                        
-0005590b  prvModbusTask                               
-00055919  CPUcpsid                                    
-00055925  __TI_zero_init                              
-00055931  ResetISR                                    
-0005593d  SSIDataPut                                  
-00055947  UARTCharGet                                 
-00055951  UARTCharPut                                 
-00055965  EMACPowerManagementStatusGet                
-0005596d  EMACTxDMAPollDemand                         
-00055975  SSIBusy                                     
-0005597d  __aeabi_errno_addr                          
-00055985  EMACRxDMADescriptorListSet                  
-0005598b  EMACTxDMADescriptorListSet                  
-00055991  GPIOPinRead                                 
-00055997  GPIOPinWrite                                
-0005599d  UARTClockSourceSet                          
-000559a3  _system_pre_init                            
-000559a7  C$$EXIT                                     
-000559a7  abort                                       
-0005941c  _ctypes_                                    
-0005951d  _lv_bpp8_opa_table                          
-00059d20  _lv_style_builtin_prop_flag_lookup_table    
-0005a0a9  _lv_bpp1_opa_table                          
-0005a1bc  lv_arc_class                                
-0005a1d8  lv_bar_class                                
-0005a1f4  lv_btn_class                                
-0005a210  lv_btnmatrix_class                          
-0005a22c  lv_calendar_class                           
-0005a248  lv_calendar_header_arrow_class              
-0005a264  lv_calendar_header_dropdown_class           
-0005a280  lv_chart_class                              
-0005a29c  lv_checkbox_class                           
-0005a2b8  lv_colorwheel_class                         
-0005a2d4  lv_dropdown_class                           
-0005a2f0  lv_dropdownlist_class                       
-0005a30c  lv_font_montserrat_14                       
-0005a328  lv_img_class                                
-0005a344  lv_keyboard_class                           
-0005a360  lv_label_class                              
-0005a37c  lv_led_class                                
-0005a398  lv_line_class                               
-0005a3b4  lv_list_btn_class                           
-0005a3d0  lv_list_class                               
-0005a3ec  lv_list_text_class                          
-0005a408  lv_menu_class                               
-0005a424  lv_menu_cont_class                          
-0005a440  lv_menu_main_cont_class                     
-0005a45c  lv_menu_main_header_cont_class              
-0005a478  lv_menu_page_class                          
-0005a494  lv_menu_section_class                       
-0005a4b0  lv_menu_separator_class                     
-0005a4cc  lv_menu_sidebar_cont_class                  
-0005a4e8  lv_menu_sidebar_header_cont_class           
-0005a504  lv_meter_class                              
-0005a520  lv_msgbox_backdrop_class                    
-0005a53c  lv_msgbox_class                             
-0005a558  lv_obj_class                                
-0005a574  lv_roller_class                             
-0005a590  lv_roller_label_class                       
-0005a5ac  lv_slider_class                             
-0005a5c8  lv_spinbox_class                            
-0005a5e4  lv_spinner_class                            
-0005a600  lv_switch_class                             
-0005a61c  lv_table_class                              
-0005a638  lv_tabview_class                            
-0005a654  lv_textarea_class                           
-0005a670  lv_tileview_class                           
-0005a68c  lv_tileview_tile_class                      
-0005a6a8  lv_win_class                                
-0005a796  _lv_bpp4_opa_table                          
-0005a888  xBroadcastMACAddress                        
-0005a8bc  _lv_bpp2_opa_table                          
-0005a8c0  xBufferAllocFixedSize                       
-0005a8c8  ulMaxSyscallInterruptPriority               
-0005a8cc  uxTopUsedPriority                           
-0005a8d4  xPHYProperties                              
-0005a9ec  __TI_Handler_Table_Base                     
-0005a9f8  __TI_Handler_Table_Limit                    
-0005aa00  __TI_CINIT_Base                             
-0005aa10  __TI_CINIT_Limit                            
+000501c1  main                                        
+00050403  vApplicationMallocFailedHook                
+0005040b  vApplicationIdleHook                        
+0005040d  vApplicationStackOverflowHook               
+00050419  vApplicationTickHook                        
+00050423  vApplicationIPNetworkEventHook              
+00050441  xApplicationGetRandomNumber                 
+00050451  ulApplicationGetNextSequenceNumber          
+00050511  lv_tileview_create                          
+00050529  lv_tileview_add_tile                        
+00050565  lv_obj_set_tile                             
+000505b7  lv_obj_set_tile_id                          
+00050659  lv_tileview_get_tile_act                    
+0005085d  FreeRTOS_CLIRegisterCommand                 
+0005089b  FreeRTOS_CLIProcessCommand                  
+00050981  FreeRTOS_CLIGetOutputBuffer                 
+00050985  FreeRTOS_CLIGetParameter                    
+00050b93  lv_obj_class_create_obj                     
+00050cc3  lv_obj_class_init_obj                       
+00050d3b  _lv_obj_destruct                            
+00050d71  lv_obj_is_editable                          
+00050db9  lv_obj_is_group_def                         
+00050ec3  lTCPWindowRxCheck                           
+00050f09  lTCPWindowTxAdd                             
+00050fa5  ulTCPWindowTxGet                            
+00051027  xTCPWindowTxDone                            
+00051069  xTCPWindowTxHasData                         
+000510e1  ulTCPWindowTxAck                            
+00051153  xTCPWindowRxEmpty                           
+00051165  vTCPWindowDestroy                           
+00051175  vRegisterCLICommands                        
+0005147b  lv_draw_sw_layer_create                     
+000515c1  lv_draw_sw_layer_adjust                     
+00051611  lv_draw_sw_layer_blend                      
+000516af  lv_draw_sw_layer_destroy                    
+000516df  prvDisplayTask                              
+0005194d  xCalculateSleepTime                         
+000519a5  vCheckNetworkTimers                         
+00051a6b  vIPTimerStartARPResolution                  
+00051a91  vTCPTimerReload                             
+00051a9f  vARPTimerReload                             
+00051aad  vDHCPTimerReload                            
+00051b13  vIPSetTCPTimerExpiredState                  
+00051b41  vIPSetARPTimerEnableState                   
+00051b65  vIPSetARPResolutionTimerEnableState         
+00051b89  vIPSetDHCPTimerEnableState                  
+00051e71  lv_calendar_header_arrow_create             
+0005209f  xNetworkBuffersInitialise                   
+00052133  pxGetNetworkBufferWithDescriptor            
+000521bf  pxNetworkBufferGetFromISR                   
+0005220f  vNetworkBufferReleaseFromISR                
+00052247  vReleaseNetworkBufferAndDescriptor          
+00052291  uxGetMinimumFreeNetworkBuffers              
+00052297  uxGetNumberOfFreeNetworkBuffers             
+0005229d  pxResizeNetworkBufferWithDescriptor         
+000522c9  SysCtlClockFreqSet                          
+000524c9  vProcessGeneratedUDPPacket                  
+0005260b  xProcessReceivedUDPPacket                   
+000526bf  lv_indev_drv_init                           
+000526f9  lv_indev_drv_register                       
+00052757  lv_indev_drv_update                         
+000527c7  lv_indev_delete                             
+000527fd  lv_indev_get_next                           
+00052817  _lv_indev_read                              
+00052a59  __aeabi_dsub                                
+00052a63  __aeabi_dadd                                
+00052c11  lv_calendar_header_dropdown_create          
+00052dc1  lv_mem_init_builtin                         
+00052dd3  lv_mem_deinit_builtin                       
+00052de3  lv_mem_monitor_builtin                      
+00052e59  lv_malloc_builtin                           
+00052e8d  lv_realloc_builtin                          
+00052ea1  lv_free_builtin                             
+00052ecf  lv_mem_test_builtin                         
+00052fcd  lv_spinner_create                           
+000530c9  GPIOPadConfigSet                            
+000532e9  lv_draw_rect_dsc_init                       
+00053369  lv_draw_rect                                
+0005339d  lv_win_create                               
+000533c1  lv_win_add_title                            
+000533f9  lv_win_add_btn                              
+00053447  lv_win_get_header                           
+00053455  lv_win_get_content                          
+000534e9  lv_font_get_glyph_bitmap                    
+00053503  lv_font_get_glyph_dsc                       
+0005360b  lv_font_get_glyph_width                     
+00053641  lv_theme_get_from_obj                       
+0005365f  lv_theme_apply                              
+0005367f  lv_theme_set_parent                         
+00053691  lv_theme_set_apply_cb                       
+000536a3  lv_theme_get_font_small                     
+000536bd  lv_theme_get_font_normal                    
+000536d7  lv_theme_get_font_large                     
+000536f1  lv_theme_get_color_primary                  
+00053717  lv_theme_get_color_secondary                
+000538ad  pxPortInitialiseStack                       
+00053917  xPortStartScheduler                         
+0005394d  vPortEndScheduler                           
+0005394f  vPortEnterCritical                          
+0005396f  vPortExitCritical                           
+00053985  xPortSysTickHandler                         
+000539ab  vPortSetupTimerInterrupt                    
+000539e9  __aeabi_ddiv                                
+00053b21  xSequenceLessThan                           
+00053b43  xSequenceGreaterThan                        
+00053b65  vTCPWindowCreate                            
+00053b97  vTCPWindowInit                              
+00053c4d  vListInitialise                             
+00053c7d  vListInitialiseItem                         
+00053c8d  vListInsertEnd                              
+00053cc9  vListInsert                                 
+00053d2f  uxListRemove                                
+00053eaf  lv_draw_layer_create                        
+00053f39  lv_draw_layer_adjust                        
+00053f5b  lv_draw_layer_blend                         
+00053f79  lv_draw_layer_destroy                       
+00053fc1  SysCtlClockGet                              
+000540d9  ldexp                                       
+000540d9  ldexpl                                      
+000540d9  scalbn                                      
+000540d9  scalbnl                                     
+000541e9  __aeabi_dmul                                
+000542f7  _lv_gc_clear_roots                          
+000543d5  lv_malloc                                   
+000543f3  lv_free                                     
+0005440b  lv_realloc                                  
+00054445  lv_memcpy                                   
+00054459  lv_memset                                   
+00054471  lv_strlen                                   
+0005447d  lv_strncpy                                  
+00054491  lv_mem_test                                 
+000544a7  lv_mem_monitor                              
+000544c5  lv_async_call                               
+00054513  lv_async_call_cancel                        
+000545b1  ulPortGetIPSR                               
+000545c9  xPortPendSVHandler                          
+00054629  vPortSVCHandler                             
+00054649  vPortStartFirstTask                         
+0005466d  vPortEnableVFP                              
+000546e9  lv_draw_line_dsc_init                       
+0005470b  lv_draw_line                                
+00054739  ProcessICMPPacket                           
+000548b3  _lv_img_cache_open                          
+00054923  lv_img_cache_set_size                       
+0005492f  lv_img_cache_invalidate_src                 
+0005493d  __aeabi_memcpy                              
+0005493d  __aeabi_memcpy4                             
+0005493d  __aeabi_memcpy8                             
+0005493d  memcpy                                      
+000549d9  __aeabi_uldivmod                            
+00054a6f  __aeabi_cdcmpeq                             
+00054a6f  __aeabi_cdcmple                             
+00054af5  __aeabi_cdrcmple                            
+00054b7b  __aeabi_memclr                              
+00054b7b  __aeabi_memclr4                             
+00054b7b  __aeabi_memclr8                             
+00054b7d  __aeabi_memset                              
+00054b7d  __aeabi_memset4                             
+00054b7d  __aeabi_memset8                             
+00054b83  memset                                      
+00054bf5  EMACInit                                    
+00054c6d  lv_tick_inc                                 
+00054c87  lv_tick_get                                 
+00054ca5  lv_tick_elaps                               
+00054ce1  _lv_utils_bsearch                           
+00054dc5  IntEnable                                   
+00054e2d  __TI_decompress_lzss                        
+00054e95  frexp                                       
+00054e95  frexpl                                      
+00054ef9  prvSocketSetMSS                             
+00054f59  __aeabi_idiv                                
+00054f59  __aeabi_idivmod                             
+0005500d  __TI_ltoa                                   
+000550b5  SysCtlPeripheralReset                       
+00055105  lv_draw_transform                           
+00055155  GPIOPinConfigure                            
+000551a1  atoi                                        
+000551ed  snprintf                                    
+00055281  __aeabi_d2iz                                
+000552c9  UARTConfigSetExpClk                         
+00055311  __TI_auto_init_nobinit_nopinit              
+00055355  __aeabi_uidiv                               
+00055355  __aeabi_uidivmod                            
+00055395  sprintf                                     
+00055413  EMACIntEnable                               
+0005544d  EMACConfigSet                               
+00055485  SysCtlPeripheralPresent                     
+000554bd  SysCtlPeripheralReady                       
+000554f5  lv_btn_create                               
+0005552d  strncpy                                     
+00055565  EMACConfigGet                               
+00055599  EMACIntClear                                
+000555cd  SysCtlPeripheralEnable                      
+00055601  _c_int00_noargs                             
+00055635  rand                                        
+00055669  EMACAddrSet                                 
+000556c9  prvCommandInterpreterTask                   
+000556f9  __aeabi_i2d                                 
+00055727  EMACIntStatus                               
+00055753  GPIODirModeSet                              
+0005577f  strncmp                                     
+000557ab  memmove                                     
+000557d3  EMACPHYRead                                 
+000557f9  EMACPHYWrite                                
+00055821  IntPrioritySet                              
+00055845  memcmp                                      
+00055869  UARTDisable                                 
+000558a9  strcat                                      
+000558c7  memccpy                                     
+000558e3  GPIOPinTypeGPIOOutput                       
+000558fd  copysign                                    
+000558fd  copysignl                                   
+00055947  lv_draw_init                                
+00055949  lv_draw_wait_for_finish                     
+0005595f  __aeabi_lmul                                
+00055977  strcmp                                      
+0005598f  EMACRxEnable                                
+000559a5  EMACTxEnable                                
+000559bb  GPIOPinTypeEthernetLED                      
+000559d1  GPIOPinTypeGPIOInput                        
+000559e7  GPIOPinTypeUART                             
+000559fd  GPIOPinTypeUSBAnalog                        
+00055a13  GPIOPinTypeUSBDigital                       
+00055a29  strchr                                      
+00055a41  FlashUserGet                                
+00055a55  UARTEnable                                  
+00055a69  strcpy                                      
+00055a7d  strlen                                      
+00055a91  wcslen                                      
+00055aa5  EMACFrameFilterSet                          
+00055ab5  IntMasterDisable                            
+00055ac5  __TI_decompress_none                        
+00055ad3  prvModbusTask                               
+00055ae1  CPUcpsid                                    
+00055aed  __TI_zero_init                              
+00055af9  ResetISR                                    
+00055b05  SSIDataPut                                  
+00055b0f  UARTCharGet                                 
+00055b19  UARTCharPut                                 
+00055b2d  EMACPowerManagementStatusGet                
+00055b35  EMACTxDMAPollDemand                         
+00055b3d  SSIBusy                                     
+00055b45  __aeabi_errno_addr                          
+00055b4d  EMACRxDMADescriptorListSet                  
+00055b53  EMACTxDMADescriptorListSet                  
+00055b59  GPIOPinRead                                 
+00055b5f  GPIOPinWrite                                
+00055b65  UARTClockSourceSet                          
+00055b6b  _system_pre_init                            
+00055b6f  C$$EXIT                                     
+00055b6f  abort                                       
+000595e4  _ctypes_                                    
+000596e5  _lv_bpp8_opa_table                          
+00059ee8  _lv_style_builtin_prop_flag_lookup_table    
+0005a271  _lv_bpp1_opa_table                          
+0005a384  lv_arc_class                                
+0005a3a0  lv_bar_class                                
+0005a3bc  lv_btn_class                                
+0005a3d8  lv_btnmatrix_class                          
+0005a3f4  lv_calendar_class                           
+0005a410  lv_calendar_header_arrow_class              
+0005a42c  lv_calendar_header_dropdown_class           
+0005a448  lv_chart_class                              
+0005a464  lv_checkbox_class                           
+0005a480  lv_colorwheel_class                         
+0005a49c  lv_dropdown_class                           
+0005a4b8  lv_dropdownlist_class                       
+0005a4d4  lv_font_montserrat_14                       
+0005a4f0  lv_img_class                                
+0005a50c  lv_keyboard_class                           
+0005a528  lv_label_class                              
+0005a544  lv_led_class                                
+0005a560  lv_line_class                               
+0005a57c  lv_list_btn_class                           
+0005a598  lv_list_class                               
+0005a5b4  lv_list_text_class                          
+0005a5d0  lv_menu_class                               
+0005a5ec  lv_menu_cont_class                          
+0005a608  lv_menu_main_cont_class                     
+0005a624  lv_menu_main_header_cont_class              
+0005a640  lv_menu_page_class                          
+0005a65c  lv_menu_section_class                       
+0005a678  lv_menu_separator_class                     
+0005a694  lv_menu_sidebar_cont_class                  
+0005a6b0  lv_menu_sidebar_header_cont_class           
+0005a6cc  lv_meter_class                              
+0005a6e8  lv_msgbox_backdrop_class                    
+0005a704  lv_msgbox_class                             
+0005a720  lv_obj_class                                
+0005a73c  lv_roller_class                             
+0005a758  lv_roller_label_class                       
+0005a774  lv_slider_class                             
+0005a790  lv_spinbox_class                            
+0005a7ac  lv_spinner_class                            
+0005a7c8  lv_switch_class                             
+0005a7e4  lv_table_class                              
+0005a800  lv_tabview_class                            
+0005a81c  lv_textarea_class                           
+0005a838  lv_tileview_class                           
+0005a854  lv_tileview_tile_class                      
+0005a870  lv_win_class                                
+0005a95e  _lv_bpp4_opa_table                          
+0005aa58  xBroadcastMACAddress                        
+0005aa8c  _lv_bpp2_opa_table                          
+0005aa90  xBufferAllocFixedSize                       
+0005aa98  ulMaxSyscallInterruptPriority               
+0005aa9c  uxTopUsedPriority                           
+0005aaa4  xPHYProperties                              
+0005abbc  __TI_Handler_Table_Base                     
+0005abc8  __TI_Handler_Table_Limit                    
+0005abd0  __TI_CINIT_Base                             
+0005abe0  __TI_CINIT_Limit                            
 20000000  __start___llvm_prf_cnts                     
 20000000  __stop___llvm_prf_cnts                      
-200267e0  _lv_draw_mask_list                          
-200268d8  _lv_circle_cache                            
-20026948  xQueueRegistry                              
-20026a60  _lv_img_cache_single                        
-20026b90  xBoundTCPSocketsList                        
-20026ba4  xBoundUDPSocketsList                        
-20026c14  _lv_anim_ll                                 
-20026c20  _lv_disp_ll                                 
-20026c2c  _lv_fsdrv_ll                                
-20026c38  _lv_group_ll                                
-20026c44  _lv_img_decoder_ll                          
-20026c50  _lv_indev_ll                                
-20026c5c  _lv_obj_style_trans_ll                      
-20026c68  _lv_timer_ll                                
-20026c74  _subs_ll                                    
-20026cfc  _lv_grad_cache_mem                          
-20026d00  _lv_layout_list                             
-20026d04  _lv_style_custom_prop_flag_lookup_table     
-20026d08  _lv_theme_basic_styles                      
-20026d0c  _lv_theme_default_styles                    
-20026d10  _lv_timer_act                               
-20026d14  g_ui32SysClock                              
-20026d18  xProcessedTCPMessage                        
-20026d2a  LV_LAYOUT_FLEX                              
-20026d2c  LV_LAYOUT_GRID                              
-20026d2e  LV_STYLE_FLEX_CROSS_PLACE                   
-20026d30  LV_STYLE_FLEX_FLOW                          
-20026d32  LV_STYLE_FLEX_GROW                          
-20026d34  LV_STYLE_FLEX_MAIN_PLACE                    
-20026d36  LV_STYLE_FLEX_TRACK_PLACE                   
-20026d38  LV_STYLE_GRID_CELL_COLUMN_POS               
-20026d3a  LV_STYLE_GRID_CELL_COLUMN_SPAN              
-20026d3c  LV_STYLE_GRID_CELL_ROW_POS                  
-20026d3e  LV_STYLE_GRID_CELL_ROW_SPAN                 
-20026d40  LV_STYLE_GRID_CELL_X_ALIGN                  
-20026d42  LV_STYLE_GRID_CELL_Y_ALIGN                  
-20026d44  LV_STYLE_GRID_COLUMN_ALIGN                  
-20026d46  LV_STYLE_GRID_COLUMN_DSC_ARRAY              
-20026d48  LV_STYLE_GRID_ROW_ALIGN                     
-20026d4a  LV_STYLE_GRID_ROW_DSC_ARRAY                 
-20026d4c  pxCurrentTCB                                
-20026df8  _lv_txt_encoded_size                        
-20026dfc  _lv_txt_unicode_to_encoded                  
-20026e00  _lv_txt_encoded_conv_wc                     
-20026e04  _lv_txt_encoded_next                        
-20026e08  _lv_txt_encoded_prev                        
-20026e0c  _lv_txt_encoded_get_byte_id                 
-20026e10  _lv_txt_encoded_get_char_id                 
-20026e14  _lv_txt_get_encoded_length                  
-20026e18  pxARPWaitingNetworkBuffer                   
-20026e1c  xNetworkEventQueue                          
-20026e20  usPacketIdentifier                          
-20026e84  xDefaultPartUDPPacketHeader                 
-20026e9c  xDefaultAddressing                          
-20026eb0  xNetworkAddressing                          
-20026f10  _lock                                       
-20026f14  _unlock                                     
-20026f58  _lv_style_custom_prop_flag_lookup_table_size
-20026f7c  xTCPWindowLoggingLevel                      
-20026f9c  errno                                       
-20026fa8  __stack                                     
-200271a8  __STACK_END                                 
-200271a8  _sys_memory                                 
-20027fa8  __STACK_TOP                                 
+20026e20  _lv_draw_mask_list                          
+20026f18  _lv_circle_cache                            
+20026f88  xQueueRegistry                              
+200270a0  _lv_img_cache_single                        
+200271d0  xBoundTCPSocketsList                        
+200271e4  xBoundUDPSocketsList                        
+20027254  _lv_anim_ll                                 
+20027260  _lv_disp_ll                                 
+2002726c  _lv_fsdrv_ll                                
+20027278  _lv_group_ll                                
+20027284  _lv_img_decoder_ll                          
+20027290  _lv_indev_ll                                
+2002729c  _lv_obj_style_trans_ll                      
+200272a8  _lv_timer_ll                                
+200272b4  _subs_ll                                    
+2002733c  _lv_grad_cache_mem                          
+20027340  _lv_layout_list                             
+20027344  _lv_style_custom_prop_flag_lookup_table     
+20027348  _lv_theme_basic_styles                      
+2002734c  _lv_theme_default_styles                    
+20027350  _lv_timer_act                               
+20027354  g_ui32SysClock                              
+20027358  led1                                        
+2002735c  led2                                        
+20027360  xProcessedTCPMessage                        
+20027372  LV_LAYOUT_FLEX                              
+20027374  LV_LAYOUT_GRID                              
+20027376  LV_STYLE_FLEX_CROSS_PLACE                   
+20027378  LV_STYLE_FLEX_FLOW                          
+2002737a  LV_STYLE_FLEX_GROW                          
+2002737c  LV_STYLE_FLEX_MAIN_PLACE                    
+2002737e  LV_STYLE_FLEX_TRACK_PLACE                   
+20027380  LV_STYLE_GRID_CELL_COLUMN_POS               
+20027382  LV_STYLE_GRID_CELL_COLUMN_SPAN              
+20027384  LV_STYLE_GRID_CELL_ROW_POS                  
+20027386  LV_STYLE_GRID_CELL_ROW_SPAN                 
+20027388  LV_STYLE_GRID_CELL_X_ALIGN                  
+2002738a  LV_STYLE_GRID_CELL_Y_ALIGN                  
+2002738c  LV_STYLE_GRID_COLUMN_ALIGN                  
+2002738e  LV_STYLE_GRID_COLUMN_DSC_ARRAY              
+20027390  LV_STYLE_GRID_ROW_ALIGN                     
+20027392  LV_STYLE_GRID_ROW_DSC_ARRAY                 
+20027394  pxCurrentTCB                                
+20027440  _lv_txt_encoded_size                        
+20027444  _lv_txt_unicode_to_encoded                  
+20027448  _lv_txt_encoded_conv_wc                     
+2002744c  _lv_txt_encoded_next                        
+20027450  _lv_txt_encoded_prev                        
+20027454  _lv_txt_encoded_get_byte_id                 
+20027458  _lv_txt_encoded_get_char_id                 
+2002745c  _lv_txt_get_encoded_length                  
+20027460  pxARPWaitingNetworkBuffer                   
+20027464  xNetworkEventQueue                          
+20027468  usPacketIdentifier                          
+200274cc  xDefaultPartUDPPacketHeader                 
+200274e4  xDefaultAddressing                          
+200274f8  xNetworkAddressing                          
+20027558  _lock                                       
+2002755c  _unlock                                     
+200275a0  _lv_style_custom_prop_flag_lookup_table_size
+200275c4  xTCPWindowLoggingLevel                      
+200275e4  errno                                       
+200275f0  __stack                                     
+200277f0  __STACK_END                                 
+200277f0  _sys_memory                                 
+200285f0  __STACK_TOP                                 
 ffffffff  __TI_pprof_out_hndl                         
 ffffffff  __TI_prof_data_size                         
 ffffffff  __TI_prof_data_start                        
@@ -4352,4 +4359,4 @@ ffffffff  binit
 UNDEFED   __mpu_init                                  
 UNDEFED   _system_post_cinit                          
 
-[1646 symbols]
+[1648 symbols]
