@@ -218,22 +218,22 @@ static BaseType_t prvLedOnCommand( char *pcWriteBuffer, size_t xWriteBufferLen, 
     if( strncmp( pcParameter, "1", strlen( "1" ) ) == 0 )
     {
         /* Turn On LED*/
-        LEDWrite(LED_D1,1);
+        LEDWrite(LED_D1,LED_D1);
         sprintf( pcWriteBuffer, "Turning ON LED 1\r\n" );
     } else if( strncmp( pcParameter, "2", strlen( "2" ) ) == 0 )
     {
         /* Turn On LED*/
-        LEDWrite(LED_D2,1);
+        LEDWrite(LED_D2,LED_D2);
         sprintf( pcWriteBuffer, "Turning ON LED 2\r\n" );
     } else if( strncmp( pcParameter, "3", strlen( "3" ) ) == 0 )
     {
         /* Turn On LED*/
-        LEDWrite(LED_D3,1);
+        LEDWrite(LED_D3,LED_D3);
         sprintf( pcWriteBuffer, "Turning ON LED 3\r\n" );
     } else if( strncmp( pcParameter, "4", strlen( "4" ) ) == 0 )
     {
         /* Turn On LED*/
-        LEDWrite(LED_D4,1);
+        LEDWrite(LED_D4,LED_D4);
         sprintf( pcWriteBuffer, "Turning ON LED 4\r\n" );
     }
 

@@ -114,11 +114,11 @@ extern "C" {
 //#define ST7735_FRAMEBUFFER_SIZE (ST7735_WIDTH * ST7735_HEIGHT)
 //
 //void ST7735_Init(SPI_HandleTypeDef * hspi);
-//void ST7735_SetAddressWindow(uint8_t x0, uint8_t y0, uint8_t x1, uint8_t y1);
+void ST7735_SetAddressWindow(uint8_t x0, uint8_t y0, uint8_t x1, uint8_t y1);
 //void ST7735_Unselect();
 //void ST7735_DrawPixel(uint16_t x, uint16_t y, uint16_t color);
 //void ST7735_WriteString(uint16_t x, uint16_t y, const char* str, FontDef font, uint16_t color, uint16_t bgcolor);
-//void ST7735_FillRectangle(uint16_t x, uint16_t y, uint16_t w, uint16_t h, uint16_t color);
+void ST7735_FillRectangle(uint16_t x, uint16_t y, uint16_t w, uint16_t h, uint16_t color);
 //void ST7735_FillRectangleFast(uint16_t x, uint16_t y, uint16_t w, uint16_t h, uint16_t color);
 //void ST7735_FillScreen(uint16_t color);
 //void ST7735_FillScreenFast(uint16_t color);
@@ -130,6 +130,9 @@ extern "C" {
 
 void ST7735_init(void);
 void ST7735_flush(struct _lv_disp_drv_t * disp_drv, const lv_area_t * area, lv_color_t * color_p);
+
+//
+void ST7735_DrawPixel(uint32_t x, uint32_t y, uint16_t color);
 
 //#endif /* USE_ST7735 */
 

@@ -19,9 +19,6 @@
 
 #include <stdint.h>
 
-#define LV_HOR_RES_MAX  80
-#define LV_VER_RES_MAX  160
-
 /*====================
    COLOR SETTINGS
  *====================*/
@@ -31,15 +28,18 @@
 
 #define LV_COLOR_CHROMA_KEY lv_color_hex(0x00ff00)
 
+#define LV_HOR_RES_MAX 80
+#define LV_VER_RES_MAX 160
+
 /*=========================
    STDLIB WRAPPER SETTINGS
  *=========================*/
 
 /*Enable and configure the built-in memory manager*/
-#define LV_USE_BUILTIN_MALLOC 0
+#define LV_USE_BUILTIN_MALLOC 1
 #if LV_USE_BUILTIN_MALLOC
     /*Size of the memory available for `lv_malloc()` in bytes (>= 2kB)*/
-    #define LV_MEM_SIZE (2U * 1024U)          /*[bytes]*/
+    #define LV_MEM_SIZE (128U * 1024U)          /*[bytes]*/
 
     /*Set an address for the memory pool instead of allocating it as a normal array. Can be in external SRAM too.*/
     #define LV_MEM_ADR 0     /*0: unused*/
@@ -60,9 +60,9 @@
 #endif  /*LV_USE_BUILTIN_SNPRINTF*/
 
 #define LV_STDLIB_INCLUDE <stdint.h>
-#define LV_MALLOC       malloc
-#define LV_REALLOC      realloc
-#define LV_FREE         free
+#define LV_MALLOC       lv_malloc_builtin
+#define LV_REALLOC      lv_realloc_builtin
+#define LV_FREE         lv_free_builtin
 #define LV_MEMSET       lv_memset_builtin
 #define LV_MEMCPY       lv_memcpy_builtin
 #define LV_SNPRINTF     lv_snprintf_builtin

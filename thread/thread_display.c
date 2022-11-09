@@ -20,6 +20,8 @@
 
 /*display includes*/
 
+#include "drivers/rtos_hw_drivers.h"
+
 //#include "drivers/display/SSD1306.h"
 #include "drivers/display/ST7735.h"
 
@@ -41,7 +43,17 @@ static void btn_event_cb(lv_event_t * e);
 
 void prvDisplayTask( void *pvParameters ){
 
+    LEDWrite(LED_D1,LED_D1);
+    LEDWrite(LED_D2,LED_D2);
+    LEDWrite(LED_D3,LED_D3);
+    LEDWrite(LED_D4,LED_D4);
+
+
+    //vTaskDelay( pdMS_TO_TICKS( 200 ));
+    ST7735_init();
+
     lv_init();
+
 
     /*Initialize `disp_buf` with the buffer(s) */
     lv_disp_draw_buf_init(&disp_buf, buf_1, NULL, LV_HOR_RES_MAX*10);
@@ -54,16 +66,16 @@ void prvDisplayTask( void *pvParameters ){
 
     lv_disp_t * disp;
     disp = lv_disp_drv_register(&disp_drv); /*Register the driver and save the created display objects*/
-
-    //TODO: register input device
-
-    /**
-     * Create a button with a label and react on click event.
-     */
+//
+//    //TODO: register input device
+//
+//    /**
+//     * Create a button with a label and react on click event.
+//     */
 
     lv_obj_t * btn = lv_btn_create(lv_scr_act());     /*Add a button the current screen*/
-    lv_obj_set_pos(btn, 10, 10);                            /*Set its position*/
-    lv_obj_set_size(btn, 120, 50);                          /*Set its size*/
+    lv_obj_set_pos(btn, 5, 5);                            /*Set its position*/
+    lv_obj_set_size(btn, 70, 30);                          /*Set its size*/
     lv_obj_add_event_cb(btn, btn_event_cb, LV_EVENT_ALL, NULL);           /*Assign a callback to the button*/
 
     lv_obj_t * label = lv_label_create(btn);          /*Add a label to the button*/
@@ -71,12 +83,20 @@ void prvDisplayTask( void *pvParameters ){
     lv_obj_center(label);
 
     for(;;){
-        //lv_tick_inc(10); // called in vApplicationTickHook
-        //TODO: use mutex
+//        //lv_tick_inc(10); // called in vApplicationTickHook
+//        //TODO: use mutex
         lv_timer_handler();
-        //lv_timer_handler_run_in_period(10); //supper loop
-        //TODO: release mutex
-        vTaskDelay(10);
+//        //lv_timer_handler_run_in_period(10); //supper loop
+//        //TODO: release mutex
+        vTaskDelay( pdMS_TO_TICKS( 10 ));
+
+
+//        vTaskDelay( pdMS_TO_TICKS( 200 )); //TEST
+//        ST7735_FillRectangle(0,0,ST7735_WIDTH, ST7735_HEIGHT,ST7735_RED);//TEST
+//        vTaskDelay( pdMS_TO_TICKS( 200 )); //TEST
+//        ST7735_FillRectangle(0,0,ST7735_WIDTH, ST7735_HEIGHT,ST7735_BLUE);//TEST
+//        vTaskDelay( pdMS_TO_TICKS( 200 )); //TEST
+//        ST7735_FillRectangle(0,0,ST7735_WIDTH, ST7735_HEIGHT,ST7735_GREEN);//TEST
     }
 }
 

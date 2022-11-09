@@ -5,6 +5,33 @@
  *      Author: sandeep
  */
 
+/* Standard includes. */
+#include <stdio.h>
+#include <stdbool.h>
+#include <stdint.h>
+#include <string.h>
+#include <stdlib.h>
+
+/* Kernel includes. */
+#include "FreeRTOS.h"
+#include "task.h"
+
+/* Hardware Includes */
+#include "inc/hw_memmap.h"
+#include "inc/hw_sysctl.h"
+#include "driverlib/sysexc.h" //System Exception
+#include "driverlib/systick.h" //SysTick
+#include "driverlib/gpio.h"
+#include "driverlib/interrupt.h" //NIVC
+#include "driverlib/pin_map.h"
+#include "driverlib/rom.h"
+#include "driverlib/rom_map.h"
+#include "driverlib/sysctl.h"
+#include "driverlib/ssi.h" // QSPI Microwire etc
+
+//-----------------
+#include "drivers/rtos_hw_drivers.h"
+
 #include "ST7735.h"
 
 //#if USE_ST7535
@@ -87,27 +114,55 @@ static const uint8_t
       100 };                  //     100 ms delay
 
 static void ST7735_Select() {
-    //HAL_GPIO_WritePin(CS2_GPIO_Port, CS2_Pin, GPIO_PIN_RESET);
+    while(true == MAP_SSIBusy(SSI2_BASE));// test
+    //MAP_SSIAdvFrameHoldEnable(SSI2_BASE);
+    MAP_GPIOPinWrite(DISPLAY_CS_PORT, DISPLAY_CS_PIN, 0);
 }
 
 void ST7735_Unselect() {
-    //HAL_GPIO_WritePin(CS2_GPIO_Port, CS2_Pin, GPIO_PIN_SET);
+    //MAP_SSIAdvFrameHoldDisable(SSI2_BASE);
+    while(true == MAP_SSIBusy(SSI2_BASE)); // wait for data send to complete
+    MAP_GPIOPinWrite(DISPLAY_CS_PORT, DISPLAY_CS_PIN, DISPLAY_CS_PIN);
 }
 
 static void ST7735_Reset() {
     //HAL_GPIO_WritePin(RES2_GPIO_Port, RES2_Pin, GPIO_PIN_RESET);
     //HAL_Delay(5);
     //HAL_GPIO_WritePin(RES2_GPIO_Port, RES2_Pin, GPIO_PIN_SET);
+    MAP_GPIOPinWrite(DISPLAY_RST_PORT, DISPLAY_RST_PIN, 0);
+    vTaskDelay(pdMS_TO_TICKS( 50 )); //5
+    MAP_GPIOPinWrite(DISPLAY_RST_PORT, DISPLAY_RST_PIN, DISPLAY_RST_PIN);
 }
 
 static void ST7735_WriteCommand(uint8_t cmd) {
     //HAL_GPIO_WritePin(RS_GPIO_Port, RS_Pin, GPIO_PIN_RESET);
     //HAL_SPI_Transmit(&st7735_spi, &cmd, sizeof(cmd), HAL_MAX_DELAY);
+    while(true == MAP_SSIBusy(SSI2_BASE));// test
+    MAP_GPIOPinWrite(DISPLAY_RS_PORT, DISPLAY_RS_PIN, 0);
+    //MAP_SSIAdvDataPutFrameEnd(SSI2_BASE,cmd);
+    //while(true == MAP_SSIBusy(SSI2_BASE));
+    MAP_SSIDataPut(SSI2_BASE,cmd);
 }
 
 static void ST7735_WriteData(uint8_t* buff, size_t buff_size) {
+    //uint8_t i;
+
     //HAL_GPIO_WritePin(RS_GPIO_Port, RS_Pin, GPIO_PIN_SET);
     //HAL_SPI_Transmit(&st7735_spi, buff, buff_size, HAL_MAX_DELAY);
+    while(true == MAP_SSIBusy(SSI2_BASE)); //test
+    MAP_GPIOPinWrite(DISPLAY_RS_PORT, DISPLAY_RS_PIN, DISPLAY_RS_PIN);
+    //i = 0;
+    while(buff_size--){
+        //if(buff_size == 0){
+            //MAP_SSIAdvDataPutFrameEnd(SSI2_BASE,*buff);
+            //LEDWrite(LED_D1,0); //TEST
+        //} else {
+            //while(true == MAP_SSIBusy(SSI2_BASE));
+            MAP_SSIDataPut(SSI2_BASE,*buff++);
+        //}
+
+    }
+    //vTaskDelay( pdMS_TO_TICKS( 1 )); // test
 }
 
 static void ST7735_ExecuteCommandList(const uint8_t *addr) {
@@ -126,12 +181,13 @@ static void ST7735_ExecuteCommandList(const uint8_t *addr) {
         if(numArgs) {
             ST7735_WriteData((uint8_t*)addr, numArgs);
             addr += numArgs;
+            //LEDWrite(LED_D2,0); // test
         }
-
+        //LEDWrite(LED_D1,0); // test
         if(ms) {
             ms = *addr++;
             if(ms == 255) ms = 500;
-            ///osDelay(ms); //TODO:
+            vTaskDelay( pdMS_TO_TICKS( ms ));
         }
     }
 }
@@ -150,19 +206,116 @@ void ST7735_flush(struct _lv_disp_drv_t * disp_drv, const lv_area_t * area, lv_c
 
     /*The most simple case (but also the slowest) to put all pixels to the screen one-by-one
      *`put_px` is just an example, it needs to be implemented by you.*/
+#if 0
     int32_t x, y;
     for(y = area->y1; y <= area->y2; y++) {
         for(x = area->x1; x <= area->x2; x++) {
             //put_px(x, y, *color_p);
+            ST7735_DrawPixel(x,y,color_p->full); // TODO:
             color_p++;
         }
     }
+#else
+
+    ST7735_Select();
+
+    // column address set
+    ST7735_WriteCommand(ST7735_CMD_CASET);
+    uint8_t data[] = { 0x00, area->x1 + ST7735_XSTART, 0x00, area->x2 + ST7735_XSTART };
+    ST7735_WriteData(data, sizeof(data));
+
+    // row address set
+    ST7735_WriteCommand(ST7735_CMD_RASET);
+    data[1] = area->y1 + ST7735_YSTART;
+    data[3] = area->y2 + ST7735_YSTART;
+    ST7735_WriteData(data, sizeof(data));
+
+    // write to RAM
+    ST7735_WriteCommand(ST7735_CMD_RAMWR);
+
+    while(true == MAP_SSIBusy(SSI2_BASE));
+    MAP_GPIOPinWrite(DISPLAY_RS_PORT, DISPLAY_RS_PIN, DISPLAY_RS_PIN);
+
+    uint8_t data2[2];
+
+    uint32_t size = lv_area_get_width(area) * lv_area_get_height(area);
+
+    while(size--){
+
+        data2[0] = color_p->full >> 8;
+        data2[1] = color_p->full & 0xFF;
+
+        MAP_SSIDataPut(SSI2_BASE,data2[0]);
+        MAP_SSIDataPut(SSI2_BASE,data2[1]);
+        color_p++;
+    }
+
+    ST7735_Unselect();
+
+#endif
 
     /* IMPORTANT!!!
      * Inform the graphics library that you are ready with the flushing*/
     lv_disp_flush_ready(disp_drv);
 }
 
+void ST7735_FillRectangle(uint16_t x, uint16_t y, uint16_t w, uint16_t h, uint16_t color) {
+    // clipping
+    if((x >= ST7735_WIDTH) || (y >= ST7735_HEIGHT)) return;
+    if((x + w - 1) >= ST7735_WIDTH) w = ST7735_WIDTH - x;
+    if((y + h - 1) >= ST7735_HEIGHT) h = ST7735_HEIGHT - y;
+
+    ST7735_Select();
+    ST7735_SetAddressWindow(x, y, x+w-1, y+h-1);
+
+    uint8_t data[] = { color >> 8, color & 0xFF };
+    //HAL_GPIO_WritePin(RS_GPIO_Port, RS_Pin, GPIO_PIN_SET);
+    while(true == MAP_SSIBusy(SSI2_BASE));
+    MAP_GPIOPinWrite(DISPLAY_RS_PORT, DISPLAY_RS_PIN, DISPLAY_RS_PIN);
+    for(y = h; y > 0; y--) {
+        for(x = w; x > 0; x--) {
+            //HAL_SPI_Transmit(&st7735_spi, data, sizeof(data), HAL_MAX_DELAY);
+            //HAL_SPI_Transmit_DMA(&st7735_spi, data, sizeof(data));
+            //while(true == MAP_SSIBusy(SSI2_BASE));
+            MAP_SSIDataPut(SSI2_BASE,data[0]);
+            MAP_SSIDataPut(SSI2_BASE,data[1]);
+
+        }
+    }
+
+    ST7735_Unselect();
+}
+
+
+void ST7735_DrawPixel(uint32_t x, uint32_t y, uint16_t color) {
+    if((x >= ST7735_WIDTH) || (y >= ST7735_HEIGHT))
+        return;
+
+    ST7735_Select();
+
+    ST7735_SetAddressWindow((uint8_t)x, (uint8_t)y, (uint8_t)x+1, (uint8_t)y+1);
+    uint8_t data[] = { color >> 8, color & 0xFF };
+    ST7735_WriteData(data, sizeof(data));
+
+    ST7735_Unselect();
+}
+
+void ST7735_SetAddressWindow(uint8_t x0, uint8_t y0, uint8_t x1, uint8_t y1) {
+
+    // column address set
+    ST7735_WriteCommand(ST7735_CMD_CASET);
+    uint8_t data[] = { 0x00, x0 + ST7735_XSTART, 0x00, x1 + ST7735_XSTART };
+    ST7735_WriteData(data, sizeof(data));
+
+    // row address set
+    ST7735_WriteCommand(ST7735_CMD_RASET);
+    data[1] = y0 + ST7735_YSTART;
+    data[3] = y1 + ST7735_YSTART;
+    ST7735_WriteData(data, sizeof(data));
+
+    // write to RAM
+    ST7735_WriteCommand(ST7735_CMD_RAMWR);
+}
 //#endif
 
 

@@ -70,6 +70,17 @@ extern "C"
 #define LED_D4_PORT         GPIO_PORTF_BASE
 #define LED_D4_PIN          GPIO_PIN_0
 
+//User
+
+#define DISPLAY_RS_PORT         GPIO_PORTF_BASE
+#define DISPLAY_RS_PIN          GPIO_PIN_2
+
+#define DISPLAY_RST_PORT         GPIO_PORTF_BASE
+#define DISPLAY_RST_PIN          GPIO_PIN_3
+
+#define DISPLAY_CS_PORT         GPIO_PORTG_BASE
+#define DISPLAY_CS_PIN          GPIO_PIN_0
+
 //*****************************************************************************
 //
 // Defines for the hardware resources used by the pushbuttons.
