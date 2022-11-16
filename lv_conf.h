@@ -25,8 +25,12 @@
 
 /*Color depth: 1 (1 byte per pixel), 8 (RGB332), 16 (RGB565), 32 (ARGB8888)*/
 #define LV_COLOR_DEPTH 16
+#define LV_COLOR_16_SWAP 0 //LV_COLOR_16_SWAP should be 0 to match SquareLine Studio's settings
 
 #define LV_COLOR_CHROMA_KEY lv_color_hex(0x00ff00)
+
+//#define LV_COLOR_SCREEN_TRANSP 1
+#define LV_COLOR_TRANSP LV_COLOR_LIME /*LV_COLOR_LIME: pure green*/
 
 #define LV_HOR_RES_MAX 160
 #define LV_VER_RES_MAX 80

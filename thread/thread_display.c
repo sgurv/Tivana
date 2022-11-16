@@ -30,6 +30,9 @@
 
 #include "thread_display.h"
 
+/* include UI */
+#include "ui/ui.h"
+
 /* The system clock frequency. */
 extern uint32_t g_ui32SysClock;
 
@@ -37,17 +40,17 @@ extern uint32_t g_ui32SysClock;
 static lv_disp_draw_buf_t disp_buf;
 
 /*Static or global buffer(s). The second buffer is optional*/
-static lv_color_t buf_1[LV_HOR_RES_MAX * 10];
+static lv_color_t buf_1[LV_HOR_RES_MAX * 20];
 //static lv_color_t buf_2[MY_DISP_HOR_RES * 10];
 
 static lv_disp_drv_t disp_drv;          /*A variable to hold the drivers. Must be static or global.*/
 
 //LED global
-lv_obj_t * led1;
-lv_obj_t * led2;
-
-static void btn_event_cb(lv_event_t * e);
-static void btn_event_cb2(lv_event_t * e);
+//lv_obj_t * led1;
+//lv_obj_t * led2;
+//
+//static void btn_event_cb(lv_event_t * e);
+//static void btn_event_cb2(lv_event_t * e);
 
 static void button_read(lv_indev_drv_t * indev_drv, lv_indev_data_t * data);
 static int8_t button_get_pressed_id(void);
@@ -97,39 +100,43 @@ void prvDisplayTask( void *pvParameters ){
 
     lv_indev_set_button_points(indev_button, btn_points);
 
-//    /**
-//     * Create a button with a label and react on click event.
-//     */
-    //Button 1
-    lv_obj_t * btn = lv_btn_create(lv_scr_act());     /*Add a button the current screen*/
-    lv_obj_set_pos(btn, 5, 5);                            /*Set its position*/
-    lv_obj_set_size(btn, 70, 30);                          /*Set its size*/
-    lv_obj_add_event_cb(btn, btn_event_cb, LV_EVENT_ALL, NULL);           /*Assign a callback to the button*/
+    ui_init();
 
-    lv_obj_t * label = lv_label_create(btn);          /*Add a label to the button*/
-    lv_label_set_text(label, "Button A");                     /*Set the labels text*/
-    lv_obj_center(label);
-
-    //Button2
-    lv_obj_t * btn2 = lv_btn_create(lv_scr_act());     /*Add a button the current screen*/
-    lv_obj_set_pos(btn2, 85, 5);                            /*Set its position*/
-    lv_obj_set_size(btn2, 70, 30);                          /*Set its size*/
-    lv_obj_add_event_cb(btn2, btn_event_cb2, LV_EVENT_ALL, NULL);           /*Assign a callback to the button*/
-
-    lv_obj_t * label2 = lv_label_create(btn2);          /*Add a label to the button*/
-    lv_label_set_text(label2, "Button B");                     /*Set the labels text*/
-    lv_obj_center(label2);
-
-    /*Create a LED and switch it OFF*/
-    led1  = lv_led_create(lv_scr_act());
-    lv_obj_set_pos(led1, 35, 50);
-    //lv_obj_align(led1, LV_ALIGN_CENTER, -80, 0);
-    lv_led_off(led1);
-
-    led2  = lv_led_create(lv_scr_act());
-    lv_obj_set_pos(led2, 115, 50);
-    //lv_obj_align(led2, LV_ALIGN_CENTER, -80, 0);
-    lv_led_off(led2);
+////    /**
+////     * Create a button with a label and react on click event.
+////     */
+//    //Button 1
+//    lv_obj_t * btn = lv_btn_create(lv_scr_act());     /*Add a button the current screen*/
+//    lv_obj_set_pos(btn, 5, 5);                            /*Set its position*/
+//    lv_obj_set_size(btn, 70, 30);                          /*Set its size*/
+//    lv_obj_add_event_cb(btn, btn_event_cb, LV_EVENT_ALL, NULL);           /*Assign a callback to the button*/
+//
+//    lv_obj_t * label = lv_label_create(btn);          /*Add a label to the button*/
+//    lv_label_set_text(label, "Button A");                     /*Set the labels text*/
+//    lv_obj_center(label);
+//
+//    //Button2
+//    lv_obj_t * btn2 = lv_btn_create(lv_scr_act());     /*Add a button the current screen*/
+//    lv_obj_set_pos(btn2, 85, 5);                            /*Set its position*/
+//    lv_obj_set_size(btn2, 70, 30);                          /*Set its size*/
+//    lv_obj_add_event_cb(btn2, btn_event_cb2, LV_EVENT_ALL, NULL);           /*Assign a callback to the button*/
+//
+//    lv_obj_t * label2 = lv_label_create(btn2);          /*Add a label to the button*/
+//    lv_label_set_text(label2, "Button B");                     /*Set the labels text*/
+//    lv_obj_center(label2);
+//
+//    /*Create a LED and switch it OFF*/
+//    led1  = lv_led_create(lv_scr_act());
+//    lv_obj_set_pos(led1, 35, 50);
+//    //lv_obj_align(led1, LV_ALIGN_CENTER, -80, 0);
+//    lv_led_set_color(led1, lv_palette_main(LV_PALETTE_LIME));
+//    lv_led_off(led1);
+//
+//    led2  = lv_led_create(lv_scr_act());
+//    lv_obj_set_pos(led2, 115, 50);
+//    //lv_obj_align(led2, LV_ALIGN_CENTER, -80, 0);
+//    lv_led_set_color(led2, lv_palette_main(LV_PALETTE_RED));
+//    lv_led_off(led2);
 
 
     for(;;){
@@ -140,40 +147,33 @@ void prvDisplayTask( void *pvParameters ){
 //        //TODO: release mutex
         vTaskDelay( pdMS_TO_TICKS( 10 ));
 
-
-//        vTaskDelay( pdMS_TO_TICKS( 200 )); //TEST
-//        ST7735_FillRectangle(0,0,ST7735_WIDTH, ST7735_HEIGHT,ST7735_RED);//TEST
-//        vTaskDelay( pdMS_TO_TICKS( 200 )); //TEST
-//        ST7735_FillRectangle(0,0,ST7735_WIDTH, ST7735_HEIGHT,ST7735_BLUE);//TEST
-//        vTaskDelay( pdMS_TO_TICKS( 200 )); //TEST
-//        ST7735_FillRectangle(0,0,ST7735_WIDTH, ST7735_HEIGHT,ST7735_GREEN);//TEST
     }
 }
 
-static void btn_event_cb(lv_event_t * e)
-{
-    lv_event_code_t code = lv_event_get_code(e);
-    lv_obj_t * btn = lv_event_get_target(e);
-    if(code == LV_EVENT_CLICKED) {
-//        static uint8_t cnt = 0;
-//        cnt++;
+//static void btn_event_cb(lv_event_t * e)
+//{
+//    lv_event_code_t code = lv_event_get_code(e);
+//    lv_obj_t * btn = lv_event_get_target(e);
+//    if(code == LV_EVENT_CLICKED) {
+////        static uint8_t cnt = 0;
+////        cnt++;
+////
+////        /*Get the first child of the button which is the label and change its text*/
+////        lv_obj_t * label = lv_obj_get_child(btn, 0);
+////        lv_label_set_text_fmt(label, "Button: %d", cnt);
+//        lv_led_toggle(led1);
+//    }
+//}
 //
-//        /*Get the first child of the button which is the label and change its text*/
-//        lv_obj_t * label = lv_obj_get_child(btn, 0);
-//        lv_label_set_text_fmt(label, "Button: %d", cnt);
-        lv_led_toggle(led1);
-    }
-}
-
-static void btn_event_cb2(lv_event_t * e)
-{
-    lv_event_code_t code = lv_event_get_code(e);
-    lv_obj_t * btn = lv_event_get_target(e);
-    if(code == LV_EVENT_CLICKED) {
-
-        lv_led_toggle(led2);
-    }
-}
+//static void btn_event_cb2(lv_event_t * e)
+//{
+//    lv_event_code_t code = lv_event_get_code(e);
+//    lv_obj_t * btn = lv_event_get_target(e);
+//    if(code == LV_EVENT_CLICKED) {
+//
+//        lv_led_toggle(led2);
+//    }
+//}
 
 /*Will be called by the library to read the button*/
 static void button_read(lv_indev_drv_t * indev_drv, lv_indev_data_t * data)

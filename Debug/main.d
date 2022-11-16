@@ -239,6 +239,8 @@ main.obj: C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/qei.h
 main.obj: C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/shamd5.h
 main.obj: C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/ssi.h
 main.obj: ../drivers/rtos_hw_drivers.h
+main.obj: ../drivers/i2c_master.h
+main.obj: ../drivers/sensors/APDS9960.h
 main.obj: C:/ti/TivaWare_C_Series-2.2.0.295/utils/uartstdio.h
 main.obj: ../utils/cli_commands.h
 main.obj: ../thread/thread_cli.h
@@ -722,6 +724,10 @@ C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/shamd5.h:
 C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/ssi.h:
 
 ../drivers/rtos_hw_drivers.h:
+
+../drivers/i2c_master.h:
+
+../drivers/sensors/APDS9960.h:
 
 C:/ti/TivaWare_C_Series-2.2.0.295/utils/uartstdio.h:
 

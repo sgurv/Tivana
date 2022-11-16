@@ -114,6 +114,7 @@ SUBDIRS := \
 . \
 drivers/display \
 drivers \
+drivers/sensors \
 middlewares/FreeRTOS/Source \
 middlewares/FreeRTOS/Source/portable/CCS/ARM_CM4F \
 middlewares/FreeRTOS/Source/portable/MemMang \
@@ -191,5 +192,6 @@ middlewares/lvgl/src/widgets/textarea \
 middlewares/lvgl/src/widgets/tileview \
 middlewares/lvgl/src/widgets/win \
 thread \
+ui \
 utils \
 

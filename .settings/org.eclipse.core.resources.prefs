@@ -1,6 +1,8 @@
 eclipse.preferences.version=1
 encoding//Debug/drivers/display/subdir_rules.mk=UTF-8
 encoding//Debug/drivers/display/subdir_vars.mk=UTF-8
+encoding//Debug/drivers/sensors/subdir_rules.mk=UTF-8
+encoding//Debug/drivers/sensors/subdir_vars.mk=UTF-8
 encoding//Debug/drivers/subdir_rules.mk=UTF-8
 encoding//Debug/drivers/subdir_vars.mk=UTF-8
 encoding//Debug/makefile=UTF-8
@@ -408,5 +410,7 @@ encoding//Debug/subdir_rules.mk=UTF-8
 encoding//Debug/subdir_vars.mk=UTF-8
 encoding//Debug/thread/subdir_rules.mk=UTF-8
 encoding//Debug/thread/subdir_vars.mk=UTF-8
+encoding//Debug/ui/subdir_rules.mk=UTF-8
+encoding//Debug/ui/subdir_vars.mk=UTF-8
 encoding//Debug/utils/subdir_rules.mk=UTF-8
 encoding//Debug/utils/subdir_vars.mk=UTF-8

@@ -65,6 +65,9 @@
 //#include "driverlib/sw_crc.h" //Soft CRC
 
 #include "drivers/rtos_hw_drivers.h"
+#include "drivers/i2c_master.h"
+
+#include "drivers/sensors/APDS9960.h"
 
 //Utilities
 #include "utils/uartstdio.h"
@@ -180,9 +183,19 @@ static void prvHelloTask( void *pvParameters )
 
     //BaseType_t result;
 
+    bool res;
+
+    res = APDS9960Init(I2C0_BASE);
+
 
     for (;;)
     {
+
+        if(res == true){
+            LEDWrite(LED_D1,LED_D1);
+        } else {
+            LEDWrite(LED_D1,0);
+        }
 
 
         ////-- Button
@@ -377,32 +390,35 @@ static void prvSetupHardware( void )
     {
     }
 
+    //Enable
+    MAP_I2CMasterEnable(I2C0_BASE);
+
     // Initialize Master and Slave
-    MAP_I2CMasterInitExpClk(I2C0_BASE, MAP_SysCtlClockGet(), true);
+    MAP_I2CMasterInitExpClk(I2C0_BASE, MAP_SysCtlClockGet(), false); //slow mode
 
     // Specify slave address
-    MAP_I2CMasterSlaveAddrSet(I2C0_BASE, 0x3B, false);
+    //MAP_I2CMasterSlaveAddrSet(I2C0_BASE, APDS9960_I2C_ADDR, false);
 
     /* I2C 2*/
     /* Enable the peripheral */
-//    MAP_SysCtlPeripheralEnable(SYSCTL_PERIPH_I2C2);
-//
-//    /* Configure the appropriate pins to be I2C instead of GPIO. */
-//    MAP_GPIOPinConfigure(GPIO_PN5_I2C2SCL);
-//    MAP_GPIOPinConfigure(GPIO_PN4_I2C2SDA);
-//    MAP_GPIOPinTypeI2CSCL(GPIO_PORTN_BASE, GPIO_PIN_5);
-//    MAP_GPIOPinTypeI2C(GPIO_PORTN_BASE, GPIO_PIN_4);
-//
-//    // Wait for the I2C2 module to be ready.
-//    while(!MAP_SysCtlPeripheralReady(SYSCTL_PERIPH_I2C2))
-//    {
-//    }
-//
-//    // Initialize Master and Slave
-//    MAP_I2CMasterInitExpClk(I2C2_BASE, MAP_SysCtlClockGet(), true);
-//
-//    // Specify slave address
-//    MAP_I2CMasterSlaveAddrSet(I2C2_BASE, 0x3B, false);
+    MAP_SysCtlPeripheralEnable(SYSCTL_PERIPH_I2C2);
+
+    /* Configure the appropriate pins to be I2C instead of GPIO. */
+    MAP_GPIOPinConfigure(GPIO_PN5_I2C2SCL);
+    MAP_GPIOPinConfigure(GPIO_PN4_I2C2SDA);
+    MAP_GPIOPinTypeI2CSCL(GPIO_PORTN_BASE, GPIO_PIN_5);
+    MAP_GPIOPinTypeI2C(GPIO_PORTN_BASE, GPIO_PIN_4);
+
+    // Wait for the I2C2 module to be ready.
+    while(!MAP_SysCtlPeripheralReady(SYSCTL_PERIPH_I2C2))
+    {
+    }
+
+    //Enable
+    MAP_I2CMasterEnable(I2C2_BASE);
+
+    // Initialize Master and Slave
+    MAP_I2CMasterInitExpClk(I2C2_BASE, MAP_SysCtlClockGet(), true);
 
     /* SSI2 SPI*/
     /* Enable the peripheral */
@@ -512,6 +528,9 @@ static void prvSetupHardware( void )
     MAP_GPIOPinWrite(GPIO_PORTG_BASE, GPIO_PIN_0, GPIO_PIN_0);
     MAP_GPIOPadConfigSet(GPIO_PORTG_BASE, GPIO_PIN_0,
                         GPIO_STRENGTH_8MA, GPIO_PIN_TYPE_STD_WPU);
+
+    //apds9960 int input
+    MAP_GPIOPinTypeGPIOInput(GPIO_PORTC_BASE, GPIO_PIN_7);
 
 
 }
